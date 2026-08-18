@@ -5,3 +5,6 @@ an editor opened by 'git commit'. Please make sure all processes
 are terminated then try again. If it still fails, a git process
 may have crashed in this repository earlier:
 remove the file manually to continue.
+To https://github.com/mirkodesoricellis/training-dashboard.git
+ ! [remote rejected] main -> main (cannot lock ref 'refs/heads/main': is at 77653ef7b003a4459932fc3f0fea24ee22985173 but expected 282792a2a586f2d8382d442eb90092ca15ce5a82)
+error: failed to push some refs to 'https://github.com/mirkodesoricellis/training-dashboard.git'

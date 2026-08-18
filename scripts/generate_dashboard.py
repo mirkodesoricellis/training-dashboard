@@ -16,19 +16,26 @@ Logica:
   2. Calcola in modo DETERMINISTICO (nessuna IA) calorie/macro giorno per giorno,
      applicando le formule dello spec (BMR Mifflin-St Jeor, TSS/FTP per bici,
      kcal/kg/km per corsa, split pasti, dedup attivita' doppie stesso giorno).
-  3. Passa i numeri gia' calcolati + regole/formato allo spec a Claude (Messages API)
-     che genera SOLO l'HTML finale (testo ricette, alternative alimenti, layout),
-     perche' quella parte richiede giudizio, non e' meccanica.
+  3. Passa i numeri gia' calcolati + regole/formato allo spec a un modello IA
+     (Gemini gratis di default, Claude come alternativa a pagamento) che genera
+     SOLO l'HTML finale (testo ricette, alternative alimenti, layout), perche'
+     quella parte richiede giudizio, non e' meccanica.
   4. Scrive index.html nella working copy del repo (il commit+push lo fa il workflow).
 
 Variabili d'ambiente richieste (impostate come GitHub Secrets):
-  STRAVA_CLIENT_ID, STRAVA_CLIENT_SECRET, STRAVA_REFRESH_TOKEN
   INTERVALS_API_KEY, INTERVALS_ATHLETE_ID   (athlete id tipo "i123456", senza prefisso "athlete/")
-  ANTHROPIC_API_KEY
-  TP_AUTH_COOKIE   (valore del cookie Production_tpAuth di TrainingPeaks; facoltativo
-                    ma senza di questo il calendario pianificato resta vuoto)
+  GEMINI_API_KEY   (piano gratuito Google AI Studio — provider di default, zero costo)
 Opzionali:
-  ANTHROPIC_MODEL (default: claude-sonnet-4-5)
+  TP_AUTH_COOKIE   (valore del cookie Production_tpAuth di TrainingPeaks; senza
+                    questo il calendario pianificato resta vuoto, non blocca il resto)
+  STRAVA_CLIENT_ID, STRAVA_CLIENT_SECRET, STRAVA_REFRESH_TOKEN   (solo per il dettaglio
+                    "social" facoltativo; richiede un'app Strava, che ora serve
+                    abbonamento Strava per essere registrata — si puo' saltare del tutto)
+  AI_PROVIDER (default: "gemini"; alternativa: "anthropic")
+  GEMINI_MODEL (default: gemini-2.5-flash)
+  ANTHROPIC_API_KEY, ANTHROPIC_MODEL (default: claude-sonnet-4-5) — usati solo se
+                    AI_PROVIDER=anthropic, oppure come fallback automatico se Gemini
+                    fallisce e ANTHROPIC_API_KEY e' comunque presente
   ATHLETE_WEIGHT_KG, ATHLETE_HEIGHT_CM, ATHLETE_AGE, ATHLETE_SEX (default dallo spec)
 """
 
@@ -52,6 +59,11 @@ INTERVALS_API_KEY = os.environ.get("INTERVALS_API_KEY")
 INTERVALS_ATHLETE_ID = os.environ.get("INTERVALS_ATHLETE_ID")  # es. "i123456"
 
 TP_AUTH_COOKIE = os.environ.get("TP_AUTH_COOKIE")  # valore del cookie Production_tpAuth
+
+AI_PROVIDER = os.environ.get("AI_PROVIDER", "gemini").strip().lower()
+
+GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY")
+GEMINI_MODEL = os.environ.get("GEMINI_MODEL", "gemini-2.5-flash")
 
 ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY")
 ANTHROPIC_MODEL = os.environ.get("ANTHROPIC_MODEL", "claude-sonnet-4-5")
@@ -443,16 +455,13 @@ def main():
         "strava_social": social,
     }
 
-    html = generate_html_via_claude(spec_text, payload)
+    html = generate_html(spec_text, payload)
     with open(OUTPUT_PATH, "w", encoding="utf-8") as f:
         f.write(html)
     print(f"Scritto {OUTPUT_PATH} ({len(html)} caratteri).")
 
 
-def generate_html_via_claude(spec_text, payload):
-    if not ANTHROPIC_API_KEY:
-        fail("ANTHROPIC_API_KEY mancante.")
-
+def _build_prompts(spec_text, payload):
     system_prompt = (
         "Sei il generatore automatico della dashboard settimanale allenamento/nutrizione "
         "per Mirko De Soricellis, eseguito senza supervisione umana dentro una GitHub Action. "
@@ -476,13 +485,80 @@ def generate_html_via_claude(spec_text, payload):
         "senza alcun testo, spiegazione o code fence prima o dopo.\n\n"
         "=== SPEC ===\n" + spec_text
     )
-
     user_prompt = (
         "Dati freschi (attivita' completate, planned workouts da TrainingPeaks/intervals.icu, "
         "wellness COROS/Garmin, target macro gia' calcolati) in JSON:\n\n"
         + json.dumps(payload, ensure_ascii=False, indent=2)
     )
+    return system_prompt, user_prompt
 
+
+def _clean_html_response(text):
+    text = text.strip()
+    text = re.sub(r"^```(?:html)?\s*", "", text)
+    text = re.sub(r"\s*```$", "", text)
+    return text
+
+
+def generate_html(spec_text, payload):
+    """Genera l'HTML della dashboard. Prova il provider configurato (Gemini
+    gratis di default); se fallisce e ANTHROPIC_API_KEY e' comunque presente,
+    ripiega automaticamente su Claude come rete di sicurezza."""
+    system_prompt, user_prompt = _build_prompts(spec_text, payload)
+
+    primary = AI_PROVIDER if AI_PROVIDER in ("gemini", "anthropic") else "gemini"
+    providers_to_try = [primary] + [p for p in ("gemini", "anthropic") if p != primary]
+
+    last_error = None
+    for provider in providers_to_try:
+        try:
+            if provider == "gemini" and GEMINI_API_KEY:
+                print("Genero l'HTML con Gemini (gratuito)...")
+                return _generate_html_gemini(system_prompt, user_prompt)
+            if provider == "anthropic" and ANTHROPIC_API_KEY:
+                print("Genero l'HTML con Claude (Anthropic API, a pagamento)...")
+                return _generate_html_anthropic(system_prompt, user_prompt)
+        except Exception as e:  # noqa: BLE001 - vogliamo provare il fallback su qualsiasi errore
+            print(f"Attenzione: provider '{provider}' fallito ({e}), provo l'alternativa se disponibile.")
+            last_error = e
+
+    fail(f"Nessun provider IA disponibile o funzionante (ultimo errore: {last_error}). "
+         f"Configura GEMINI_API_KEY (gratis, consigliato) o ANTHROPIC_API_KEY.")
+
+
+def _generate_html_gemini(system_prompt, user_prompt):
+    url = f"https://generativelanguage.googleapis.com/v1beta/models/{GEMINI_MODEL}:generateContent"
+    r = requests.post(
+        url,
+        params={"key": GEMINI_API_KEY},
+        json={
+            "system_instruction": {"parts": [{"text": system_prompt}]},
+            "contents": [{"role": "user", "parts": [{"text": user_prompt}]}],
+            "generationConfig": {"maxOutputTokens": 32000, "temperature": 0.4},
+        },
+        timeout=180,
+    )
+    if r.status_code != 200:
+        raise RuntimeError(f"Chiamata Gemini fallita ({r.status_code}): {r.text[:500]}")
+
+    data = r.json()
+    candidates = data.get("candidates") or []
+    if not candidates:
+        raise RuntimeError(f"Risposta Gemini senza candidates: {json.dumps(data)[:500]}")
+
+    finish_reason = candidates[0].get("finishReason")
+    parts = candidates[0].get("content", {}).get("parts", [])
+    text = "".join(p.get("text", "") for p in parts)
+    text = _clean_html_response(text)
+
+    if finish_reason == "MAX_TOKENS" and "</html>" not in text.lower():
+        raise RuntimeError("Risposta Gemini troncata (MAX_TOKENS) prima di chiudere l'HTML.")
+    if "<html" not in text.lower():
+        raise RuntimeError("La risposta di Gemini non sembra HTML valido.")
+    return text
+
+
+def _generate_html_anthropic(system_prompt, user_prompt):
     r = requests.post(
         "https://api.anthropic.com/v1/messages",
         headers={
@@ -499,16 +575,13 @@ def generate_html_via_claude(spec_text, payload):
         timeout=180,
     )
     if r.status_code != 200:
-        fail(f"Chiamata Anthropic fallita ({r.status_code}): {r.text[:500]}")
+        raise RuntimeError(f"Chiamata Anthropic fallita ({r.status_code}): {r.text[:500]}")
 
     data = r.json()
     text = "".join(block.get("text", "") for block in data.get("content", []) if block.get("type") == "text")
-    text = text.strip()
-    # rimuovi eventuali code fence residui
-    text = re.sub(r"^```(?:html)?\s*", "", text)
-    text = re.sub(r"\s*```$", "", text)
+    text = _clean_html_response(text)
     if "<html" not in text.lower():
-        fail("La risposta di Claude non sembra HTML valido, interrompo senza scrivere il file.")
+        raise RuntimeError("La risposta di Claude non sembra HTML valido.")
     return text
 
 

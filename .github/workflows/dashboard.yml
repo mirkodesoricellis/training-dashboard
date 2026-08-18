@@ -2,8 +2,12 @@ name: Genera e pubblica dashboard
 
 on:
   schedule:
-    # 05:30 UTC = 07:30 Europe/Rome (CEST) — 06:30 in inverno (CET), va bene comunque
-    - cron: "30 5 * * *"
+    # 9:00, 14:00, 21:00 ora italiana (Europe/Rome). GitHub cron gira in UTC e non
+    # supporta timezone: questi orari (7,12,19 UTC) sono corretti per l'ora legale
+    # (CEST, UTC+2, marzo-ottobre). In ora solare (CET, UTC+1, novembre-marzo) la
+    # dashboard si genererà un'ora piu' tardi (10:00, 15:00, 22:00 locali) finche'
+    # non si aggiorna manualmente questo cron.
+    - cron: "0 7,12,19 * * *"
   workflow_dispatch: {}
 
 permissions:
@@ -31,6 +35,7 @@ jobs:
           STRAVA_REFRESH_TOKEN: ${{ secrets.STRAVA_REFRESH_TOKEN }}
           INTERVALS_API_KEY: ${{ secrets.INTERVALS_API_KEY }}
           INTERVALS_ATHLETE_ID: ${{ secrets.INTERVALS_ATHLETE_ID }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           TP_AUTH_COOKIE: ${{ secrets.TP_AUTH_COOKIE }}
           REPO_ROOT: ${{ github.workspace }}
