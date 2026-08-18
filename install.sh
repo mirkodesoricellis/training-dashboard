@@ -78,6 +78,8 @@ cat > "$PLIST" << EOF
         <key>Minute</key>
         <integer>${PUSH_MINUTE}</integer>
     </dict>
+    <key>RunAtLoad</key>
+    <true/>
     <key>StandardOutPath</key>
     <string>${LOCAL_DIR}/push.log</string>
     <key>StandardErrorPath</key>
@@ -89,9 +91,13 @@ EOF
 launchctl unload "$PLIST" 2>/dev/null || true
 launchctl load "$PLIST"
 echo "Job launchd installato e caricato (${PLIST_LABEL})."
+echo "RunAtLoad attivo: scatta anche ad ogni avvio/login del Mac, non solo"
+echo "all'orario fisso — così recupera da solo un push rimasto in sospeso"
+echo "se il Mac era spento alle ${PUSH_HOUR}:$(printf '%02d' "$PUSH_MINUTE")."
 
 echo
 echo "== Fatto =="
 echo "Dashboard live: https://${GITHUB_USER}.github.io/${REPO_NAME}/"
-echo "Il bridge desktop di Claude scriverà ${LOCAL_DIR}/index.html ogni sera;"
-echo "questo job lo pusha in automatico alle ${PUSH_HOUR}:$(printf '%02d' "$PUSH_MINUTE")."
+echo "Il bridge desktop di Claude scriverà ${LOCAL_DIR}/index.html ogni sera"
+echo "(richiede l'app desktop di Claude aperta in quel momento). Questo job"
+echo "pusha in automatico alle ${PUSH_HOUR}:$(printf '%02d' "$PUSH_MINUTE") e ad ogni avvio del Mac."

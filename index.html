@@ -12,18 +12,18 @@
 <style>
   .viz-root {
     color-scheme: light;
-    --surface-1:      #fcfcfb;
+    --surface-1:      #ffffff;
     --surface-2:      #ffffff;
-    --surface-3:      #f4f3f0;
-    --page:           #f2f1ed;
+    --surface-3:      #f6f6f5;
+    --page:           #ffffff;
     --text-primary:   #0b0b0b;
     --text-secondary: #52514e;
     --muted:          #898781;
-    --grid:           #e1e0d9;
+    --grid:           #e8e7e3;
     --baseline:       #c3c2b7;
-    --border:         rgba(11,11,11,0.09);
-    --shadow-sm:      0 1px 2px rgba(11,11,11,0.05);
-    --shadow-md:      0 2px 6px rgba(11,11,11,0.05), 0 12px 28px -10px rgba(11,11,11,0.14);
+    --border:         rgba(11,11,11,0.10);
+    --shadow-sm:      0 1px 2px rgba(11,11,11,0.04);
+    --shadow-md:      0 2px 6px rgba(11,11,11,0.04), 0 12px 28px -10px rgba(11,11,11,0.10);
     --carb:           #2a78d6;
     --protein:        #eb6834;
     --fat:            #1baf7a;
@@ -173,11 +173,23 @@
   .section-h { font-size:11.5px; font-weight:800; text-transform:uppercase; letter-spacing:.05em; color: var(--muted); margin: 22px 0 10px 0; display:flex; align-items:center; gap:6px; }
   .section-h:before, .section-h:after { content:""; height:1px; background: var(--grid); flex:1; }
 
-  .meal-block { border:1px solid var(--border); border-radius:14px; padding:13px 15px; margin-bottom:10px; background: var(--surface-2); box-shadow: var(--shadow-sm); }
-  .meal-block-head { display:flex; justify-content:space-between; align-items:baseline; flex-wrap:wrap; gap:6px; margin-bottom:9px; }
+  .meal-block { border:1px solid var(--border); border-radius:14px; margin-bottom:10px; background: var(--surface-3); box-shadow: var(--shadow-sm); overflow:hidden; }
+  .meal-block-head {
+    display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:6px;
+    padding:13px 15px; cursor:pointer; user-select:none; -webkit-tap-highlight-color: transparent;
+  }
+  .meal-block-head:hover { background: rgba(11,11,11,0.02); }
   .meal-name { font-size:13.5px; font-weight:800; display:flex; align-items:center; gap:6px; }
-  .meal-target { font-size:11px; color: var(--muted); }
+  .meal-target { font-size:11px; color: var(--muted); display:flex; align-items:center; gap:8px; }
   .meal-target b { color: var(--text-secondary); font-weight:700; }
+  .meal-chevron { font-size:10px; color: var(--muted); transition: transform .2s ease; flex-shrink:0; }
+  .meal-block.open .meal-chevron { transform: rotate(90deg); }
+
+  .options-wrap {
+    max-height:0; overflow:hidden; transition: max-height .25s ease, padding .25s ease;
+    padding: 0 15px;
+  }
+  .meal-block.open .options-wrap { max-height:1200px; padding: 0 15px 13px 15px; }
 
   .option { background: var(--surface-1); border:1px solid var(--border); border-radius:11px; padding:10px 13px; margin-top:7px; }
   .option-label { font-size:10.5px; font-weight:800; color: var(--carb); text-transform:uppercase; letter-spacing:.04em; margin-bottom:6px; }
@@ -251,7 +263,7 @@ function meal(name, target, options) { return { name, target, options }; }
 const DATA = [
   // ============ LUNEDÌ ============
   {
-    day: "Lunedì", date: "17 agosto", sport: "Nuoto", status: "good", statusLabel: "Leggero/tecnico",
+    day: "Lunedì", date: "17 agosto", iso: "2026-08-17", sport: "Nuoto", status: "good", statusLabel: "Leggero/tecnico",
     title: "Braccia+A2 — completato", meta: "47 min · 3.4 km · TSS 58.8", altNote: null,
     kcal: 2640, carb: 379, protein: 136, fat: 64,
     insight: "Giornata di scarico metabolico dopo il weekend intenso in bici. Priorità su idratazione e reintegro glicogeno moderato.",
@@ -276,7 +288,7 @@ const DATA = [
   },
   // ============ MARTEDÌ ============
   {
-    day: "Martedì", date: "18 agosto", sport: "Corsa", status: "serious", statusLabel: "Intenso",
+    day: "Martedì", date: "18 agosto", iso: "2026-08-18", sport: "Corsa", status: "serious", statusLabel: "Intenso",
     title: "Progressivo Lungo", meta: "52 min · 11.8 km · TSS 69.8", altNote: null,
     kcal: 3190, carb: 454, protein: 136, fat: 92,
     insight: "Componente in soglia nella chiusura: carbo alzati per sostenere la qualità e il reintegro. I pasti sotto coprono la base giornaliera; il fueling pre/post copre l'extra della sessione.",
@@ -306,7 +318,7 @@ const DATA = [
   },
   // ============ MERCOLEDÌ ============
   {
-    day: "Mercoledì", date: "19 agosto", sport: "Bici", status: "serious", statusLabel: "Intenso",
+    day: "Mercoledì", date: "19 agosto", iso: "2026-08-19", sport: "Bici", status: "serious", statusLabel: "Intenso",
     title: "Z3/Z5 pianura", meta: "89 min · TSS 79.0 (outdoor)",
     altNote: "In TrainingPeaks risultano 2 sessioni bici lo stesso giorno: sono alternative (una è probabilmente su rulli), non da sommare. Sotto trovi il piano per la sessione outdoor più lunga (89′, TSS 79); se fai i rulli con \"variazioni Z3/Z5\" (52′, TSS 52.6) invece, riduci proporzionalmente fueling e target di circa un terzo.",
     kcal: 3031, carb: 490, protein: 136, fat: 58,
@@ -337,7 +349,7 @@ const DATA = [
   },
   // ============ GIOVEDÌ ============
   {
-    day: "Giovedì", date: "20 agosto", sport: "Forza", status: "warning", statusLabel: "Moderato",
+    day: "Giovedì", date: "20 agosto", iso: "2026-08-20", sport: "Forza", status: "warning", statusLabel: "Moderato",
     title: "Gambe Mantenimento", meta: "~45–60 min stimati · TSS 20", altNote: null,
     kcal: 2539, carb: 303, protein: 151, fat: 80,
     insight: "Recupero attivo dal grande carico bici del mercoledì — proteine alzate a ~2.0 g/kg per la sintesi proteica muscolare della sessione di forza.",
@@ -388,21 +400,21 @@ const restDayMeals = [
 
 DATA.push(
   {
-    day: "Venerdì", date: "21 agosto", sport: "Da pianificare", status: "good", statusLabel: "Presunto recupero",
+    day: "Venerdì", date: "21 agosto", iso: "2026-08-21", sport: "Da pianificare", status: "good", statusLabel: "Presunto recupero",
     title: "Nessun allenamento su TrainingPeaks/COROS", meta: "Trattato come giorno di recupero", altNote: null,
     kcal: 2289, carb: 265, protein: 136, fat: 76,
     insight: "Giorno di scarico prima probabilmente del weekend di volume. Aggiorna TrainingPeaks se viene pianificata un'attività — la scheda si aggiornerà di conseguenza.",
     meals: restDayMeals, fuel: null
   },
   {
-    day: "Sabato", date: "22 agosto", sport: "Da pianificare", status: "good", statusLabel: "Presunto recupero/libero",
+    day: "Sabato", date: "22 agosto", iso: "2026-08-22", sport: "Da pianificare", status: "good", statusLabel: "Presunto recupero/libero",
     title: "Nessuna sessione registrata", meta: "Weekend precedenti: uscite bici lunghe (~2h)", altNote: null,
     kcal: 2289, carb: 265, protein: 136, fat: 76,
     insight: "Placeholder da rest day. Se prevedi un'uscita lunga (&gt;90′), passa allo schema del mercoledì (carbo alti + fueling intra) e aggiorna la scheda una volta confermato il piano.",
     meals: restDayMeals, fuel: null
   },
   {
-    day: "Domenica", date: "23 agosto", sport: "Da pianificare", status: "good", statusLabel: "Presunto recupero/libero",
+    day: "Domenica", date: "23 agosto", iso: "2026-08-23", sport: "Da pianificare", status: "good", statusLabel: "Presunto recupero/libero",
     title: "Nessuna sessione registrata", meta: "—", altNote: null,
     kcal: 2289, carb: 265, protein: 136, fat: 76,
     insight: "Chiusura settimana. Se resta giorno di riposo puro, valuta -150/-200 kcal riducendo leggermente i carbo (es. -50g riso a pranzo).",
@@ -410,7 +422,13 @@ DATA.push(
   }
 );
 
-let current = 0; // oggi = lunedì 17/8
+function todayISO() {
+  const d = new Date();
+  const y = d.getFullYear(), m = String(d.getMonth()+1).padStart(2,'0'), day = String(d.getDate()).padStart(2,'0');
+  return `${y}-${m}-${day}`;
+}
+const todayIdx = DATA.findIndex(d => d.iso === todayISO());
+let current = todayIdx !== -1 ? todayIdx : 0; // fuori dalla settimana pianificata: mostra il primo giorno
 
 function pct(part, total) { return Math.round((part / total) * 100); }
 
@@ -424,15 +442,22 @@ function optionHtml(o) {
     </div>`;
 }
 
-function mealBlockHtml(m) {
+function mealBlockHtml(m, idx) {
   return `
-    <div class="meal-block">
-      <div class="meal-block-head">
+    <div class="meal-block" id="meal-${idx}">
+      <div class="meal-block-head" onclick="toggleMeal(${idx})">
         <div class="meal-name">${MEAL_ICON[m.name]||''} ${m.name}</div>
-        <div class="meal-target">target circa: <b>${m.target.kcal} kcal</b> · C ${m.target.carb}g · P ${m.target.protein}g · F ${m.target.fat}g</div>
+        <div class="meal-target">target circa: <b>${m.target.kcal} kcal</b> · C ${m.target.carb}g · P ${m.target.protein}g · F ${m.target.fat}g <span class="meal-chevron">▸</span></div>
       </div>
-      ${m.options.map(optionHtml).join('')}
+      <div class="options-wrap">
+        ${m.options.map(optionHtml).join('')}
+      </div>
     </div>`;
+}
+
+function toggleMeal(idx) {
+  const el = document.getElementById('meal-' + idx);
+  if (el) el.classList.toggle('open');
 }
 
 function fuelListHtml(items) {
@@ -443,7 +468,7 @@ function render() {
   const d = DATA[current];
   document.getElementById('navDayName').textContent = d.day;
   document.getElementById('navDayDate').textContent = d.date;
-  document.getElementById('todayBadgeWrap').innerHTML = current === 0 ? '<span class="today-badge">Oggi</span>' : '';
+  document.getElementById('todayBadgeWrap').innerHTML = current === todayIdx ? '<span class="today-badge">Oggi</span>' : '';
   document.getElementById('prevBtn').disabled = current === 0;
   document.getElementById('nextBtn').disabled = current === DATA.length - 1;
 
@@ -496,8 +521,8 @@ function render() {
 
       <div class="insight">${d.insight}</div>
 
-      <div class="section-h">Pasti — target e ricette con i tuoi alimenti</div>
-      ${d.meals.map(mealBlockHtml).join('')}
+      <div class="section-h">Pasti — tocca per i dettagli</div>
+      ${d.meals.map((m,i) => mealBlockHtml(m,i)).join('')}
 
       ${fuelHtml}
     </div>
