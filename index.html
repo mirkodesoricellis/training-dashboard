@@ -269,7 +269,7 @@ const DATA = [
     insight: "Giornata di scarico metabolico dopo il weekend intenso in bici. Priorità su idratazione e reintegro glicogeno moderato.",
     meals: [
       meal("Colazione", {kcal:581,carb:83,protein:30,fat:14}, [
-        opt("Opzione 1", [["Avena","100 g"],["Latte di soia","300 ml"],["Burro di arachidi","10 g"],["Miele","10 g"]], {kcal:569,carb:73,protein:25,fat:17}),
+        opt("Opzione 1", [["Avena","100 g"],["Latte di soia","300 ml"],["Burro di arachidi","10 g"],["Marmellata","15 g"]], {kcal:576,carb:75,protein:25,fat:17}),
         opt("Opzione 2", [["Latte di soia","300 ml"],["Corn flakes senza zuccheri","85 g"],["Whey","1 misurino (30 g)"]], {kcal:558,carb:77,protein:39,fat:8})
       ]),
       meal("Pranzo", {kcal:871,carb:125,protein:45,fat:21}, [
@@ -277,11 +277,11 @@ const DATA = [
         opt("Opzione 2 (legumi)", [["Pasta","140 g cruda"],["Ceci cotti","180 g"],["Grana grattugiato","15 g"],["Olio EVO","10 g"]], {kcal:862,carb:129,protein:37,fat:23})
       ]),
       meal("Spuntino", {kcal:317,carb:46,protein:16,fat:8}, [
-        opt("", [["Yogurt greco 0%","150 g"],["Banana","120 g"],["Miele","20 g"],["Mandorle","10 g"]], {kcal:314,carb:52,protein:18,fat:6})
+        opt("", [["Yogurt greco 0%","150 g"],["Banana","120 g"],["Marmellata","25 g"],["Mandorle","10 g"]], {kcal:314,carb:52,protein:18,fat:6})
       ]),
       meal("Cena", {kcal:871,carb:125,protein:45,fat:21}, [
-        opt("Opzione 1 (pollo)", [["Petto di pollo","130 g"],["Pane","200 g"],["Verdure","250 g"],["Olio EVO","10 g"],["Ketchup a piacere","—"]], {kcal:895,carb:111,protein:56,fat:21}),
-        opt("Opzione 2 (uova)", [["Uova","2 (100 g)"],["Albume","100 g"],["Pane","200 g"],["Verdure","250 g"],["Olio EVO","8 g"]], {kcal:870,carb:112,protein:40,fat:26})
+        opt("Opzione 1 (pollo)", [["Petto di pollo","130 g"],["Pancarrè","200 g"],["Verdure","250 g"],["Olio EVO","10 g"],["Ketchup a piacere","—"]], {kcal:895,carb:111,protein:56,fat:21}),
+        opt("Opzione 2 (uova)", [["Uova","2 (100 g)"],["Albume","100 g"],["Pancarrè","200 g"],["Verdure","250 g"],["Olio EVO","8 g"]], {kcal:870,carb:112,protein:40,fat:26})
       ])
     ],
     fuel: null
@@ -305,14 +305,17 @@ const DATA = [
         opt("", [["Yogurt greco 0%","150 g"],["Banana","120 g"],["Mandorle","15 g"]], {kcal:282,carb:36,protein:19,fat:8})
       ]),
       meal("Cena", {kcal:826,carb:107,protein:33,fat:28}, [
-        opt("Opzione 1 (pollo)", [["Petto di pollo","100 g"],["Pane","180 g"],["Verdure","250 g"],["Olio EVO","15 g"]], {kcal:837,carb:101,protein:45,fat:25}),
-        opt("Opzione 2 (tofu)", [["Tofu","200 g"],["Pane","180 g"],["Verdure","250 g"],["Olio EVO","10 g"]], {kcal:808,carb:105,protein:34,fat:26})
+        opt("Opzione 1 (pollo)", [["Petto di pollo","100 g"],["Pancarrè","180 g"],["Verdure","250 g"],["Olio EVO","15 g"]], {kcal:837,carb:101,protein:45,fat:25}),
+        opt("Opzione 2 (tofu)", [["Tofu","200 g"],["Pancarrè","180 g"],["Verdure","250 g"],["Olio EVO","10 g"]], {kcal:808,carb:105,protein:34,fat:26})
       ])
     ],
     fuel: {
-      pre: [["Pane","80 g"],["Miele","15 g"],["Banana","100 g"], ["— 2–3h prima della corsa"]],
+      pre: [["Pancarrè","80 g"],["Marmellata","20 g"],["Banana","100 g"], ["— 2–3h prima della corsa"]],
+      preTotals: {kcal:351, carb:75, protein:8, fat:3},
       intra: [["Non necessario sotto i 60′: acqua a piccoli sorsi se caldo"]],
+      intraTotals: null,
       post: [["Whey","1 misurino, 30 g"],["Banana","120 g"],["Gallette di riso","30 g (3 pz)"],["— entro 30–45′ dal termine"]],
+      postTotals: {kcal:336, carb:54, protein:27, fat:2.5},
       supp: "Nessuno strettamente necessario; opzionale caffeina 200 mg (~2.6 mg/kg) 45′ prima se seduta al mattino presto."
     }
   },
@@ -325,7 +328,7 @@ const DATA = [
     insight: "Sessione impegnativa in Z3/Z5 su FTP 261W. Pasti base leggeri sui grassi per lasciare spazio ai carboidrati; l'extra del fabbisogno arriva soprattutto dal fueling pre/intra/post.",
     meals: [
       meal("Colazione", {kcal:438,carb:58,protein:22,fat:13}, [
-        opt("Opzione 1", [["Avena","70 g"],["Latte di soia","250 ml"],["Burro di arachidi","8 g"],["Miele","10 g"]], {kcal:427,carb:54,protein:19,fat:13}),
+        opt("Opzione 1", [["Avena","70 g"],["Latte di soia","250 ml"],["Burro di arachidi","8 g"],["Marmellata","12 g"]], {kcal:427,carb:54,protein:19,fat:13}),
         opt("Opzione 2", [["Latte di soia","250 ml"],["Corn flakes senza zuccheri","55 g"],["Whey","1 misurino (30 g)"]], {kcal:415,carb:50,protein:34,fat:6})
       ]),
       meal("Pranzo", {kcal:657,carb:87,protein:33,fat:19}, [
@@ -336,14 +339,17 @@ const DATA = [
         opt("", [["Mela","150 g"],["Gallette di riso","20 g"],["Fiocchi di latte magri","80 g"],["Mandorle","8 g"]], {kcal:268,carb:42,protein:13,fat:6})
       ]),
       meal("Cena", {kcal:657,carb:87,protein:33,fat:19}, [
-        opt("Opzione 1 (pollo)", [["Petto di pollo","100 g"],["Pane","130 g"],["Verdure","250 g"],["Olio EVO","8 g"]], {kcal:643,carb:76,protein:41,fat:16}),
-        opt("Opzione 2 (seitan)", [["Seitan","90 g"],["Pane","130 g"],["Verdure","250 g"],["Olio EVO","15 g"]], {kcal:657,carb:80,protein:33,fat:21})
+        opt("Opzione 1 (pollo)", [["Petto di pollo","100 g"],["Pancarrè","130 g"],["Verdure","250 g"],["Olio EVO","8 g"]], {kcal:643,carb:76,protein:41,fat:16}),
+        opt("Opzione 2 (seitan)", [["Seitan","90 g"],["Pancarrè","130 g"],["Verdure","250 g"],["Olio EVO","15 g"]], {kcal:657,carb:80,protein:33,fat:21})
       ])
     ],
     fuel: {
       pre: [["Riso","70 g crudo"],["Marmellata","20 g"],["Banana","100 g"],["— 2.5–3h prima"],["Gel energetico (25 g carbo)","1 pz — 30–45′ prima"],["Caffeina","150–200 mg (~2–2.6 mg/kg), se tollerata"]],
+      preTotals: {kcal:495, carb:117, protein:6, fat:1},
       intra: [["Gel energetici (25 g carbo cad.)","2 pz distribuiti nei 89′ (~50 g carbo)"],["Bevanda isotonica (6–8%)","500 ml con ~25 g carbo e ~400 mg sodio"],["Acqua","altri 300–400 ml a sorsi regolari"]],
+      intraTotals: {kcal:300, carb:75, protein:0, fat:0},
       post: [["Whey","1 misurino, 30 g"],["Riso soffiato","30 g"],["Banana","100 g"],["— entro 30–45′ dal termine, poi cena come da piano"]],
+      postTotals: {kcal:315, carb:49, protein:27, fat:2},
       supp: "Gel energetico + bevanda isotonica con sodio durante; caffeina pre-sessione; whey post-allenamento. Considera creatina monoidrato 5 g/die (uso continuativo) nelle settimane di alto volume."
     }
   },
@@ -366,14 +372,17 @@ const DATA = [
         opt("", [["Yogurt greco 0%","130 g"],["Banana","100 g"],["Mandorle","12 g"]], {kcal:235,carb:30,protein:17,fat:7})
       ]),
       meal("Cena", {kcal:726,carb:82,protein:41,fat:25}, [
-        opt("Opzione 1 (pollo)", [["Petto di pollo","140 g"],["Pane","120 g"],["Verdure","220 g"],["Olio EVO","15 g"]], {kcal:737,carb:70,protein:53,fat:24}),
-        opt("Opzione 2 (burger veg)", [["Burger vegetale Lidl","2 pz (~180 g)"],["Pane","100 g"],["Verdure","220 g"],["Olio EVO","8 g"]], {kcal:679,carb:82,protein:31,fat:25})
+        opt("Opzione 1 (pollo)", [["Petto di pollo","140 g"],["Pancarrè","120 g"],["Verdure","220 g"],["Olio EVO","15 g"]], {kcal:737,carb:70,protein:53,fat:24}),
+        opt("Opzione 2 (burger veg)", [["Burger vegetale Lidl","2 pz (~180 g)"],["Pancarrè","100 g"],["Verdure","220 g"],["Olio EVO","8 g"]], {kcal:679,carb:82,protein:31,fat:25})
       ])
     ],
     fuel: {
       pre: [["Pasto principale 1.5–2h prima (es. pranzo)","riso/pasta + tonno o legumi, come da piano"]],
+      preTotals: null,
       intra: [["Non necessario — solo acqua"]],
+      intraTotals: null,
       post: [["Whey","1 misurino, 30 g"],["Banana","120 g"],["Gallette di riso","30 g (3 pz)"],["— entro 60′ dal termine"]],
+      postTotals: {kcal:336, carb:54, protein:27, fat:2.5},
       supp: "Whey post-seduta se comoda; creatina 5 g/die (uso continuativo) supporta bene le sessioni di forza."
     }
   }
@@ -390,11 +399,11 @@ const restDayMeals = [
   ]),
   meal("Spuntino", {kcal:275,carb:32,protein:16,fat:9}, [
     opt("Opzione 1", [["Yogurt greco 0%","150 g"],["Frutta fresca","150 g"],["Mandorle","20 g"]], {kcal:287,carb:31,protein:19,fat:10}),
-    opt("Opzione 2", [["Fiocchi di latte magri","100 g"],["Gallette di riso","20 g"],["Miele","10 g"],["Mandorle","10 g"]], {kcal:243,carb:30,protein:16,fat:7})
+    opt("Opzione 2", [["Fiocchi di latte magri","100 g"],["Gallette di riso","20 g"],["Marmellata","12 g"],["Mandorle","10 g"]], {kcal:243,carb:30,protein:16,fat:7})
   ]),
   meal("Cena", {kcal:755,carb:88,protein:45,fat:25}, [
-    opt("Opzione 1 (pollo)", [["Petto di pollo","140 g"],["Pane","150 g"],["Verdure","250 g"],["Olio EVO","12 g"]], {kcal:797,carb:86,protein:55,fat:22}),
-    opt("Opzione 2 (tofu)", [["Tofu","220 g"],["Pane","170 g"],["Verdure","250 g"],["Olio EVO","8 g"]], {kcal:782,carb:100,protein:36,fat:25})
+    opt("Opzione 1 (pollo)", [["Petto di pollo","140 g"],["Pancarrè","150 g"],["Verdure","250 g"],["Olio EVO","12 g"]], {kcal:797,carb:86,protein:55,fat:22}),
+    opt("Opzione 2 (tofu)", [["Tofu","220 g"],["Pancarrè","170 g"],["Verdure","250 g"],["Olio EVO","8 g"]], {kcal:782,carb:100,protein:36,fat:25})
   ])
 ];
 
@@ -463,6 +472,10 @@ function toggleMeal(idx) {
 function fuelListHtml(items) {
   return items.map(it => it.length === 1 ? `<li>${it[0]}</li>` : `<li>${it[0]}: <span class="qty">${it[1]}</span></li>`).join('');
 }
+function fuelTotalsHtml(t) {
+  if (!t) return '';
+  return `<div class="option-totals"><span><b>~${t.kcal}</b> kcal</span><span>C <b>${t.carb}</b>g</span><span>P <b>${t.protein}</b>g</span><span>F <b>${t.fat}</b>g</span></div>`;
+}
 
 function render() {
   const d = DATA[current];
@@ -483,9 +496,9 @@ function render() {
     fuelHtml = `
       <div class="section-h">Nutrizione allenamento — pre / intra / post</div>
       <div class="fuel-grid">
-        <div class="fuel-block"><div class="fuel-h">⏱️ Pre</div><ul>${fuelListHtml(d.fuel.pre)}</ul></div>
-        <div class="fuel-block"><div class="fuel-h">⚡ Intra</div><ul>${fuelListHtml(d.fuel.intra)}</ul></div>
-        <div class="fuel-block"><div class="fuel-h">🔁 Post</div><ul>${fuelListHtml(d.fuel.post)}</ul></div>
+        <div class="fuel-block"><div class="fuel-h">⏱️ Pre</div><ul>${fuelListHtml(d.fuel.pre)}</ul>${fuelTotalsHtml(d.fuel.preTotals)}</div>
+        <div class="fuel-block"><div class="fuel-h">⚡ Intra</div><ul>${fuelListHtml(d.fuel.intra)}</ul>${fuelTotalsHtml(d.fuel.intraTotals)}</div>
+        <div class="fuel-block"><div class="fuel-h">🔁 Post</div><ul>${fuelListHtml(d.fuel.post)}</ul>${fuelTotalsHtml(d.fuel.postTotals)}</div>
       </div>
       <div class="supp-line"><b>💊 Supplementi:</b> ${d.fuel.supp}</div>
     `;
