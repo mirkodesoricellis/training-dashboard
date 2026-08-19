@@ -38,6 +38,7 @@ jobs:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           TP_AUTH_COOKIE: ${{ secrets.TP_AUTH_COOKIE }}
+          BACKEND_URL: ${{ secrets.BACKEND_URL }}
           REPO_ROOT: ${{ github.workspace }}
         run: python scripts/generate_dashboard.py
 

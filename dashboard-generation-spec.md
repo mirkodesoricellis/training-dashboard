@@ -96,6 +96,37 @@ File singolo self-contained (CSS+JS inline). Caratteristiche:
 - Card con ombre morbide leggere, accento colorato per intensità giornata, icone sport (🏊🏃🚴🏋️) e pasto (☀️🍽️🍎🌙)
 - Footer con metodologia e fonti dati
 
+## Backend log pasti e chat (Cloudflare Workers — opzionale, attivo solo se `backend_url` è presente)
+
+Se il JSON payload contiene `backend_url` (stringa non null), aggiungi nella vista del giorno corrente due widget compatti, posizionati dopo il blocco Insight e prima dei blocchi pasto. Se `backend_url` è `null` o assente, ometti del tutto questa sezione (nessun form rotto).
+
+**1. Log pasto** — un piccolo form: campo testo libero ("Cosa hai mangiato?", es. "200g petto di pollo e riso") + bottone "Registra". Al submit, chiama:
+```
+POST {backend_url}/api/log-meal
+Content-Type: application/json
+{ "date": "<iso del giorno corrente>", "description": "<testo inserito>" }
+```
+Mostra un piccolo messaggio di conferma con le macro rilevate (kcal/proteine/carbo/grassi) dalla risposta JSON. Gestisci errori di rete con un messaggio semplice, senza bloccare il resto della pagina.
+
+**2. Riepilogo giornaliero + suggerimento pasti rimanenti** — al caricamento della pagina (per il giorno corrente, non per i giorni futuri/passati) chiama:
+```
+GET {backend_url}/api/day?date=<iso>&target_kcal=<macro_targets.kcal del giorno>&target_protein_g=<macro_targets.protein_g>&target_carbs_g=<macro_targets.carbs_g>&target_fat_g=<macro_targets.fat_g>
+```
+Mostra i totali già loggati (kcal/macro) e, se la risposta include `suggestion` (testo), mostralo in un piccolo box "Cosa mangiare nei pasti rimanenti" sotto il riepilogo. Se il fetch fallisce o `suggestion` è null, ometti silenziosamente il box (nessun placeholder vuoto).
+
+**3. Chiedi al coach** — un piccolo box chat: campo testo + bottone "Chiedi". Al submit, chiama:
+```
+POST {backend_url}/api/chat
+Content-Type: application/json
+{ "question": "<domanda utente>", "context": "<breve riassunto testuale delle attività/wellness recenti dal payload, es. ultimi 3-5 giorni: sport, durata, training_load, HRV/RHR/sonno>" }
+```
+Mostra la risposta (`answer`) sotto il campo, in stile conversazione semplice (non serve cronologia persistente, una domanda alla volta è sufficiente).
+
+Stile: usa la stessa palette/card style del resto della dashboard (niente librerie esterne, tutto vanilla JS/fetch inline). Questi widget sono un'aggiunta minore rispetto al contenuto principale (piano pasti/allenamento) — non devono dominare visivamente la pagina.
+
+### Setup backend (una tantum, manuale)
+Il backend Cloudflare Workers (log pasti Nutritionix + chat) si configura seguendo `claude/backend-nutritionix-setup.md` nel progetto Training Hub. Il codice sorgente vive in `backend/` alla radice del repo `training-dashboard` (non generato dall'AI, gestito manualmente). Una volta distribuito, l'URL del Worker va nel secret GitHub `BACKEND_URL` (Parte 4 di `claude/cloud-pipeline-setup.md`) — la pipeline lo passa automaticamente allo script che lo inserisce nel payload.
+
 ## Pubblicazione
 
 ### Pipeline cloud autonoma (nuova, in verifica dal 2026-08-18)

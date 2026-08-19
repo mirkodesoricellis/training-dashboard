@@ -1,0 +1,16 @@
+name = "training-hub-backend"
+main = "src/index.js"
+compatibility_date = "2024-09-23"
+
+# Origine autorizzata a chiamare il backend (la dashboard su GitHub Pages).
+# Cambia se il repo/URL della dashboard è diverso.
+[vars]
+CORS_ORIGIN = "https://mirkodesoricellis.github.io"
+GEMINI_MODEL = "gemini-2.5-flash"
+
+# Creato con: wrangler d1 create training-hub-db
+# Dopo la creazione, copia il "database_id" restituito qui sotto.
+[[d1_databases]]
+binding = "DB"
+database_name = "training-hub-db"
+database_id = "REPLACE_WITH_DATABASE_ID_FROM_WRANGLER_D1_CREATE"

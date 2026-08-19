@@ -75,6 +75,10 @@ SEX = os.environ.get("ATHLETE_SEX", "m")  # m/f, usato per Mifflin-St Jeor
 FTP_W = float(os.environ.get("ATHLETE_FTP_W", "261"))
 
 REPO_ROOT = os.environ.get("REPO_ROOT", ".")
+
+# URL pubblico del backend Cloudflare Workers (log pasti Nutritionix + chat allenamento).
+# Vuoto finche' non e' stato distribuito — la dashboard nasconde i widget se manca.
+BACKEND_URL = os.environ.get("BACKEND_URL", "").rstrip("/")
 SPEC_PATH = os.path.join(REPO_ROOT, "dashboard-generation-spec.md")
 OUTPUT_PATH = os.path.join(REPO_ROOT, "index.html")
 
@@ -453,6 +457,7 @@ def main():
         },
         "days": days_payload,
         "strava_social": social,
+        "backend_url": BACKEND_URL or None,
     }
 
     html = generate_html(spec_text, payload)
@@ -481,6 +486,11 @@ def _build_prompts(spec_text, payload):
         "cambiarli: usali come vincolo esatto e costruisci solo la composizione dei pasti "
         "(scelta tra gli alimenti reali elencati nello spec, grammature, testo) che rispetti "
         "quei numeri con tolleranza +-10-15%.\n\n"
+        "Il campo top-level 'backend_url' del JSON, se presente (non null), e' l'URL del "
+        "backend Cloudflare Workers per log pasti (Nutritionix) e chat allenamento: segui "
+        "la sezione dello spec su 'Backend log pasti e chat' per come e dove includere quei "
+        "widget nell'HTML, usando esattamente quell'URL come base per le chiamate fetch(). "
+        "Se 'backend_url' e' null, ometti del tutto quei widget (non mostrare un form rotto).\n\n"
         "Rispondi SOLO con il codice HTML completo e autosufficiente (CSS+JS inline), "
         "senza alcun testo, spiegazione o code fence prima o dopo.\n\n"
         "=== SPEC ===\n" + spec_text
