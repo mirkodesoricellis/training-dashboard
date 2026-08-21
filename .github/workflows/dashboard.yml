@@ -11,13 +11,13 @@ on:
   workflow_dispatch: {}
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
   build-and-publish:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repo
+      - name: Checkout repo (script + spec, sola lettura)
         uses: actions/checkout@v4
 
       - name: Setup Python
@@ -42,14 +42,26 @@ jobs:
           REPO_ROOT: ${{ github.workspace }}
         run: python scripts/generate_dashboard.py
 
-      - name: Commit e push se ci sono cambiamenti
+      # Pubblica SOLO sul repo cloud dedicato (mai su questo repo): questo repo resta
+      # quello che aggiorni manualmente/tramite Claude, per non avere due processi che
+      # si sovrascrivono a vicenda sullo stesso index.html.
+      - name: Checkout repo di pubblicazione (training-dashboard-cloud)
+        uses: actions/checkout@v4
+        with:
+          repository: mirkodesoricellis/training-dashboard-cloud
+          token: ${{ secrets.PAGES_DEPLOY_TOKEN }}
+          path: publish
+
+      - name: Copia e pubblica su training-dashboard-cloud
         run: |
+          cp index.html publish/index.html
+          cd publish
           git config user.name "training-dashboard-bot"
           git config user.email "actions@users.noreply.github.com"
           git add index.html
           if git diff --cached --quiet; then
             echo "Nessuna modifica alla dashboard, salto il commit."
           else
-            git commit -m "Aggiorna dashboard $(date -u +%Y-%m-%d)"
+            git commit -m "Aggiorna dashboard cloud $(date -u +%Y-%m-%d)"
             git push
           fi

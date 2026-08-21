@@ -1,1815 +1,570 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Dashboard Allenamento & Nutrizione</title>
-    <link rel="apple-touch-icon" sizes="180x180" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAIAAACyr5FlAAACaElEQVR4nO3cMUtVcRyA4bz5CRqSaGwMgmhKaG1qKMIxoU3QpF1QhKDRSZCaWluawi9QNLpE9A0UGvoESnv00r1XOucSzzMezuH/G15+w384Syur61fgTyZjD8DiEgdJHCRxkMRBEgdJHCRxkMRBEgdJHCRxkMRBEgdJHCRxkMRBEgdJHCRxkMRBEgdJHCRxkMRBEgdJHCRxkMRBEgdJHCRxkMRBEgdJHCRxkMRBEgdJHCRxkMRBEgdJHCRxkMRBEgdJHCRxkMRBEgdpeYAzDvc2nj68P8BBM/ly8v3J1uvfHt64fu3kw8E0n59fXNx88Hzu0+/dvvXxze40b57++Hn38cu5D7oMm4MkDpI4SOIgiYMkDpI4SOIgiYMkDtIQ1+eb+0eb+0ezfvXi2aOdjbVp3nx//Gn71dvZ5+IvbA6SOEjiIImDJA6SOEjiIImDNMQl2H/p6mRy9vnd2FP8WzYHSRwkcZDEQRIHSRwkcZDEQRIHSRwk1+dzGuwXDCOyOUjiIImDJA6SOEjiIImDJA6SOEjiIImDJA6SOEjiIImDJA6SOEjiIImDJA6SOEjiIImDtLSyuj72DCwom4MkDpI4SOIgiYMkDpI4SOIgiYMkDpI4SOIgiYMkDpI4SOIgiYMkDpI4SOIgiYMkDpI4SOIgiYMkDpI4SOIgiYMkDpI4SOIgiYMkDpI4SOIgiYMkDpI4SOIgiYMkDpI4SOIgiYMkDpI4SMtf73wbewYWlM1BEgdJHCRxkMRBEgdJHCRxkMRBEgdJHCRxkMRBEgdJHCRxkMRB+gXpxygEWLUUZwAAAABJRU5ErkJggg==">
-    <link rel="icon" type="image/png" sizes="512x512" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAgAAAAIACAIAAAB7GkOtAAAH1klEQVR4nO3XsUrWYRyG4Yw/JM2CDU05ftAiLSItDZ2Dg0vgIYiTNDQ4GDQIwQc1RYMQtXxjW2NLEOEghZOn0REEJuYr3de1v7zPdvNbWt3YvgVAz+3RAwAYQwAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiptEDbq6fn+d3l++MXsFFHb79dPjm4+XePn40O361e7V7Lmhza+/07HzI15ezPltbzPeHfP302fNvJ7+GfP2/cgEARAkAQJQAAEQJAECUAABECQBAlAAARAkAQJQAAEQJAECUAABECQBAlAAARAkAQJQAAEQJAECUAABECQBAlAAARAkAQJQAAEQJAECUAABECQBAlAAARAkAQJQAAEQJAECUAABETaMH3FwPnuyMnvBHXz+8vH9v5fr/PXq3ePH6+Pr/Bf4FFwBAlAAARAkAQJQAAEQJAECUAABECQBAlAAARAkAQJQAAEQJAECUAABECQBAlAAARAkAQJQAAEQJAECUAABECQBAlAAARAkAQJQAAEQJAECUAABECQBAlAAARAkAQDQNHoApH15fzB6Al0uAIAoAQCIEgCAKAEAiBIAgCgBAIgSAIAoAQCIEgCAKAEAiBIAgCgBAIgSAIAoAQCIEgCAKAEAiBIAgCgBAIgSAIAoAQCIEgCAKAEAiBIAgKhp9ABI29zaOz07H73iL6zP1hbz/dEruBouAIAoAQCIEgCAKAEAiBIAgCgBAIgSAIAoAQCIEgCAKAEAiBIAgCgBAIgSAIAoAQCIEgCAKAEAiBIAgCgBAIgSAIAoAQCIEgCAKAEAiBIAgCgBAIgSAIAoAQCIEgCAKAEAiBIAgCgBAIgSAIAoAQCIEgCAKAEAiBIAgCgBAIgSAIAoAQCIEgCAKAEAiBIAgCgBAIgSAIAoAQCIEgCAKAEAiBIAgCgBAIgSAIAoAQCIEgCAKAEAiBIAgCgBAIgSAIAoAQCIEgCAKAEAiBIAgCgBAIgSAIAoAQCIEgCAKAEAiBIAgKhpWt3YHr0BgAFcAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQNX1/+GP0BgAGcAEARAkAQJQAAEQJAECUAABECQBAlAAARAkAQJQAAEQJAECUAABECQBAlAAARAkAQJQAAEQJAECUAABECQBAlAAARAkAQJQAAEQJAECUAABECQBAlAAARAkAQJQAAEQJAECUAABECQBAlAAARAkAQJQAAEQJAECUAABECQBAlAAARAkAQJQAAEQJAECUAABECQBAlAAARAkAQJQAAEQJAECUAABECQBAlAAARAkAQNRvf/sn/M9CSL0AAAAASUVORK5CYII=">
-    <link rel="icon" type="image/png" sizes="32x32" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAIAAAD8GO2jAAAAmklEQVR4nGMUt4pjoCVgoqnpoxaMWjBqAQMDAwMDC6bQrZ0z+Hg4McUv3XzgllS/d2Gztorc2l3HsxtnQMTXT6m0NNTYcfhcQsVEoixQc8+AMLbNrjPSUt6492R63TSyfTAs44AYEOxmGexmSYxKMn2wdtdxCet4CDp+/gb1LSAeDH0LGEerzFELRi0YBhawXNG7RlMLhn4QAQCTUiSohY/mdwAAAABJRU5ErkJggg==">
-    <meta name="theme-color" content="#173a5e">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="mobile-web-app-capable" content="yes">
-    <style>
-        :root {
-            --page: #ffffff;
-            --surface-1: #ffffff;
-            --surface-2: #ffffff;
-            --surface-3: #f6f6f5; /* Slightly grey for nested blocks */
-            --text-1: #1a1a1a;
-            --text-2: #555555;
-            --text-3: #888888;
-            --accent: #173a5e;
-            --accent-light: #2a78d6;
-            --accent-dark: #0f2a4a;
-            --shadow-color: rgba(0, 0, 0, 0.08);
-
-            /* Dataviz palette */
-            --color-carbs: #2a78d6;
-            --color-protein: #eb6834;
-            --color-fat: #1baf7a;
-
-            /* Status colors */
-            --status-good: #0ca30c;
-            --status-warning: #fab219;
-            --status-serious: #ec835a;
-            --status-critical: #d03b3b;
-        }
-
-        @media (prefers-color-scheme: dark) {
-            :root {
-                --page: #101010;
-                --surface-1: #1a1a19;
-                --surface-2: #1a1a19;
-                --surface-3: #222221;
-                --text-1: #f0f0f0;
-                --text-2: #cccccc;
-                --text-3: #aaaaaa;
-                --accent: #173a5e; /* Keep accent dark blue */
-                --accent-light: #3987e5; /* Lighter for dark mode */
-                --accent-dark: #0f2a4a;
-                --shadow-color: rgba(0, 0, 0, 0.3);
-
-                /* Dataviz palette for dark mode */
-                --color-carbs: #3987e5;
-                --color-protein: #d95926;
-                --color-fat: #199e70;
-            }
-        }
-
-        body.dark-mode {
-            --page: #101010;
-            --surface-1: #1a1a19;
-            --surface-2: #1a1a19;
-            --surface-3: #222221;
-            --text-1: #f0f0f0;
-            --text-2: #cccccc;
-            --text-3: #aaaaaa;
-            --accent: #173a5e;
-            --accent-light: #3987e5;
-            --accent-dark: #0f2a4a;
-            --shadow-color: rgba(0, 0, 0, 0.3);
-
-            --color-carbs: #3987e5;
-            --color-protein: #d95926;
-            --color-fat: #199e70;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            background-color: var(--page);
-            color: var(--text-1);
-            line-height: 1.6;
-            padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
-
-        .container {
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 1rem;
-        }
-
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 0;
-            margin-bottom: 1rem;
-        }
-
-        .header h1 {
-            font-size: 1.5rem;
-            color: var(--accent);
-        }
-
-        .dark-mode-toggle {
-            background: var(--surface-2);
-            border: 1px solid var(--text-3);
-            border-radius: 20px;
-            padding: 0.3rem 0.6rem;
-            cursor: pointer;
-            font-size: 0.8rem;
-            color: var(--text-2);
-            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
-        }
-
-        .dark-mode-toggle:hover {
-            background: var(--surface-3);
-        }
-
-        .navigation {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1.5rem;
-            background-color: var(--surface-1);
-            padding: 0.8rem;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px var(--shadow-color);
-        }
-
-        .nav-button {
-            background: none;
-            border: none;
-            font-size: 1.8rem;
-            color: var(--text-2);
-            cursor: pointer;
-            padding: 0 0.5rem;
-            transition: color 0.2s ease;
-        }
-
-        .nav-button:hover {
-            color: var(--accent-light);
-        }
-
-        .day-info {
-            text-align: center;
-            flex-grow: 1;
-        }
-
-        .day-info h2 {
-            font-size: 1.2rem;
-            margin-bottom: 0.2rem;
-            color: var(--text-1);
-        }
-
-        .day-info p {
-            font-size: 0.9rem;
-            color: var(--text-2);
-        }
-
-        .day-dots {
-            display: flex;
-            justify-content: center;
-            margin-top: 0.5rem;
-        }
-
-        .dot {
-            width: 8px;
-            height: 8px;
-            background-color: var(--text-3);
-            border-radius: 50%;
-            margin: 0 4px;
-            cursor: pointer;
-            transition: background-color 0.2s ease, transform 0.2s ease;
-        }
-
-        .dot.active {
-            background-color: var(--accent-light);
-            transform: scale(1.2);
-        }
-
-        .card {
-            background-color: var(--surface-1);
-            border-radius: 12px;
-            box-shadow: 0 4px 12px var(--shadow-color);
-            padding: 1.2rem;
-            margin-bottom: 1.5rem;
-            transition: background-color 0.3s ease;
-        }
-
-        .card-header {
-            display: flex;
-            align-items: center;
-            margin-bottom: 0.8rem;
-        }
-
-        .card-header h3 {
-            font-size: 1.1rem;
-            color: var(--text-1);
-            margin-left: 0.5rem;
-        }
-
-        .card-header .icon {
-            font-size: 1.5rem;
-            line-height: 1;
-        }
-
-        .badge {
-            display: inline-block;
-            background-color: var(--accent-light);
-            color: white;
-            padding: 0.2rem 0.6rem;
-            border-radius: 8px;
-            font-size: 0.75rem;
-            font-weight: bold;
-            margin-left: 0.8rem;
-        }
-
-        .wellness-metrics p {
-            font-size: 0.9rem;
-            color: var(--text-2);
-            margin-bottom: 0.3rem;
-        }
-
-        .workout-item {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 0.8rem;
-            padding-bottom: 0.8rem;
-            border-bottom: 1px solid var(--surface-3);
-        }
-        .workout-item:last-child {
-            border-bottom: none;
-            margin-bottom: 0;
-            padding-bottom: 0;
-        }
-
-        .workout-item .icon {
-            font-size: 1.8rem;
-            margin-right: 0.8rem;
-            line-height: 1;
-            color: var(--accent-light);
-        }
-
-        .workout-details {
-            flex-grow: 1;
-        }
-
-        .workout-details h4 {
-            font-size: 1rem;
-            margin-bottom: 0.2rem;
-            color: var(--text-1);
-        }
-
-        .workout-details p {
-            font-size: 0.85rem;
-            color: var(--text-2);
-        }
-
-        .workout-details .description {
-            font-size: 0.8rem;
-            color: var(--text-3);
-            margin-top: 0.4rem;
-            white-space: pre-wrap;
-        }
-
-        .alt-note {
-            font-size: 0.8rem;
-            color: var(--text-3);
-            margin-top: 0.5rem;
-            padding: 0.5rem;
-            background-color: var(--surface-3);
-            border-radius: 8px;
-        }
-
-        .macro-summary {
-            display: flex;
-            justify-content: space-around;
-            margin-top: 1rem;
-            padding-top: 1rem;
-            border-top: 1px solid var(--surface-3);
-        }
-
-        .macro-item {
-            text-align: center;
-        }
-
-        .macro-item span {
-            display: block;
-            font-size: 1.1rem;
-            font-weight: bold;
-            color: var(--text-1);
-        }
-
-        .macro-item small {
-            font-size: 0.75rem;
-            color: var(--text-2);
-        }
-
-        .macro-bar-container {
-            width: 100%;
-            height: 10px;
-            background-color: var(--surface-3);
-            border-radius: 5px;
-            overflow: hidden;
-            margin-top: 0.8rem;
-        }
-
-        .macro-bar {
-            height: 100%;
-            float: left;
-        }
-
-        .macro-bar.carbs { background-color: var(--color-carbs); }
-        .macro-bar.protein { background-color: var(--color-protein); }
-        .macro-bar.fat { background-color: var(--color-fat); }
-
-        .meal-block {
-            background-color: var(--surface-2);
-            border-radius: 10px;
-            margin-bottom: 1rem;
-            overflow: hidden;
-            box-shadow: 0 2px 8px var(--shadow-color);
-            transition: background-color 0.3s ease;
-        }
-
-        .meal-header {
-            display: flex;
-            align-items: center;
-            padding: 0.8rem 1.2rem;
-            cursor: pointer;
-            background-color: var(--surface-2);
-            border-bottom: 1px solid var(--surface-3);
-            transition: background-color 0.2s ease;
-        }
-        .meal-block.open .meal-header {
-            border-bottom: 1px solid var(--surface-3);
-        }
-        .meal-block:not(.open) .meal-header {
-            border-bottom: none;
-        }
-
-
-        .meal-header:hover {
-            background-color: var(--surface-3);
-        }
-
-        .meal-header .icon {
-            font-size: 1.4rem;
-            margin-right: 0.8rem;
-            color: var(--accent-light);
-        }
-
-        .meal-header h4 {
-            font-size: 1rem;
-            color: var(--text-1);
-            flex-grow: 1;
-        }
-
-        .meal-header .macros-summary {
-            font-size: 0.85rem;
-            color: var(--text-2);
-            margin-right: 0.5rem;
-        }
-
-        .meal-header .chevron {
-            font-size: 1.2rem;
-            color: var(--text-3);
-            transition: transform 0.2s ease;
-        }
-
-        .meal-block.open .meal-header .chevron {
-            transform: rotate(90deg);
-        }
-
-        .meal-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease-out;
-            background-color: var(--surface-3); /* Slightly different background for content */
-            padding: 0 1.2rem;
-        }
-
-        .meal-block.open .meal-content {
-            max-height: 500px; /* Sufficiently large value */
-            padding-bottom: 1.2rem;
-        }
-
-        .meal-option {
-            margin-top: 1rem;
-            padding-top: 1rem;
-            border-top: 1px dashed var(--text-3);
-        }
-        .meal-option:first-child {
-            margin-top: 0;
-            padding-top: 0;
-            border-top: none;
-        }
-
-        .meal-option h5 {
-            font-size: 0.95rem;
-            color: var(--text-1);
-            margin-bottom: 0.5rem;
-        }
-
-        .meal-option ul {
-            list-style: none;
-            padding-left: 0;
-            margin-bottom: 0.8rem;
-        }
-
-        .meal-option ul li {
-            font-size: 0.85rem;
-            color: var(--text-2);
-            margin-bottom: 0.2rem;
-        }
-
-        .meal-option .total-macros {
-            font-size: 0.85rem;
-            font-weight: bold;
-            color: var(--text-1);
-            background-color: var(--surface-2);
-            padding: 0.5rem 0.8rem;
-            border-radius: 8px;
-            display: inline-block;
-        }
-
-        .footer {
-            margin-top: 2rem;
-            padding: 1.5rem 1rem;
-            font-size: 0.75rem;
-            color: var(--text-3);
-            text-align: center;
-            border-top: 1px solid var(--surface-3);
-        }
-
-        .footer p {
-            margin-bottom: 0.5rem;
-        }
-
-        .footer a {
-            color: var(--accent-light);
-            text-decoration: none;
-        }
-
-        .footer a:hover {
-            text-decoration: underline;
-        }
-
-        /* Backend Widgets (if backend_url is present) */
-        .backend-widget {
-            background-color: var(--surface-1);
-            border-radius: 12px;
-            box-shadow: 0 4px 12px var(--shadow-color);
-            padding: 1.2rem;
-            margin-bottom: 1.5rem;
-            transition: background-color 0.3s ease;
-        }
-
-        .backend-widget h3 {
-            font-size: 1.1rem;
-            color: var(--text-1);
-            margin-bottom: 1rem;
-        }
-
-        .backend-widget form {
-            display: flex;
-            flex-direction: column;
-            gap: 0.8rem;
-        }
-
-        .backend-widget input[type="text"],
-        .backend-widget textarea {
-            padding: 0.8rem;
-            border: 1px solid var(--text-3);
-            border-radius: 8px;
-            background-color: var(--surface-3);
-            color: var(--text-1);
-            font-size: 0.9rem;
-            transition: border-color 0.2s ease;
-        }
-
-        .backend-widget input[type="text"]:focus,
-        .backend-widget textarea:focus {
-            border-color: var(--accent-light);
-            outline: none;
-        }
-
-        .backend-widget button {
-            background-color: var(--accent);
-            color: white;
-            padding: 0.8rem 1.2rem;
-            border: none;
-            border-radius: 8px;
-            font-size: 0.9rem;
-            font-weight: bold;
-            cursor: pointer;
-            transition: background-color 0.2s ease;
-        }
-
-        .backend-widget button:hover {
-            background-color: var(--accent-light);
-        }
-
-        .backend-widget .response-message {
-            margin-top: 1rem;
-            padding: 0.8rem;
-            background-color: var(--surface-3);
-            border-radius: 8px;
-            font-size: 0.85rem;
-            color: var(--text-2);
-            white-space: pre-wrap;
-        }
-
-        .backend-widget .summary-box {
-            margin-top: 1rem;
-            padding: 0.8rem;
-            background-color: var(--surface-3);
-            border-radius: 8px;
-            font-size: 0.85rem;
-            color: var(--text-2);
-        }
-
-        .backend-widget .summary-box p {
-            margin-bottom: 0.4rem;
-        }
-        .backend-widget .summary-box p:last-child {
-            margin-bottom: 0;
-        }
-
-        .backend-widget .chat-history {
-            margin-top: 1rem;
-            background-color: var(--surface-3);
-            padding: 0.8rem;
-            border-radius: 8px;
-            max-height: 200px;
-            overflow-y: auto;
-            font-size: 0.85rem;
-        }
-
-        .backend-widget .chat-message.user {
-            text-align: right;
-            color: var(--accent);
-        }
-
-        .backend-widget .chat-message.ai {
-            text-align: left;
-            color: var(--text-1);
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <div class="header">
-            <h1>Dashboard Settimanale</h1>
-            <button class="dark-mode-toggle" onclick="toggleDarkMode()">☀️ / 🌙</button>
-        </div>
-
-        <div class="navigation">
-            <button class="nav-button" onclick="prevDay()">&larr;</button>
-            <div class="day-info">
-                <h2 id="current-day-name"></h2>
-                <p id="current-day-date"></p>
-                <div class="day-dots" id="day-dots-container"></div>
-            </div>
-            <button class="nav-button" onclick="nextDay()">&rarr;</button>
-        </div>
-
-        <div id="dashboard-content">
-            <!-- Content for the current day will be rendered here by JS -->
-        </div>
-
-        <div class="footer">
-            <p>Metodologia di stima del fabbisogno giornaliero: BMR calcolato con Mifflin-St Jeor, spesa energetica sessione da TSS/FTP (bici) o kcal/kg/km (corsa). Macro calcolati deterministicamente.</p>
-            <p>I valori nutrizionali dei singoli alimenti nelle ricette sono stime standard/generiche (tabelle USDA/CREA), non verificate su un database di prodotto reale. Possono scostarsi di un 10-20% per alimenti confezionati specifici. Tolleranza accettabile ±10-15% sui target macro dei pasti.</p>
-            <p>Dati forniti da TrainingPeaks, Intervals.icu, COROS. Dashboard generata automaticamente.</p>
-            <p>&copy; Mirko De Soricellis</p>
-        </div>
-    </div>
-
-    <script>
-        const DATA = {
-  "today_iso": "2026-08-21",
-  "athlete": {
-    "weight_kg": 75.7,
-    "height_cm": 183.0,
-    "age": 29,
-    "sex": "m",
-    "ftp_w": 261.0
-  },
-  "days": [
-    {
-      "iso": "2026-08-21",
-      "bmr": 1761,
-      "activities_completed": [],
-      "alt_notes": [],
-      "planned_workouts": [],
-      "planned_workouts_trainingpeaks": [
-        {
-          "title": "100 B2-200 B1",
-          "sport": "Swim",
-          "duration_min_planned": 50,
-          "tss_planned": 83.33,
-          "distance_km_planned": 4.0,
-          "description": "200 riscaldamento\n6x50 tecnica 10'' rec\n6x50 R8 15'' rec\n-\n12x50 C1 15'' rec\n100 sciolti 10'' rec\n-\n6x100 B2 20'' rec\n100 sciolti 10'' rec\n-\n3x200 B1 30'' rec\n100 sciolti 10'' rec\n-\n4x50 C1 15'' rec\n100 sciolti 10'' rec\n-\n2x100 B2 20'' rec\n100' sciolti 10'' rec\n-\n200 B1 30'' rec\n100 sciolti 10'' rec"
-        }
-      ],
-      "wellness": {
-        "id": "2026-08-21",
-        "ctl": 66.61077,
-        "atl": 56.72395,
-        "rampRate": 0.9932022,
-        "ctlLoad": 0.0,
-        "atlLoad": 0.0,
-        "sportInfo": [
-          {
-            "type": "Ride",
-            "eftp": 241.13976,
-            "wPrime": 20129.797,
-            "pMax": 743.68835
-          }
-        ],
-        "updated": "2026-08-20T18:23:40.542+00:00",
-        "weight": null,
-        "restingHR": null,
-        "hrv": null,
-        "hrvSDNN": null,
-        "menstrualPhase": null,
-        "menstrualPhasePredicted": null,
-        "kcalConsumed": null,
-        "sleepSecs": null,
-        "sleepScore": null,
-        "sleepQuality": null,
-        "avgSleepingHR": null,
-        "soreness": null,
-        "fatigue": null,
-        "stress": null,
-        "mood": null,
-        "motivation": null,
-        "injury": null,
-        "spO2": null,
-        "systolic": null,
-        "diastolic": null,
-        "hydration": null,
-        "hydrationVolume": null,
-        "readiness": null,
-        "baevskySI": null,
-        "bloodGlucose": null,
-        "lactate": null,
-        "bodyFat": null,
-        "abdomen": null,
-        "vo2max": null,
-        "comments": null,
-        "steps": null,
-        "respiration": null,
-        "carbohydrates": null,
-        "protein": null,
-        "fatTotal": null,
-        "locked": null,
-        "tempWeight": false,
-        "tempRestingHR": false
-      },
-      "macro_targets": {
-        "kcal": 2289,
-        "protein_g": 136,
-        "carb_g": 265,
-        "fat_g": 76,
-        "needs_fueling": false
-      },
-      "meal_split": {
-        "colazione_pct": 22,
-        "pranzo_pct": 33,
-        "spuntino_pct": 12,
-        "cena_pct": 33
-      }
-    },
-    {
-      "iso": "2026-08-22",
-      "bmr": 1761,
-      "activities_completed": [],
-      "alt_notes": [],
-      "planned_workouts": [],
-      "planned_workouts_trainingpeaks": [
-        {
-          "title": "Z4 short reps",
-          "sport": "Run",
-          "duration_min_planned": 56,
-          "tss_planned": 73.41,
-          "distance_km_planned": null,
-          "description": null
-        }
-      ],
-      "wellness": {
-        "id": "2026-08-22",
-        "ctl": 65.04353,
-        "atl": 49.172737,
-        "rampRate": -1.9241486,
-        "ctlLoad": 0.0,
-        "atlLoad": 0.0,
-        "sportInfo": [
-          {
-            "type": "Ride",
-            "eftp": 240.89862,
-            "wPrime": 20109.668,
-            "pMax": 742.9447
-          }
-        ],
-        "updated": "2026-08-20T18:23:40.542+00:00",
-        "weight": null,
-        "restingHR": null,
-        "hrv": null,
-        "hrvSDNN": null,
-        "menstrualPhase": null,
-        "menstrualPhasePredicted": null,
-        "kcalConsumed": null,
-        "sleepSecs": null,
-        "sleepScore": null,
-        "sleepQuality": null,
-        "avgSleepingHR": null,
-        "soreness": null,
-        "fatigue": null,
-        "stress": null,
-        "mood": null,
-        "motivation": null,
-        "injury": null,
-        "spO2": null,
-        "systolic": null,
-        "diastolic": null,
-        "hydration": null,
-        "hydrationVolume": null,
-        "readiness": null,
-        "baevskySI": null,
-        "bloodGlucose": null,
-        "lactate": null,
-        "bodyFat": null,
-        "abdomen": null,
-        "vo2max": null,
-        "comments": null,
-        "steps": null,
-        "respiration": null,
-        "carbohydrates": null,
-        "protein": null,
-        "fatTotal": null,
-        "locked": null,
-        "tempWeight": false,
-        "tempRestingHR": false
-      },
-      "macro_targets": {
-        "kcal": 2289,
-        "protein_g": 136,
-        "carb_g": 265,
-        "fat_g": 76,
-        "needs_fueling": false
-      },
-      "meal_split": {
-        "colazione_pct": 22,
-        "pranzo_pct": 33,
-        "spuntino_pct": 12,
-        "cena_pct": 33
-      }
-    },
-    {
-      "iso": "2026-08-23",
-      "bmr": 1761,
-      "activities_completed": [],
-      "alt_notes": [],
-      "planned_workouts": [],
-      "planned_workouts_trainingpeaks": [
-        {
-          "title": "fondo",
-          "sport": "Bike",
-          "duration_min_planned": 180,
-          "tss_planned": null,
-          "distance_km_planned": null,
-          "description": "uscita con salite fino 1k dsl da fare in Z4 270-300W"
-        }
-      ],
-      "wellness": {
-        "id": "2026-08-23",
-        "ctl": 63.51317,
-        "atl": 42.62676,
-        "rampRate": -1.8788757,
-        "ctlLoad": 0.0,
-        "atlLoad": 0.0,
-        "sportInfo": [
-          {
-            "type": "Ride",
-            "eftp": 240.65773,
-            "wPrime": 20089.559,
-            "pMax": 742.2018
-          }
-        ],
-        "updated": "2026-08-20T18:23:40.542+00:00",
-        "weight": null,
-        "restingHR": null,
-        "hrv": null,
-        "hrvSDNN": null,
-        "menstrualPhase": null,
-        "menstrualPhasePredicted": null,
-        "kcalConsumed": null,
-        "sleepSecs": null,
-        "sleepScore": null,
-        "sleepQuality": null,
-        "avgSleepingHR": null,
-        "soreness": null,
-        "fatigue": null,
-        "stress": null,
-        "mood": null,
-        "motivation": null,
-        "injury": null,
-        "spO2": null,
-        "systolic": null,
-        "diastolic": null,
-        "hydration": null,
-        "hydrationVolume": null,
-        "readiness": null,
-        "baevskySI": null,
-        "bloodGlucose": null,
-        "lactate": null,
-        "bodyFat": null,
-        "abdomen": null,
-        "vo2max": null,
-        "comments": null,
-        "steps": null,
-        "respiration": null,
-        "carbohydrates": null,
-        "protein": null,
-        "fatTotal": null,
-        "locked": null,
-        "tempWeight": false,
-        "tempRestingHR": false
-      },
-      "macro_targets": {
-        "kcal": 2289,
-        "protein_g": 136,
-        "carb_g": 265,
-        "fat_g": 76,
-        "needs_fueling": false
-      },
-      "meal_split": {
-        "colazione_pct": 22,
-        "pranzo_pct": 33,
-        "spuntino_pct": 12,
-        "cena_pct": 33
-      }
-    },
-    {
-      "iso": "2026-08-24",
-      "bmr": 1761,
-      "activities_completed": [],
-      "alt_notes": [],
-      "planned_workouts": [],
-      "planned_workouts_trainingpeaks": [
-        {
-          "title": "A2",
-          "sport": "Swim",
-          "duration_min_planned": 42,
-          "tss_planned": 66.32,
-          "distance_km_planned": 3.3,
-          "description": "200 riscaldamento\n6x50 tecnica 10'' rec\n6x50 R8 15'' rec\n-\n6x200 pale+pull+boccaglio 15'' rec\n6x100 pull+boccaglio 15'' rec\n-\n12x50 agile di frequenza 10'' rec\n-\n100 sciolti"
-        }
-      ],
-      "wellness": {
-        "id": "2026-08-24",
-        "ctl": 62.01881,
-        "atl": 36.952194,
-        "rampRate": -2.7757988,
-        "ctlLoad": 0.0,
-        "atlLoad": 0.0,
-        "sportInfo": [
-          {
-            "type": "Ride",
-            "eftp": 240.41707,
-            "wPrime": 20069.469,
-            "pMax": 741.4596
-          }
-        ],
-        "updated": "2026-08-20T18:23:40.542+00:00",
-        "weight": null,
-        "restingHR": null,
-        "hrv": null,
-        "hrvSDNN": null,
-        "menstrualPhase": null,
-        "menstrualPhasePredicted": null,
-        "kcalConsumed": null,
-        "sleepSecs": null,
-        "sleepScore": null,
-        "sleepQuality": null,
-        "avgSleepingHR": null,
-        "soreness": null,
-        "fatigue": null,
-        "stress": null,
-        "mood": null,
-        "motivation": null,
-        "injury": null,
-        "spO2": null,
-        "systolic": null,
-        "diastolic": null,
-        "hydration": null,
-        "hydrationVolume": null,
-        "readiness": null,
-        "baevskySI": null,
-        "bloodGlucose": null,
-        "lactate": null,
-        "bodyFat": null,
-        "abdomen": null,
-        "vo2max": null,
-        "comments": null,
-        "steps": null,
-        "respiration": null,
-        "carbohydrates": null,
-        "protein": null,
-        "fatTotal": null,
-        "locked": null,
-        "tempWeight": false,
-        "tempRestingHR": false
-      },
-      "macro_targets": {
-        "kcal": 2289,
-        "protein_g": 136,
-        "carb_g": 265,
-        "fat_g": 76,
-        "needs_fueling": false
-      },
-      "meal_split": {
-        "colazione_pct": 22,
-        "pranzo_pct": 33,
-        "spuntino_pct": 12,
-        "cena_pct": 33
-      }
-    },
-    {
-      "iso": "2026-08-25",
-      "bmr": 1761,
-      "activities_completed": [],
-      "alt_notes": [],
-      "planned_workouts": [],
-      "planned_workouts_trainingpeaks": [
-        {
-          "title": "recupero attivo",
-          "sport": "Run",
-          "duration_min_planned": 50,
-          "tss_planned": 33.32,
-          "distance_km_planned": null,
-          "description": ""
-        }
-      ],
-      "wellness": {
-        "id": "2026-08-25",
-        "ctl": 60.559612,
-        "atl": 32.03304,
-        "rampRate": -4.4280586,
-        "ctlLoad": 0.0,
-        "atlLoad": 0.0,
-        "sportInfo": [
-          {
-            "type": "Ride",
-            "eftp": 240.17665,
-            "wPrime": 20049.4,
-            "pMax": 740.71814
-          }
-        ],
-        "updated": "2026-08-20T18:23:40.542+00:00",
-        "weight": null,
-        "restingHR": null,
-        "hrv": null,
-        "hrvSDNN": null,
-        "menstrualPhase": null,
-        "menstrualPhasePredicted": null,
-        "kcalConsumed": null,
-        "sleepSecs": null,
-        "sleepScore": null,
-        "sleepQuality": null,
-        "avgSleepingHR": null,
-        "soreness": null,
-        "fatigue": null,
-        "stress": null,
-        "mood": null,
-        "motivation": null,
-        "injury": null,
-        "spO2": null,
-        "systolic": null,
-        "diastolic": null,
-        "hydration": null,
-        "hydrationVolume": null,
-        "readiness": null,
-        "baevskySI": null,
-        "bloodGlucose": null,
-        "lactate": null,
-        "bodyFat": null,
-        "abdomen": null,
-        "vo2max": null,
-        "comments": null,
-        "steps": null,
-        "respiration": null,
-        "carbohydrates": null,
-        "protein": null,
-        "fatTotal": null,
-        "locked": null,
-        "tempWeight": false,
-        "tempRestingHR": false
-      },
-      "macro_targets": {
-        "kcal": 2289,
-        "protein_g": 136,
-        "carb_g": 265,
-        "fat_g": 76,
-        "needs_fueling": false
-      },
-      "meal_split": {
-        "colazione_pct": 22,
-        "pranzo_pct": 33,
-        "spuntino_pct": 12,
-        "cena_pct": 33
-      }
-    },
-    {
-      "iso": "2026-08-26",
-      "bmr": 1761,
-      "activities_completed": [],
-      "alt_notes": [],
-      "planned_workouts": [],
-      "planned_workouts_trainingpeaks": [
-        {
-          "title": "Gambe Mantenimento",
-          "sport": "Strength",
-          "duration_min_planned": null,
-          "tss_planned": 20.0,
-          "distance_km_planned": null,
-          "description": ""
-        }
-      ],
-      "wellness": {
-        "id": "2026-08-26",
-        "ctl": 59.134747,
-        "atl": 27.768734,
-        "rampRate": -8.676609,
-        "ctlLoad": 0.0,
-        "atlLoad": 0.0,
-        "sportInfo": [
-          {
-            "type": "Ride",
-            "eftp": 239.93648,
-            "wPrime": 20029.352,
-            "pMax": 739.9774
-          }
-        ],
-        "updated": "2026-08-20T18:23:40.542+00:00",
-        "weight": null,
-        "restingHR": null,
-        "hrv": null,
-        "hrvSDNN": null,
-        "menstrualPhase": null,
-        "menstrualPhasePredicted": null,
-        "kcalConsumed": null,
-        "sleepSecs": null,
-        "sleepScore": null,
-        "sleepQuality": null,
-        "avgSleepingHR": null,
-        "soreness": null,
-        "fatigue": null,
-        "stress": null,
-        "mood": null,
-        "motivation": null,
-        "injury": null,
-        "spO2": null,
-        "systolic": null,
-        "diastolic": null,
-        "hydration": null,
-        "hydrationVolume": null,
-        "readiness": null,
-        "baevskySI": null,
-        "bloodGlucose": null,
-        "lactate": null,
-        "bodyFat": null,
-        "abdomen": null,
-        "vo2max": null,
-        "comments": null,
-        "steps": null,
-        "respiration": null,
-        "carbohydrates": null,
-        "protein": null,
-        "fatTotal": null,
-        "locked": null,
-        "tempWeight": false,
-        "tempRestingHR": false
-      },
-      "macro_targets": {
-        "kcal": 2289,
-        "protein_g": 136,
-        "carb_g": 265,
-        "fat_g": 76,
-        "needs_fueling": false
-      },
-      "meal_split": {
-        "colazione_pct": 22,
-        "pranzo_pct": 33,
-        "spuntino_pct": 12,
-        "cena_pct": 33
-      }
-    },
-    {
-      "iso": "2026-08-27",
-      "bmr": 1761,
-      "activities_completed": [],
-      "alt_notes": [
-        {
-          "title": "agilità/recupero attivo",
-          "sport": "Bike",
-          "duration_min_planned": 50,
-          "tss_planned": 29.05,
-          "distance_km_planned": null,
-          "description": null
-        }
-      ],
-      "planned_workouts": [],
-      "planned_workouts_trainingpeaks": [
-        {
-          "title": "recupero attivo",
-          "sport": "Bike",
-          "duration_min_planned": 75,
-          "tss_planned": 49.99,
-          "distance_km_planned": null,
-          "description": ">90 rpm"
-        }
-      ],
-      "wellness": {
-        "id": "2026-08-27",
-        "ctl": 57.743404,
-        "atl": 24.072102,
-        "rampRate": -10.47237,
-        "ctlLoad": 0.0,
-        "atlLoad": 0.0,
-        "sportInfo": [
-          {
-            "type": "Ride",
-            "eftp": 239.69655,
-            "wPrime": 20009.322,
-            "pMax": 739.2374
-          }
-        ],
-        "updated": "2026-08-20T18:23:40.542+00:00",
-        "weight": null,
-        "restingHR": null,
-        "hrv": null,
-        "hrvSDNN": null,
-        "menstrualPhase": null,
-        "menstrualPhasePredicted": null,
-        "kcalConsumed": null,
-        "sleepSecs": null,
-        "sleepScore": null,
-        "sleepQuality": null,
-        "avgSleepingHR": null,
-        "soreness": null,
-        "fatigue": null,
-        "stress": null,
-        "mood": null,
-        "motivation": null,
-        "injury": null,
-        "spO2": null,
-        "systolic": null,
-        "diastolic": null,
-        "hydration": null,
-        "hydrationVolume": null,
-        "readiness": null,
-        "baevskySI": null,
-        "bloodGlucose": null,
-        "lactate": null,
-        "bodyFat": null,
-        "abdomen": null,
-        "vo2max": null,
-        "comments": null,
-        "steps": null,
-        "respiration": null,
-        "carbohydrates": null,
-        "protein": null,
-        "fatTotal": null,
-        "locked": null,
-        "tempWeight": false,
-        "tempRestingHR": false
-      },
-      "macro_targets": {
-        "kcal": 2289,
-        "protein_g": 136,
-        "carb_g": 265,
-        "fat_g": 76,
-        "needs_fueling": false
-      },
-      "meal_split": {
-        "colazione_pct": 22,
-        "pranzo_pct": 33,
-        "spuntino_pct": 12,
-        "cena_pct": 33
-      }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Allenamento">
+<meta name="theme-color" content="#0d0d0d">
+<title>Giornata — Allenamento & Nutrizione</title>
+<style>
+  .viz-root {
+    color-scheme: light;
+    --surface-1:      #ffffff;
+    --surface-2:      #ffffff;
+    --surface-3:      #f6f6f5;
+    --page:           #ffffff;
+    --text-primary:   #0b0b0b;
+    --text-secondary: #52514e;
+    --muted:          #898781;
+    --grid:           #e8e7e3;
+    --baseline:       #c3c2b7;
+    --border:         rgba(11,11,11,0.10);
+    --shadow-sm:      0 1px 2px rgba(11,11,11,0.04);
+    --shadow-md:      0 2px 6px rgba(11,11,11,0.04), 0 12px 28px -10px rgba(11,11,11,0.10);
+    --carb:           #2a78d6;
+    --protein:        #eb6834;
+    --fat:            #1baf7a;
+    --good:           #0ca30c;
+    --warning:        #fab219;
+    --serious:        #ec835a;
+    --critical:       #d03b3b;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:where(:not([data-theme="light"])) .viz-root {
+      color-scheme: dark;
+      --surface-1:      #1a1a19;
+      --surface-2:      #202020;
+      --surface-3:      #262625;
+      --page:           #101010;
+      --text-primary:   #ffffff;
+      --text-secondary: #c3c2b7;
+      --muted:          #8f8d86;
+      --grid:           #2c2c2a;
+      --baseline:       #383835;
+      --border:         rgba(255,255,255,0.09);
+      --shadow-sm:      0 1px 2px rgba(0,0,0,0.3);
+      --shadow-md:      0 2px 6px rgba(0,0,0,0.3), 0 16px 32px -12px rgba(0,0,0,0.55);
+      --carb:           #3987e5;
+      --protein:        #d95926;
+      --fat:            #199e70;
     }
-  ],
-  "strava_social": null,
-  "backend_url": null
-};
+  }
+  :root[data-theme="dark"] .viz-root {
+    color-scheme: dark;
+    --surface-1:      #1a1a19;
+    --surface-2:      #202020;
+    --surface-3:      #262625;
+    --page:           #101010;
+    --text-primary:   #ffffff;
+    --text-secondary: #c3c2b7;
+    --muted:          #8f8d86;
+    --grid:           #2c2c2a;
+    --baseline:       #383835;
+    --border:         rgba(255,255,255,0.09);
+    --shadow-sm:      0 1px 2px rgba(0,0,0,0.3);
+    --shadow-md:      0 2px 6px rgba(0,0,0,0.3), 0 16px 32px -12px rgba(0,0,0,0.55);
+    --carb:           #3987e5;
+    --protein:        #d95926;
+    --fat:            #199e70;
+  }
 
-        let currentDayIndex = 0;
+  * { box-sizing: border-box; }
+  html, body { margin:0; padding:0; }
+  body.viz-root {
+    background: var(--page);
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    color: var(--text-primary);
+    padding: 28px 20px 40px 20px;
+    padding-top: max(28px, env(safe-area-inset-top));
+    padding-bottom: max(40px, env(safe-area-inset-bottom));
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 760px; margin: 0 auto; }
+  @media (max-width: 480px) {
+    body.viz-root { padding: 16px 12px 28px 12px; padding-top: max(16px, env(safe-area-inset-top)); }
+    .card { padding: 4px 16px 18px 16px; }
+    .card-accent { margin: 0 -16px 16px -16px; }
+    .workout-title { font-size:17px; }
+    .kcal-box .big { font-size:26px; }
+    h1 { font-size:15.5px; }
+  }
 
-        const FOODS = {
-            "Avena": { kcal: 370, C: 60, P: 13, F: 7 },
-            "Latte di soia": { kcal: 54, C: 3, P: 3, F: 3 },
-            "Burro di arachidi": { kcal: 588, C: 20, P: 25, F: 50 },
-            "Corn flakes senza zuccheri": { kcal: 370, C: 84, P: 7, F: 1 },
-            "Whey protein": { kcal: 370, C: 5, P: 80, F: 4 },
-            "Riso (crudo)": { kcal: 360, C: 80, P: 7, F: 1 },
-            "Pasta (cruda)": { kcal: 350, C: 70, P: 13, F: 1.5 },
-            "Tonno al naturale": { kcal: 100, C: 0, P: 23, F: 1 },
-            "Ceci (cotti)": { kcal: 164, C: 27, P: 9, F: 2.6 },
-            "Lenticchie (cotte)": { kcal: 116, C: 20, P: 9, F: 0.4 },
-            "Mais": { kcal: 86, C: 19, P: 3, F: 1 },
-            "Grana Padano": { kcal: 398, C: 0, P: 33, F: 29 },
-            "Olio EVO": { kcal: 900, C: 0, P: 0, F: 100 },
-            "Yogurt greco 0% grassi": { kcal: 59, C: 4, P: 10, F: 0 },
-            "Mela": { kcal: 52, C: 14, P: 0.3, F: 0.2 },
-            "Mandorle": { kcal: 579, C: 22, P: 21, F: 49 },
-            "Gallette di riso": { kcal: 380, C: 80, P: 8, F: 3 },
-            "Fiocchi di latte magri": { kcal: 70, C: 3, P: 12, F: 0.5 },
-            "Albume d'uovo": { kcal: 52, C: 1, P: 11, F: 0 },
-            "Uova intere": { kcal: 155, C: 1, P: 13, F: 11 },
-            "Petto di pollo": { kcal: 165, C: 0, P: 31, F: 3.6 },
-            "Burger vegetale Lidl": { kcal: 200, C: 10, P: 17, F: 10 },
-            "Seitan": { kcal: 140, C: 6, P: 25, F: 1 },
-            "Tofu": { kcal: 76, C: 1.9, P: 8, F: 4.8 },
-            "Pancarrè": { kcal: 265, C: 49, P: 8, F: 3.3 },
-            "Verdure miste": { kcal: 20, C: 4, P: 1, F: 0.2 },
-            "Ketchup": { kcal: 100, C: 24, P: 1, F: 0 },
-            "Maionese": { kcal: 680, C: 3, P: 1, F: 75 },
-            "Marmellata": { kcal: 250, C: 65, P: 0.5, F: 0 }
-        };
+  header.top {
+    display:flex; justify-content:space-between; align-items:center;
+    margin-bottom: 20px; gap:12px;
+  }
+  .brand { display:flex; align-items:center; gap:10px; }
+  .brand-badge {
+    width:38px; height:38px; border-radius:11px; display:flex; align-items:center; justify-content:center;
+    font-size:18px; background: linear-gradient(145deg, var(--carb), #1c5cab); box-shadow: var(--shadow-sm);
+  }
+  h1 { font-size: 16.5px; margin:0; font-weight:700; letter-spacing:-0.01em; }
+  .subtitle { color: var(--text-secondary); font-size: 12px; margin:2px 0 0 0; }
+  .theme-toggle {
+    border:1px solid var(--border); background:var(--surface-2); color:var(--text-primary);
+    width:36px; height:36px; border-radius:10px; font-size:14px; cursor:pointer; flex-shrink:0;
+    display:flex; align-items:center; justify-content:center; box-shadow: var(--shadow-sm);
+    transition: transform .15s ease;
+  }
+  .theme-toggle:hover { transform: translateY(-1px); }
 
-        function todayISO() {
-            const today = new Date();
-            return today.toISOString().split('T')[0];
-        }
+  .day-nav { display:flex; align-items:center; justify-content:space-between; gap:14px; margin-bottom: 10px; }
+  .nav-btn {
+    border:1px solid var(--border); background:var(--surface-1); color:var(--text-primary);
+    width:44px; height:44px; border-radius:50%; cursor:pointer; font-size:17px;
+    display:flex; align-items:center; justify-content:center; flex-shrink:0;
+    box-shadow: var(--shadow-sm); transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+  }
+  .nav-btn:hover:not(:disabled) { border-color: var(--carb); transform: translateY(-1px); box-shadow: var(--shadow-md); }
+  .nav-btn:active:not(:disabled) { transform: translateY(0) scale(0.96); }
+  .nav-btn:disabled { opacity:0.28; cursor:default; box-shadow:none; }
 
-        function getSportIcon(sport) {
-            switch (sport.toLowerCase()) {
-                case 'swim': return '🏊';
-                case 'run': return '🏃';
-                case 'bike': return '🚴';
-                case 'strength': return '🏋️';
-                default: return '💪';
-            }
-        }
+  .day-pips { display:flex; gap:6px; }
+  .pip { width:7px; height:7px; border-radius:50%; background: var(--grid); cursor:pointer; border:none; padding:0; transition: all .2s ease; }
+  .pip:hover { background: var(--baseline); }
+  .pip.active { background: var(--carb); width:22px; border-radius:4px; }
 
-        function getMealIcon(mealType) {
-            switch (mealType) {
-                case 'Colazione': return '☀️';
-                case 'Pranzo': return '🍽️';
-                case 'Spuntino': return '🍎';
-                case 'Cena': return '🌙';
-                default: return '🍴';
-            }
-        }
+  .day-label-center { text-align:center; }
+  .day-label-center .dn { font-size:16px; font-weight:800; letter-spacing:-0.01em; }
+  .day-label-center .dd { font-size:11.5px; color:var(--muted); margin-top:1px; }
 
-        function calculateMacros(ingredients) {
-            let totalKcal = 0, totalC = 0, totalP = 0, totalF = 0;
-            ingredients.forEach(item => {
-                const food = FOODS[item.foodName];
-                if (food) {
-                    const ratio = item.grams / 100;
-                    totalKcal += food.kcal * ratio;
-                    totalC += food.C * ratio;
-                    totalP += food.P * ratio;
-                    totalF += food.F * ratio;
-                }
-            });
-            return { kcal: totalKcal, C: totalC, P: totalP, F: totalF };
-        }
+  .today-badge {
+    display:inline-block; font-size:9.5px; font-weight:800; text-transform:uppercase; letter-spacing:.05em;
+    color: var(--carb); background: color-mix(in srgb, var(--carb) 14%, transparent);
+    padding:1px 7px; border-radius:999px; margin-top:3px;
+  }
 
-        function formatMacros(macros) {
-            return `${Math.round(macros.kcal)} kcal · C ${Math.round(macros.C)}g · P ${Math.round(macros.P)}g · F ${Math.round(macros.F)}g`;
-        }
+  @keyframes fadeSlide { from { opacity:0; transform: translateY(6px); } to { opacity:1; transform: translateY(0); } }
+  .card {
+    background: var(--surface-1); border:1px solid var(--border); border-radius:20px;
+    padding: 4px 22px 22px 22px; box-shadow: var(--shadow-md); position:relative; overflow:hidden;
+    animation: fadeSlide .28s ease;
+  }
+  .card-accent { height:5px; margin:0 -22px 18px -22px; }
 
-        function generateMealOption(mealTargets, mealType) {
-            let ingredients = [];
-            const addIngredient = (foodName, grams) => {
-                if (grams <= 0) return;
-                ingredients.push({ foodName, grams: Math.round(grams) });
-            };
+  .card-top { display:flex; justify-content:space-between; align-items:flex-start; gap:10px; flex-wrap:wrap; }
+  .status-pill {
+    display:inline-flex; align-items:center; gap:6px; font-size:11.5px; font-weight:600; padding:4px 11px 4px 8px;
+    border-radius:999px; border:1px solid var(--border); color: var(--text-primary); background: var(--surface-3);
+  }
+  .status-dot { width:7px; height:7px; border-radius:50%; display:inline-block; box-shadow: 0 0 0 3px currentColor; opacity:.95; }
+  .sport-label { display:flex; align-items:center; gap:7px; font-size:11.5px; color: var(--text-secondary); text-transform:uppercase; letter-spacing:.05em; font-weight:800; }
+  .sport-icon { font-size:16px; line-height:1; }
+  .workout-title { font-size:19px; font-weight:800; margin: 6px 0 3px 0; letter-spacing:-0.015em; }
+  .workout-meta { font-size:12.5px; color: var(--text-secondary); }
+  .alt-note { font-size:12px; color: var(--muted); margin-top:4px; font-style:italic; }
 
-            // Simple greedy approach, adjust as needed for each meal type
-            if (mealType === 'colazione_option1') { // Avena + Latte di soia + Burro di arachidi + Whey
-                addIngredient("Avena", 60);
-                addIngredient("Latte di soia", 200);
-                addIngredient("Whey protein", 25);
-                addIngredient("Burro di arachidi", 15);
-            } else if (mealType === 'colazione_option2') { // Latte di soia + Corn flakes senza zuccheri + Whey
-                addIngredient("Corn flakes senza zuccheri", 70);
-                addIngredient("Latte di soia", 250);
-                addIngredient("Whey protein", 30);
-            } else if (mealType === 'pranzo') { // Riso/Pasta + Proteina + Mais + Grana + Olio EVO
-                addIngredient("Riso (crudo)", 90);
-                addIngredient("Petto di pollo", 150);
-                addIngredient("Mais", 50);
-                addIngredient("Olio EVO", 10);
-                addIngredient("Grana Padano", 10);
-            } else if (mealType === 'spuntino') { // Yogurt greco + Mela + Mandorle
-                addIngredient("Yogurt greco 0% grassi", 180);
-                addIngredient("Mela", 120);
-                addIngredient("Mandorle", 15);
-            } else if (mealType === 'cena') { // Proteina + Pancarrè + Verdure + Olio EVO
-                addIngredient("Petto di pollo", 160);
-                addIngredient("Pancarrè", 90);
-                addIngredient("Verdure miste", 250);
-                addIngredient("Olio EVO", 10);
-            }
+  .kcal-box { text-align:right; }
+  .kcal-box .big { font-size:30px; font-weight:800; letter-spacing:-0.02em; background: linear-gradient(135deg, var(--text-primary), var(--text-secondary)); -webkit-background-clip:text; background-clip:text; }
+  .kcal-box .lbl { font-size:10.5px; color:var(--muted); text-transform:uppercase; letter-spacing:.04em; font-weight:700; }
 
-            const finalMacros = calculateMacros(ingredients);
+  .macrobar { display:flex; width:100%; height:24px; border-radius:8px; overflow:hidden; margin-top:18px; box-shadow: inset 0 0 0 1px var(--border); gap:2px; background: var(--surface-3); }
+  .macro-seg { display:flex; align-items:center; justify-content:center; font-size:11px; color:#fff; font-weight:700; border-radius:6px; box-shadow: inset 0 -6px 10px -6px rgba(0,0,0,.25), inset 0 6px 10px -6px rgba(255,255,255,.18); }
+  .macro-labels { display:flex; gap:16px; margin-top:10px; font-size:12px; color: var(--text-secondary); flex-wrap:wrap; }
+  .macro-labels .m-item { display:flex; align-items:center; gap:6px; }
+  .swatch { width:9px; height:9px; border-radius:3px; display:inline-block; }
 
-            // Basic adjustment to try to hit targets better, focusing on main macro sources
-            let adjustedIngredients = [...ingredients];
-            let currentKcal = finalMacros.kcal;
-            let currentP = finalMacros.P;
-            let currentC = finalMacros.C;
-            let currentF = finalMacros.F;
+  .insight { font-size:13px; color: var(--text-secondary); line-height:1.6; margin-top:16px; padding:12px 14px; background: var(--surface-3); border-radius:12px; border-left:3px solid var(--carb); }
+  .insight b { color: var(--text-primary); }
 
-            const adjust = (foodName, targetMacro, currentMacro, macroKey, factor = 1) => {
-                const food = FOODS[foodName];
-                if (!food || food[macroKey] === 0) return;
-                const diff = targetMacro - currentMacro;
-                const gramsToAdd = (diff / (food[macroKey] / 100)) * factor;
-                const existingIdx = adjustedIngredients.findIndex(i => i.foodName === foodName);
-                if (existingIdx !== -1) {
-                    adjustedIngredients[existingIdx].grams += gramsToAdd;
-                } else {
-                    adjustedIngredients.push({ foodName, grams: gramsToAdd });
-                }
-            };
+  .section-h { font-size:11.5px; font-weight:800; text-transform:uppercase; letter-spacing:.05em; color: var(--muted); margin: 22px 0 10px 0; display:flex; align-items:center; gap:6px; }
+  .section-h:before, .section-h:after { content:""; height:1px; background: var(--grid); flex:1; }
 
-            // Re-calculate current macros after initial additions
-            let tempMacros = calculateMacros(adjustedIngredients);
-            currentKcal = tempMacros.kcal;
-            currentP = tempMacros.P;
-            currentC = tempMacros.C;
-            currentF = tempMacros.F;
+  .meal-block { border:1px solid var(--border); border-radius:14px; margin-bottom:10px; background: var(--surface-3); box-shadow: var(--shadow-sm); overflow:hidden; }
+  .meal-block-head {
+    display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:6px;
+    padding:13px 15px; cursor:pointer; user-select:none; -webkit-tap-highlight-color: transparent;
+  }
+  .meal-block-head:hover { background: rgba(11,11,11,0.02); }
+  .meal-name { font-size:13.5px; font-weight:800; display:flex; align-items:center; gap:6px; }
+  .meal-target { font-size:11px; color: var(--muted); display:flex; align-items:center; gap:8px; }
+  .meal-target b { color: var(--text-secondary); font-weight:700; }
+  .meal-chevron { font-size:10px; color: var(--muted); transition: transform .2s ease; flex-shrink:0; }
+  .meal-block.open .meal-chevron { transform: rotate(90deg); }
 
-            // Adjustments for each meal type
-            if (mealType.includes('colazione')) {
-                adjust("Whey protein", mealTargets.P, currentP, 'P', 0.5); // Adjust protein
-                adjust(mealType === 'colazione_option1' ? "Avena" : "Corn flakes senza zuccheri", mealTargets.C, currentC, 'C', 0.5); // Adjust carbs
-                if (mealType === 'colazione_option1') adjust("Burro di arachidi", mealTargets.F, currentF, 'F', 0.5); // Adjust fats
-            } else if (mealType === 'pranzo') {
-                adjust("Petto di pollo", mealTargets.P, currentP, 'P', 0.5);
-                adjust("Riso (crudo)", mealTargets.C, currentC, 'C', 0.5);
-                adjust("Olio EVO", mealTargets.F, currentF, 'F', 0.5);
-            } else if (mealType === 'spuntino') {
-                adjust("Yogurt greco 0% grassi", mealTargets.P, currentP, 'P', 0.5);
-                adjust("Mela", mealTargets.C, currentC, 'C', 0.5);
-                adjust("Mandorle", mealTargets.F, currentF, 'F', 0.5);
-            } else if (mealType === 'cena') {
-                adjust("Petto di pollo", mealTargets.P, currentP, 'P', 0.5);
-                adjust("Pancarrè", mealTargets.C, currentC, 'C', 0.5);
-                adjust("Olio EVO", mealTargets.F, currentF, 'F', 0.5);
-            }
+  .options-wrap {
+    max-height:0; overflow:hidden; transition: max-height .25s ease, padding .25s ease;
+    padding: 0 15px;
+  }
+  .meal-block.open .options-wrap { max-height:1200px; padding: 0 15px 13px 15px; }
 
-            // Filter out negative or zero grams and round
-            adjustedIngredients = adjustedIngredients.filter(item => item.grams > 0).map(item => ({
-                foodName: item.foodName,
-                grams: Math.round(item.grams)
-            }));
+  .option { background: var(--surface-1); border:1px solid var(--border); border-radius:11px; padding:10px 13px; margin-top:7px; }
+  .option-label { font-size:10.5px; font-weight:800; color: var(--carb); text-transform:uppercase; letter-spacing:.04em; margin-bottom:6px; }
+  .option-items { font-size:12.5px; color: var(--text-secondary); line-height:1.65; }
+  .option-items .qty { color: var(--text-primary); font-weight:700; }
+  .option-totals {
+    font-size:10.5px; color: var(--muted); margin-top:8px; padding-top:7px; border-top:1px dashed var(--grid);
+    display:flex; gap:10px; flex-wrap:wrap; font-variant-numeric: tabular-nums;
+  }
+  .option-totals b { color: var(--text-secondary); }
 
-            return {
-                ingredients: adjustedIngredients,
-                macros: calculateMacros(adjustedIngredients)
-            };
-        }
+  .fuel-grid { display:grid; grid-template-columns: 1fr; gap:9px; margin-top:9px; }
+  .fuel-block { background: var(--surface-2); border:1px solid var(--border); border-radius:12px; padding:11px 14px; box-shadow: var(--shadow-sm); }
+  .fuel-block .fuel-h { font-size:10.5px; text-transform:uppercase; letter-spacing:.05em; color:var(--muted); margin-bottom:7px; font-weight:800; display:flex; align-items:center; gap:5px;}
+  .fuel-block ul { margin:0; padding-left:17px; font-size:12.5px; color: var(--text-secondary); line-height:1.6; }
+  .fuel-block li { margin-bottom:3px; }
+  .fuel-block .qty { color: var(--text-primary); font-weight:700; }
+  .supp-line {
+    margin-top:9px; font-size:12.5px; color: var(--text-secondary); background: var(--surface-2);
+    border:1px solid var(--border); border-radius:12px; padding:11px 14px; box-shadow: var(--shadow-sm);
+  }
+  .supp-line b { color: var(--text-primary); }
 
-        function renderDay(day) {
-            const contentDiv = document.getElementById('dashboard-content');
-            let html = '';
+  footer.note { margin-top: 20px; font-size:11px; color: var(--muted); line-height:1.65; text-align:center; padding:0 8px; }
+</style>
+</head>
+<body class="viz-root">
+<div class="wrap">
 
-            // Wellness Metrics
-            if (day.wellness && (day.wellness.ctl || day.wellness.atl || day.wellness.rampRate)) {
-                html += `
-                    <div class="card">
-                        <div class="card-header">
-                            <span class="icon">📊</span>
-                            <h3>Metriche Wellness</h3>
-                        </div>
-                        <div class="wellness-metrics">
-                            ${day.wellness.ctl !== null ? `<p>CTL: ${day.wellness.ctl.toFixed(1)}</p>` : ''}
-                            ${day.wellness.atl !== null ? `<p>ATL: ${day.wellness.atl.toFixed(1)}</p>` : ''}
-                            ${day.wellness.rampRate !== null ? `<p>Ramp Rate: ${day.wellness.rampRate.toFixed(1)}</p>` : ''}
-                            ${day.wellness.restingHR !== null ? `<p>Frequenza Cardiaca a Riposo: ${day.wellness.restingHR} bpm</p>` : ''}
-                            ${day.wellness.hrv !== null ? `<p>HRV: ${day.wellness.hrv}</p>` : ''}
-                            ${day.wellness.sleepQuality !== null ? `<p>Qualità Sonno: ${day.wellness.sleepQuality}</p>` : ''}
-                            ${day.wellness.stress !== null ? `<p>Livello di Stress: ${day.wellness.stress}</p>` : ''}
-                        </div>
-                    </div>
-                `;
-            }
+  <header class="top">
+    <div class="brand">
+      <div class="brand-badge">🏁</div>
+      <div>
+        <h1>Allenamento & Nutrizione</h1>
+        <p class="subtitle">Mirko De Soricellis · 75.7 kg · 183 cm</p>
+      </div>
+    </div>
+    <button class="theme-toggle" onclick="toggleTheme()">🌓</button>
+  </header>
 
-            // Planned Workouts
-            const workouts = day.planned_workouts_trainingpeaks.length > 0 ? day.planned_workouts_trainingpeaks : day.planned_workouts;
-            if (workouts.length > 0) {
-                html += `
-                    <div class="card">
-                        <div class="card-header">
-                            <span class="icon">🗓️</span>
-                            <h3>Allenamenti Pianificati</h3>
-                        </div>
-                        <div class="workout-list">
-                `;
-                workouts.forEach(workout => {
-                    html += `
-                            <div class="workout-item">
-                                <span class="icon">${getSportIcon(workout.sport)}</span>
-                                <div class="workout-details">
-                                    <h4>${workout.title} (${workout.sport})</h4>
-                                    <p>
-                                        ${workout.duration_min_planned ? `${workout.duration_min_planned} min` : ''}
-                                        ${workout.tss_planned ? ` · TSS ${Math.round(workout.tss_planned)}` : ''}
-                                        ${workout.distance_km_planned ? ` · ${workout.distance_km_planned.toFixed(1)} km` : ''}
-                                    </p>
-                                    ${workout.description ? `<p class="description">${workout.description}</p>` : ''}
-                                </div>
-                            </div>
-                    `;
-                });
-                if (day.alt_notes && day.alt_notes.length > 0) {
-                    day.alt_notes.forEach(alt => {
-                        html += `
-                            <p class="alt-note">Nota: Alternativa disponibile per ${alt.sport}: ${alt.title || 'sessione'} (${alt.duration_min_planned} min, TSS ${Math.round(alt.tss_planned)})</p>
-                        `;
-                    });
-                }
-                html += `
-                        </div>
-                    </div>
-                `;
-            } else {
-                html += `
-                    <div class="card">
-                        <div class="card-header">
-                            <span class="icon">🗓️</span>
-                            <h3>Allenamenti Pianificati</h3>
-                        </div>
-                        <p>Nessun piano disponibile per questo giorno.</p>
-                    </div>
-                `;
-            }
+  <div class="day-nav">
+    <button class="nav-btn" id="prevBtn" onclick="go(-1)" aria-label="Giorno precedente">←</button>
+    <div class="day-label-center">
+      <div class="dn" id="navDayName"></div>
+      <div class="dd" id="navDayDate"></div>
+      <div id="todayBadgeWrap"></div>
+    </div>
+    <button class="nav-btn" id="nextBtn" onclick="go(1)" aria-label="Giorno successivo">→</button>
+  </div>
 
-            // Insight (if completed activities are present)
-            if (day.activities_completed && day.activities_completed.length > 0) {
-                // This part is not generated in this specific run as activities_completed is empty
-                // But if it were present, the logic would go here.
-            }
+  <div style="display:flex; justify-content:center; margin-bottom:16px;">
+    <div class="day-pips" id="pips"></div>
+  </div>
 
-            // Backend Widgets (only if backend_url is present and for today's date)
-            if (DATA.backend_url && day.iso === DATA.today_iso) {
-                html += `
-                    <div class="backend-widget">
-                        <h3>Registra Pasto</h3>
-                        <form id="log-meal-form">
-                            <input type="text" id="meal-description" placeholder="Cosa hai mangiato? (es. 200g petto di pollo e riso)">
-                            <button type="submit">Registra</button>
-                            <div id="meal-log-response" class="response-message" style="display:none;"></div>
-                        </form>
-                    </div>
+  <div id="cardWrap"></div>
 
-                    <div class="backend-widget">
-                        <h3>Riepilogo Nutrizione Oggi</h3>
-                        <div id="daily-summary-content" class="summary-box">
-                            <p>Caricamento riepilogo...</p>
-                        </div>
-                    </div>
+  <footer class="note">
+    Fabbisogno stimato con Mifflin-St Jeor (BMR ≈1761 kcal) × 1.3 attività base + spesa della sessione. I "target" per pasto sono valori guida circa; le opzioni sono ricette con i tuoi alimenti abituali — variazioni di ±10–15% sono normali. Fonti: TrainingPeaks, COROS, Garmin.
+  </footer>
 
-                    <div class="backend-widget">
-                        <h3>Chiedi al Coach</h3>
-                        <form id="chat-form">
-                            <input type="text" id="chat-question" placeholder="Fai una domanda al coach...">
-                            <button type="submit">Chiedi</button>
-                            <div id="chat-response" class="chat-history"></div>
-                        </form>
-                    </div>
-                `;
-            }
+</div>
 
-            // Macro Targets
-            const totalKcal = day.macro_targets.kcal;
-            const totalC = day.macro_targets.carb_g;
-            const totalP = day.macro_targets.protein_g;
-            const totalF = day.macro_targets.fat_g;
+<script>
+const STATUS_COLORS = { good: "var(--good)", warning: "var(--warning)", serious: "var(--serious)", critical: "var(--critical)" };
+const SPORT_ICON = { "Nuoto":"🏊", "Corsa":"🏃", "Bici":"🚴", "Forza":"🏋️", "Da pianificare":"📋" };
+const MEAL_ICON = { "Colazione":"☀️", "Pranzo":"🍽️", "Spuntino":"🍎", "Cena":"🌙" };
 
-            html += `
-                <div class="card">
-                    <div class="card-header">
-                        <span class="icon">🎯</span>
-                        <h3>Obiettivi Nutrizionali</h3>
-                    </div>
-                    <div class="macro-summary">
-                        <div class="macro-item">
-                            <span style="color: var(--color-carbs);">C</span>
-                            <small>${Math.round(totalC)}g</small>
-                        </div>
-                        <div class="macro-item">
-                            <span style="color: var(--color-protein);">P</span>
-                            <small>${Math.round(totalP)}g</small>
-                        </div>
-                        <div class="macro-item">
-                            <span style="color: var(--color-fat);">F</span>
-                            <small>${Math.round(totalF)}g</small>
-                        </div>
-                        <div class="macro-item">
-                            <span>Kcal</span>
-                            <small>${Math.round(totalKcal)}</small>
-                        </div>
-                    </div>
-                    <div class="macro-bar-container">
-                        <div class="macro-bar carbs" style="width: ${((totalC * 4) / totalKcal * 100).toFixed(1)}%;"></div>
-                        <div class="macro-bar protein" style="width: ${((totalP * 4) / totalKcal * 100).toFixed(1)}%;"></div>
-                        <div class="macro-bar fat" style="width: ${((totalF * 9) / totalKcal * 100).toFixed(1)}%;"></div>
-                    </div>
-                </div>
-            `;
+function opt(label, items, totals) { return { label, items, totals }; }
+function meal(name, target, options) { return { name, target, options }; }
 
-            // Meal Planning
-            const mealTypes = ['Colazione', 'Pranzo', 'Spuntino', 'Cena'];
-            mealTypes.forEach(mealName => {
-                const pct = day.meal_split[`${mealName.toLowerCase()}_pct`];
-                const mealTargets = {
-                    kcal: totalKcal * (pct / 100),
-                    P: totalP * (pct / 100),
-                    C: totalC * (pct / 100),
-                    F: totalF * (pct / 100)
-                };
+const DATA = [
+  // ============ LUNEDÌ ============
+  {
+    day: "Lunedì", date: "17 agosto", iso: "2026-08-17", sport: "Nuoto", status: "good", statusLabel: "Leggero/tecnico",
+    title: "Braccia+A2 — completato", meta: "47 min · 3.4 km · TSS 58.8", altNote: null,
+    kcal: 2640, carb: 379, protein: 136, fat: 64,
+    insight: "Giornata di scarico metabolico dopo il weekend intenso in bici. Priorità su idratazione e reintegro glicogeno moderato.",
+    meals: [
+      meal("Colazione", {kcal:581,carb:83,protein:30,fat:14}, [
+        opt("Opzione 1", [["Avena","100 g"],["Latte di soia","300 ml"],["Burro di arachidi","10 g"],["Marmellata","15 g"]], {kcal:576,carb:75,protein:25,fat:17}),
+        opt("Opzione 2", [["Latte di soia","300 ml"],["Corn flakes senza zuccheri","85 g"],["Whey","1 misurino (30 g)"]], {kcal:558,carb:77,protein:39,fat:8})
+      ]),
+      meal("Pranzo", {kcal:871,carb:125,protein:45,fat:21}, [
+        opt("Opzione 1 (tonno)", [["Riso","135 g crudo"],["Tonno sgocciolato","110 g"],["Mais","60 g"],["Olio EVO","20 g"]], {kcal:837,carb:118,protein:41,fat:23}),
+        opt("Opzione 2 (legumi)", [["Pasta","140 g cruda"],["Ceci cotti","180 g"],["Grana grattugiato","15 g"],["Olio EVO","10 g"]], {kcal:862,carb:129,protein:37,fat:23})
+      ]),
+      meal("Spuntino", {kcal:317,carb:46,protein:16,fat:8}, [
+        opt("", [["Yogurt greco 0%","150 g"],["Banana","120 g"],["Marmellata","25 g"],["Mandorle","10 g"]], {kcal:314,carb:52,protein:18,fat:6})
+      ]),
+      meal("Cena", {kcal:871,carb:125,protein:45,fat:21}, [
+        opt("Opzione 1 (pollo)", [["Petto di pollo","130 g"],["Pancarrè","200 g"],["Verdure","250 g"],["Olio EVO","10 g"],["Ketchup a piacere","—"]], {kcal:895,carb:111,protein:56,fat:21}),
+        opt("Opzione 2 (uova)", [["Uova","2 (100 g)"],["Albume","100 g"],["Pancarrè","200 g"],["Verdure","250 g"],["Olio EVO","8 g"]], {kcal:870,carb:112,protein:40,fat:26})
+      ])
+    ],
+    fuel: null
+  },
+  // ============ MARTEDÌ ============
+  {
+    day: "Martedì", date: "18 agosto", iso: "2026-08-18", sport: "Corsa", status: "serious", statusLabel: "Intenso",
+    title: "Progressivo Lungo", meta: "52 min · 11.8 km · TSS 69.8", altNote: null,
+    kcal: 3190, carb: 454, protein: 136, fat: 92,
+    insight: "Componente in soglia nella chiusura: carbo alzati per sostenere la qualità e il reintegro. I pasti sotto coprono la base giornaliera; il fueling pre/post copre l'extra della sessione.",
+    meals: [
+      meal("Colazione", {kcal:550,carb:72,protein:22,fat:19}, [
+        opt("Opzione 1", [["Avena","90 g"],["Latte di soia","300 ml"],["Burro di arachidi","20 g"]], {kcal:560,carb:61,protein:27,fat:22}),
+        opt("Opzione 2", [["Latte di soia","300 ml"],["Corn flakes senza zuccheri","80 g"],["Whey","1 misurino (30 g)"]], {kcal:521,carb:71,protein:40,fat:8})
+      ]),
+      meal("Pranzo", {kcal:826,carb:107,protein:33,fat:28}, [
+        opt("Opzione 1 (tonno)", [["Riso","120 g crudo"],["Tonno sgocciolato","120 g"],["Mais","50 g"],["Olio EVO","22 g"]], {kcal:819,carb:105,protein:42,fat:25}),
+        opt("Opzione 2 (legumi)", [["Pasta","140 g cruda"],["Lenticchie cotte","200 g"],["Grana grattugiato","20 g"],["Olio EVO","15 g"]], {kcal:862,carb:120,protein:41,fat:25})
+      ]),
+      meal("Spuntino", {kcal:300,carb:39,protein:12,fat:10}, [
+        opt("", [["Yogurt greco 0%","150 g"],["Banana","120 g"],["Mandorle","15 g"]], {kcal:282,carb:36,protein:19,fat:8})
+      ]),
+      meal("Cena", {kcal:826,carb:107,protein:33,fat:28}, [
+        opt("Opzione 1 (pollo)", [["Petto di pollo","100 g"],["Pancarrè","180 g"],["Verdure","250 g"],["Olio EVO","15 g"]], {kcal:837,carb:101,protein:45,fat:25}),
+        opt("Opzione 2 (tofu)", [["Tofu","200 g"],["Pancarrè","180 g"],["Verdure","250 g"],["Olio EVO","10 g"]], {kcal:808,carb:105,protein:34,fat:26})
+      ])
+    ],
+    fuel: {
+      pre: [["Pancarrè","80 g"],["Marmellata","20 g"],["Banana","100 g"], ["— 2–3h prima della corsa"]],
+      preTotals: {kcal:351, carb:75, protein:8, fat:3},
+      intra: [["Non necessario sotto i 60′: acqua a piccoli sorsi se caldo"]],
+      intraTotals: null,
+      post: [["Whey","1 misurino, 30 g"],["Banana","120 g"],["Gallette di riso","30 g (3 pz)"],["— entro 30–45′ dal termine"]],
+      postTotals: {kcal:336, carb:54, protein:27, fat:2.5},
+      supp: "Nessuno strettamente necessario; opzionale caffeina 200 mg (~2.6 mg/kg) 45′ prima se seduta al mattino presto."
+    }
+  },
+  // ============ MERCOLEDÌ ============
+  {
+    day: "Mercoledì", date: "19 agosto", iso: "2026-08-19", sport: "Bici", status: "serious", statusLabel: "Intenso",
+    title: "Z3/Z5 pianura", meta: "89 min · TSS 79.0 (outdoor)",
+    altNote: "In TrainingPeaks risultano 2 sessioni bici lo stesso giorno: sono alternative (una è probabilmente su rulli), non da sommare. Sotto trovi il piano per la sessione outdoor più lunga (89′, TSS 79); se fai i rulli con \"variazioni Z3/Z5\" (52′, TSS 52.6) invece, riduci proporzionalmente fueling e target di circa un terzo.",
+    kcal: 3031, carb: 490, protein: 136, fat: 58,
+    insight: "Sessione impegnativa in Z3/Z5 su FTP 261W. Pasti base leggeri sui grassi per lasciare spazio ai carboidrati; l'extra del fabbisogno arriva soprattutto dal fueling pre/intra/post.",
+    meals: [
+      meal("Colazione", {kcal:438,carb:58,protein:22,fat:13}, [
+        opt("Opzione 1", [["Avena","70 g"],["Latte di soia","250 ml"],["Burro di arachidi","8 g"],["Marmellata","12 g"]], {kcal:427,carb:54,protein:19,fat:13}),
+        opt("Opzione 2", [["Latte di soia","250 ml"],["Corn flakes senza zuccheri","55 g"],["Whey","1 misurino (30 g)"]], {kcal:415,carb:50,protein:34,fat:6})
+      ]),
+      meal("Pranzo", {kcal:657,carb:87,protein:33,fat:19}, [
+        opt("Opzione 1 (tonno)", [["Riso","95 g crudo"],["Tonno sgocciolato","100 g"],["Mais","40 g"],["Olio EVO","18 g"]], {kcal:648,carb:80,protein:34,fat:20}),
+        opt("Opzione 2 (legumi)", [["Pasta","115 g cruda"],["Ceci cotti","140 g"],["Grana grattugiato","10 g"],["Olio EVO","8 g"]], {kcal:680,carb:103,protein:29,fat:17})
+      ]),
+      meal("Spuntino", {kcal:239,carb:32,protein:12,fat:7}, [
+        opt("", [["Mela","150 g"],["Gallette di riso","20 g"],["Fiocchi di latte magri","80 g"],["Mandorle","8 g"]], {kcal:268,carb:42,protein:13,fat:6})
+      ]),
+      meal("Cena", {kcal:657,carb:87,protein:33,fat:19}, [
+        opt("Opzione 1 (pollo)", [["Petto di pollo","100 g"],["Pancarrè","130 g"],["Verdure","250 g"],["Olio EVO","8 g"]], {kcal:643,carb:76,protein:41,fat:16}),
+        opt("Opzione 2 (seitan)", [["Seitan","90 g"],["Pancarrè","130 g"],["Verdure","250 g"],["Olio EVO","15 g"]], {kcal:657,carb:80,protein:33,fat:21})
+      ])
+    ],
+    fuel: {
+      pre: [["Riso","70 g crudo"],["Marmellata","20 g"],["Banana","100 g"],["— 2.5–3h prima"],["Gel energetico (25 g carbo)","1 pz — 30–45′ prima"],["Caffeina","150–200 mg (~2–2.6 mg/kg), se tollerata"]],
+      preTotals: {kcal:495, carb:117, protein:6, fat:1},
+      intra: [["Gel energetici (25 g carbo cad.)","2 pz distribuiti nei 89′ (~50 g carbo)"],["Bevanda isotonica (6–8%)","500 ml con ~25 g carbo e ~400 mg sodio"],["Acqua","altri 300–400 ml a sorsi regolari"]],
+      intraTotals: {kcal:300, carb:75, protein:0, fat:0},
+      post: [["Whey","1 misurino, 30 g"],["Riso soffiato","30 g"],["Banana","100 g"],["— entro 30–45′ dal termine, poi cena come da piano"]],
+      postTotals: {kcal:315, carb:49, protein:27, fat:2},
+      supp: "Gel energetico + bevanda isotonica con sodio durante; caffeina pre-sessione; whey post-allenamento. Considera creatina monoidrato 5 g/die (uso continuativo) nelle settimane di alto volume."
+    }
+  },
+  // ============ GIOVEDÌ ============
+  {
+    day: "Giovedì", date: "20 agosto", iso: "2026-08-20", sport: "Forza", status: "warning", statusLabel: "Moderato",
+    title: "Gambe Mantenimento", meta: "~45–60 min stimati · TSS 20", altNote: null,
+    kcal: 2539, carb: 303, protein: 151, fat: 80,
+    insight: "Recupero attivo dal grande carico bici del mercoledì — proteine alzate a ~2.0 g/kg per la sintesi proteica muscolare della sessione di forza.",
+    meals: [
+      meal("Colazione", {kcal:484,carb:55,protein:27,fat:17}, [
+        opt("Opzione 1", [["Avena","75 g"],["Latte di soia","280 ml"],["Burro di arachidi","18 g"]], {kcal:485,carb:51,protein:24,fat:19}),
+        opt("Opzione 2", [["Latte di soia","280 ml"],["Corn flakes senza zuccheri","60 g"],["Whey","1 misurino (30 g)"]], {kcal:440,carb:54,protein:37,fat:7})
+      ]),
+      meal("Pranzo", {kcal:726,carb:82,protein:41,fat:25}, [
+        opt("Opzione 1 (tonno)", [["Riso","105 g crudo"],["Tonno sgocciolato","110 g"],["Mais","45 g"],["Olio EVO","18 g"]], {kcal:715,carb:93,protein:38,fat:21}),
+        opt("Opzione 2 (legumi)", [["Pasta","95 g cruda"],["Lenticchie cotte","190 g"],["Grana grattugiato","25 g"],["Olio EVO","10 g"]], {kcal:695,carb:93,protein:36,fat:20})
+      ]),
+      meal("Spuntino", {kcal:264,carb:30,protein:15,fat:9}, [
+        opt("", [["Yogurt greco 0%","130 g"],["Banana","100 g"],["Mandorle","12 g"]], {kcal:235,carb:30,protein:17,fat:7})
+      ]),
+      meal("Cena", {kcal:726,carb:82,protein:41,fat:25}, [
+        opt("Opzione 1 (pollo)", [["Petto di pollo","140 g"],["Pancarrè","120 g"],["Verdure","220 g"],["Olio EVO","15 g"]], {kcal:737,carb:70,protein:53,fat:24}),
+        opt("Opzione 2 (burger veg)", [["Burger vegetale Lidl","2 pz (~180 g)"],["Pancarrè","100 g"],["Verdure","220 g"],["Olio EVO","8 g"]], {kcal:679,carb:82,protein:31,fat:25})
+      ])
+    ],
+    fuel: {
+      pre: [["Pasto principale 1.5–2h prima (es. pranzo)","riso/pasta + tonno o legumi, come da piano"]],
+      preTotals: null,
+      intra: [["Non necessario — solo acqua"]],
+      intraTotals: null,
+      post: [["Whey","1 misurino, 30 g"],["Banana","120 g"],["Gallette di riso","30 g (3 pz)"],["— entro 60′ dal termine"]],
+      postTotals: {kcal:336, carb:54, protein:27, fat:2.5},
+      supp: "Whey post-seduta se comoda; creatina 5 g/die (uso continuativo) supporta bene le sessioni di forza."
+    }
+  }
+];
 
-                let optionsHtml = '';
-                let mealOptions = [];
+const restDayMeals = [
+  meal("Colazione", {kcal:504,carb:58,protein:30,fat:17}, [
+    opt("Opzione 1", [["Avena","80 g"],["Latte di soia","250 ml"],["Burro di arachidi","15 g"]], {kcal:476,carb:54,protein:22,fat:18}),
+    opt("Opzione 2", [["Latte di soia","250 ml"],["Corn flakes senza zuccheri","60 g"],["Whey","1 misurino (30 g)"]], {kcal:430,carb:54,protein:36,fat:7})
+  ]),
+  meal("Pranzo", {kcal:755,carb:88,protein:45,fat:25}, [
+    opt("Opzione 1 (tonno)", [["Riso","105 g crudo"],["Tonno sgocciolato","130 g"],["Mais","50 g"],["Olio EVO","20 g"]], {kcal:771,carb:93,protein:44,fat:23}),
+    opt("Opzione 2 (legumi)", [["Pasta","80 g cruda"],["Ceci cotti","200 g"],["Grana grattugiato","30 g"],["Olio EVO","8 g"]], {kcal:752,carb:99,protein:37,fat:24})
+  ]),
+  meal("Spuntino", {kcal:275,carb:32,protein:16,fat:9}, [
+    opt("Opzione 1", [["Yogurt greco 0%","150 g"],["Frutta fresca","150 g"],["Mandorle","20 g"]], {kcal:287,carb:31,protein:19,fat:10}),
+    opt("Opzione 2", [["Fiocchi di latte magri","100 g"],["Gallette di riso","20 g"],["Marmellata","12 g"],["Mandorle","10 g"]], {kcal:243,carb:30,protein:16,fat:7})
+  ]),
+  meal("Cena", {kcal:755,carb:88,protein:45,fat:25}, [
+    opt("Opzione 1 (pollo)", [["Petto di pollo","140 g"],["Pancarrè","150 g"],["Verdure","250 g"],["Olio EVO","12 g"]], {kcal:797,carb:86,protein:55,fat:22}),
+    opt("Opzione 2 (tofu)", [["Tofu","220 g"],["Pancarrè","170 g"],["Verdure","250 g"],["Olio EVO","8 g"]], {kcal:782,carb:100,protein:36,fat:25})
+  ])
+];
 
-                if (mealName === 'Colazione') {
-                    mealOptions.push({
-                        title: 'Opzione 1: Avena e Burro di Arachidi',
-                        recipe: generateMealOption(mealTargets, 'colazione_option1')
-                    });
-                    mealOptions.push({
-                        title: 'Opzione 2: Corn flakes e Whey',
-                        recipe: generateMealOption(mealTargets, 'colazione_option2')
-                    });
-                } else if (mealName === 'Pranzo') {
-                    mealOptions.push({
-                        title: 'Riso, Pollo e Verdure',
-                        recipe: generateMealOption(mealTargets, 'pranzo')
-                    });
-                } else if (mealName === 'Spuntino') {
-                    mealOptions.push({
-                        title: 'Yogurt Greco, Frutta e Frutta Secca',
-                        recipe: generateMealOption(mealTargets, 'spuntino')
-                    });
-                } else if (mealName === 'Cena') {
-                    mealOptions.push({
-                        title: 'Pollo, Pancarrè e Verdure',
-                        recipe: generateMealOption(mealTargets, 'cena')
-                    });
-                }
+DATA.push(
+  {
+    day: "Venerdì", date: "21 agosto", iso: "2026-08-21", sport: "Da pianificare", status: "good", statusLabel: "Presunto recupero",
+    title: "Nessun allenamento su TrainingPeaks/COROS", meta: "Trattato come giorno di recupero", altNote: null,
+    kcal: 2289, carb: 265, protein: 136, fat: 76,
+    insight: "Giorno di scarico prima probabilmente del weekend di volume. Aggiorna TrainingPeaks se viene pianificata un'attività — la scheda si aggiornerà di conseguenza.",
+    meals: restDayMeals, fuel: null
+  },
+  {
+    day: "Sabato", date: "22 agosto", iso: "2026-08-22", sport: "Da pianificare", status: "good", statusLabel: "Presunto recupero/libero",
+    title: "Nessuna sessione registrata", meta: "Weekend precedenti: uscite bici lunghe (~2h)", altNote: null,
+    kcal: 2289, carb: 265, protein: 136, fat: 76,
+    insight: "Placeholder da rest day. Se prevedi un'uscita lunga (&gt;90′), passa allo schema del mercoledì (carbo alti + fueling intra) e aggiorna la scheda una volta confermato il piano.",
+    meals: restDayMeals, fuel: null
+  },
+  {
+    day: "Domenica", date: "23 agosto", iso: "2026-08-23", sport: "Da pianificare", status: "good", statusLabel: "Presunto recupero/libero",
+    title: "Nessuna sessione registrata", meta: "—", altNote: null,
+    kcal: 2289, carb: 265, protein: 136, fat: 76,
+    insight: "Chiusura settimana. Se resta giorno di riposo puro, valuta -150/-200 kcal riducendo leggermente i carbo (es. -50g riso a pranzo).",
+    meals: restDayMeals, fuel: null
+  }
+);
 
-                mealOptions.forEach((option, idx) => {
-                    optionsHtml += `
-                        <div class="meal-option">
-                            <h5>${option.title}</h5>
-                            <ul>
-                                ${option.recipe.ingredients.map(item => `<li>${item.grams}g ${item.foodName}</li>`).join('')}
-                            </ul>
-                            <span class="total-macros">Totale: ${formatMacros(option.recipe.macros)}</span>
-                        </div>
-                    `;
-                });
+function todayISO() {
+  const d = new Date();
+  const y = d.getFullYear(), m = String(d.getMonth()+1).padStart(2,'0'), day = String(d.getDate()).padStart(2,'0');
+  return `${y}-${m}-${day}`;
+}
+const todayIdx = DATA.findIndex(d => d.iso === todayISO());
+let current = todayIdx !== -1 ? todayIdx : 0; // fuori dalla settimana pianificata: mostra il primo giorno
 
-                html += `
-                    <div class="meal-block" id="meal-${mealName.toLowerCase()}" onclick="toggleMeal('${mealName.toLowerCase()}')">
-                        <div class="meal-header">
-                            <span class="icon">${getMealIcon(mealName)}</span>
-                            <h4>${mealName}</h4>
-                            <span class="macros-summary">Target: ${Math.round(mealTargets.kcal)} kcal · C ${Math.round(mealTargets.C)}g · P ${Math.round(mealTargets.P)}g · F ${Math.round(mealTargets.F)}g</span>
-                            <span class="chevron">&gt;</span>
-                        </div>
-                        <div class="meal-content">
-                            ${optionsHtml}
-                        </div>
-                    </div>
-                `;
-            });
+function pct(part, total) { return Math.round((part / total) * 100); }
 
-            contentDiv.innerHTML = html;
+function optionHtml(o) {
+  const itemsHtml = o.items.map(([f,q]) => `<div>${f}: <span class="qty">${q}</span></div>`).join('');
+  return `
+    <div class="option">
+      ${o.label ? `<div class="option-label">${o.label}</div>` : ''}
+      <div class="option-items">${itemsHtml}</div>
+      <div class="option-totals"><span><b>~${o.totals.kcal}</b> kcal</span><span>C <b>${o.totals.carb}</b>g</span><span>P <b>${o.totals.protein}</b>g</span><span>F <b>${o.totals.fat}</b>g</span></div>
+    </div>`;
+}
 
-            // Fetch backend data if backend_url is present and for today's date
-            if (DATA.backend_url && day.iso === DATA.today_iso) {
-                fetchDailySummary(day);
-                setupBackendForms(day);
-            }
-        }
+function mealBlockHtml(m, idx) {
+  return `
+    <div class="meal-block" id="meal-${idx}">
+      <div class="meal-block-head" onclick="toggleMeal(${idx})">
+        <div class="meal-name">${MEAL_ICON[m.name]||''} ${m.name}</div>
+        <div class="meal-target">target circa: <b>${m.target.kcal} kcal</b> · C ${m.target.carb}g · P ${m.target.protein}g · F ${m.target.fat}g <span class="meal-chevron">▸</span></div>
+      </div>
+      <div class="options-wrap">
+        ${m.options.map(optionHtml).join('')}
+      </div>
+    </div>`;
+}
 
-        function setupBackendForms(day) {
-            const logMealForm = document.getElementById('log-meal-form');
-            const mealDescriptionInput = document.getElementById('meal-description');
-            const mealLogResponseDiv = document.getElementById('meal-log-response');
+function toggleMeal(idx) {
+  const el = document.getElementById('meal-' + idx);
+  if (el) el.classList.toggle('open');
+}
 
-            if (logMealForm) {
-                logMealForm.onsubmit = async (e) => {
-                    e.preventDefault();
-                    const description = mealDescriptionInput.value;
-                    if (!description) return;
+function fuelListHtml(items) {
+  return items.map(it => it.length === 1 ? `<li>${it[0]}</li>` : `<li>${it[0]}: <span class="qty">${it[1]}</span></li>`).join('');
+}
+function fuelTotalsHtml(t) {
+  if (!t) return '';
+  return `<div class="option-totals"><span><b>~${t.kcal}</b> kcal</span><span>C <b>${t.carb}</b>g</span><span>P <b>${t.protein}</b>g</span><span>F <b>${t.fat}</b>g</span></div>`;
+}
 
-                    mealLogResponseDiv.style.display = 'none';
-                    mealLogResponseDiv.textContent = 'Registrazione in corso...';
-                    mealLogResponseDiv.style.display = 'block';
+function render() {
+  const d = DATA[current];
+  document.getElementById('navDayName').textContent = d.day;
+  document.getElementById('navDayDate').textContent = d.date;
+  document.getElementById('todayBadgeWrap').innerHTML = current === todayIdx ? '<span class="today-badge">Oggi</span>' : '';
+  document.getElementById('prevBtn').disabled = current === 0;
+  document.getElementById('nextBtn').disabled = current === DATA.length - 1;
 
-                    try {
-                        const response = await fetch(`${DATA.backend_url}/api/log-meal`, {
-                            method: 'POST',
-                            headers: { 'Content-Type': 'application/json' },
-                            body: JSON.stringify({ date: day.iso, description })
-                        });
-                        const data = await response.json();
-                        if (response.ok) {
-                            mealLogResponseDiv.textContent = `Pasto registrato! Kcal: ${Math.round(data.kcal)}, C: ${Math.round(data.carbs_g)}g, P: ${Math.round(data.protein_g)}g, F: ${Math.round(data.fat_g)}g.`;
-                            mealDescriptionInput.value = '';
-                            fetchDailySummary(day); // Refresh summary after logging
-                        } else {
-                            mealLogResponseDiv.textContent = `Errore nella registrazione: ${data.error || response.statusText}`;
-                        }
-                    } catch (error) {
-                        mealLogResponseDiv.textContent = `Errore di rete: ${error.message}`;
-                    }
-                };
-            }
+  const pips = document.getElementById('pips');
+  pips.innerHTML = DATA.map((_, i) => `<button class="pip ${i===current?'active':''}" onclick="jump(${i})" aria-label="Vai a ${DATA[i].day}"></button>`).join('');
 
-            const chatForm = document.getElementById('chat-form');
-            const chatQuestionInput = document.getElementById('chat-question');
-            const chatResponseDiv = document.getElementById('chat-response');
+  const kcalMacro = d.carb * 4 + d.protein * 4 + d.fat * 9;
+  const icon = SPORT_ICON[d.sport] || "📋";
 
-            if (chatForm) {
-                chatForm.onsubmit = async (e) => {
-                    e.preventDefault();
-                    const question = chatQuestionInput.value;
-                    if (!question) return;
+  let fuelHtml = '';
+  if (d.fuel) {
+    fuelHtml = `
+      <div class="section-h">Nutrizione allenamento — pre / intra / post</div>
+      <div class="fuel-grid">
+        <div class="fuel-block"><div class="fuel-h">⏱️ Pre</div><ul>${fuelListHtml(d.fuel.pre)}</ul>${fuelTotalsHtml(d.fuel.preTotals)}</div>
+        <div class="fuel-block"><div class="fuel-h">⚡ Intra</div><ul>${fuelListHtml(d.fuel.intra)}</ul>${fuelTotalsHtml(d.fuel.intraTotals)}</div>
+        <div class="fuel-block"><div class="fuel-h">🔁 Post</div><ul>${fuelListHtml(d.fuel.post)}</ul>${fuelTotalsHtml(d.fuel.postTotals)}</div>
+      </div>
+      <div class="supp-line"><b>💊 Supplementi:</b> ${d.fuel.supp}</div>
+    `;
+  }
 
-                    chatResponseDiv.innerHTML = `<p class="chat-message user">Tu: ${question}</p><p class="chat-message ai">Coach: Sto pensando...</p>`;
-                    chatQuestionInput.value = '';
+  document.getElementById('cardWrap').innerHTML = `
+    <div class="card">
+      <div class="card-accent" style="background:${STATUS_COLORS[d.status]}"></div>
+      <div class="card-top">
+        <div>
+          <div class="sport-label"><span class="sport-icon">${icon}</span>${d.sport}</div>
+          <div class="workout-title">${d.title}</div>
+          <div class="workout-meta">${d.meta}</div>
+          ${d.altNote ? `<div class="alt-note">⚠️ ${d.altNote}</div>` : ''}
+          <span class="status-pill" style="margin-top:9px;"><span class="status-dot" style="color:${STATUS_COLORS[d.status]}; background:${STATUS_COLORS[d.status]};"></span>${d.statusLabel}</span>
+        </div>
+        <div class="kcal-box">
+          <div class="big">${d.kcal.toLocaleString('it-IT')}</div>
+          <div class="lbl">kcal target giorno</div>
+        </div>
+      </div>
 
-                    // Construct context from recent activities/wellness
-                    let context = `Mirko, ${DATA.athlete.age} anni, ${DATA.athlete.height_cm} cm, ${DATA.athlete.weight_kg} kg. FTP bici ${DATA.athlete.ftp_w}W. `;
-                    const recentDays = DATA.days.slice(Math.max(0, currentDayIndex - 4), currentDayIndex + 1); // Last 5 days including current
-                    recentDays.forEach(d => {
-                        context += `Giorno ${d.iso}: `;
-                        if (d.activities_completed && d.activities_completed.length > 0) {
-                            d.activities_completed.forEach(act => {
-                                context += `${act.sport} (${act.duration_min_actual} min, TSS ${Math.round(act.tss_actual)}); `;
-                            });
-                        } else if (d.planned_workouts_trainingpeaks && d.planned_workouts_trainingpeaks.length > 0) {
-                             d.planned_workouts_trainingpeaks.forEach(plan => {
-                                context += `Pianificato: ${plan.sport} (${plan.duration_min_planned} min, TSS ${Math.round(plan.tss_planned || 0)}); `;
-                            });
-                        } else {
-                            context += `Riposo/Nessun piano; `;
-                        }
-                        if (d.wellness) {
-                            if (d.wellness.hrv) context += `HRV: ${d.wellness.hrv}; `;
-                            if (d.wellness.restingHR) context += `RHR: ${d.wellness.restingHR}; `;
-                            if (d.wellness.sleepQuality) context += `Sonno: ${d.wellness.sleepQuality}; `;
-                        }
-                    });
+      <div class="macrobar">
+        <div class="macro-seg" style="background:var(--carb); width:${pct(d.carb*4,kcalMacro)}%;">${d.carb}g</div>
+        <div class="macro-seg" style="background:var(--protein); width:${pct(d.protein*4,kcalMacro)}%;">${d.protein}g</div>
+        <div class="macro-seg" style="background:var(--fat); width:${pct(d.fat*9,kcalMacro)}%;">${d.fat}g</div>
+      </div>
+      <div class="macro-labels">
+        <span class="m-item"><span class="swatch" style="background:var(--carb)"></span>Carbo ${d.carb}g (${(d.carb/75.7).toFixed(1)} g/kg)</span>
+        <span class="m-item"><span class="swatch" style="background:var(--protein)"></span>Prot ${d.protein}g (${(d.protein/75.7).toFixed(1)} g/kg)</span>
+        <span class="m-item"><span class="swatch" style="background:var(--fat)"></span>Grassi ${d.fat}g (${(d.fat/75.7).toFixed(1)} g/kg)</span>
+      </div>
 
-                    try {
-                        const response = await fetch(`${DATA.backend_url}/api/chat`, {
-                            method: 'POST',
-                            headers: { 'Content-Type': 'application/json' },
-                            body: JSON.stringify({ question, context })
-                        });
-                        const data = await response.json();
-                        if (response.ok) {
-                            chatResponseDiv.innerHTML = `<p class="chat-message user">Tu: ${question}</p><p class="chat-message ai">Coach: ${data.answer}</p>`;
-                        } else {
-                            chatResponseDiv.innerHTML = `<p class="chat-message user">Tu: ${question}</p><p class="chat-message ai">Coach: Errore nella risposta: ${data.error || response.statusText}</p>`;
-                        }
-                    } catch (error) {
-                        chatResponseDiv.innerHTML = `<p class="chat-message user">Tu: ${question}</p><p class="chat-message ai">Coach: Errore di rete: ${error.message}</p>`;
-                    }
-                };
-            }
-        }
+      <div class="insight">${d.insight}</div>
 
-        async function fetchDailySummary(day) {
-            const dailySummaryContent = document.getElementById('daily-summary-content');
-            if (!dailySummaryContent) return;
+      <div class="section-h">Pasti — tocca per i dettagli</div>
+      ${d.meals.map((m,i) => mealBlockHtml(m,i)).join('')}
 
-            dailySummaryContent.innerHTML = '<p>Caricamento riepilogo...</p>';
+      ${fuelHtml}
+    </div>
+  `;
+}
 
-            try {
-                const url = new URL(`${DATA.backend_url}/api/day`);
-                url.searchParams.append('date', day.iso);
-                url.searchParams.append('target_kcal', day.macro_targets.kcal);
-                url.searchParams.append('target_protein_g', day.macro_targets.protein_g);
-                url.searchParams.append('target_carbs_g', day.macro_targets.carb_g);
-                url.searchParams.append('target_fat_g', day.macro_targets.fat_g);
+function go(delta) {
+  const next = current + delta;
+  if (next < 0 || next >= DATA.length) return;
+  current = next;
+  render();
+}
+function jump(i) { current = i; render(); }
 
-                const response = await fetch(url);
-                const data = await response.json();
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowLeft') go(-1);
+  if (e.key === 'ArrowRight') go(1);
+});
 
-                if (response.ok) {
-                    let summaryHtml = `
-                        <p><strong>Macro loggati:</strong></p>
-                        <p>Kcal: ${Math.round(data.logged_kcal || 0)}</p>
-                        <p>Carboidrati: ${Math.round(data.logged_carbs_g || 0)}g</p>
-                        <p>Proteine: ${Math.round(data.logged_protein_g || 0)}g</p>
-                        <p>Grassi: ${Math.round(data.logged_fat_g || 0)}g</p>
-                    `;
-                    if (data.suggestion) {
-                        summaryHtml += `<p><strong>Cosa mangiare nei pasti rimanenti:</strong></p><p>${data.suggestion}</p>`;
-                    }
-                    dailySummaryContent.innerHTML = summaryHtml;
-                } else {
-                    dailySummaryContent.innerHTML = `<p>Errore nel recupero del riepilogo: ${data.error || response.statusText}</p>`;
-                }
-            } catch (error) {
-                dailySummaryContent.innerHTML = `<p>Errore di rete nel recupero del riepilogo: ${error.message}</p>`;
-            }
-        }
+function toggleTheme() {
+  const root = document.documentElement;
+  const c = root.getAttribute('data-theme');
+  if (c === 'dark') root.setAttribute('data-theme', 'light');
+  else if (c === 'light') root.removeAttribute('data-theme');
+  else root.setAttribute('data-theme', 'dark');
+}
 
+render();
+</script>
 
-        function updateNavigation() {
-            const day = DATA.days[currentDayIndex];
-            const date = new Date(day.iso);
-            document.getElementById('current-day-name').textContent = date.toLocaleDateString('it-IT', { weekday: 'long' });
-            document.getElementById('current-day-date').textContent = date.toLocaleDateString('it-IT', { day: 'numeric', month: 'long', year: 'numeric' });
-
-            const dotsContainer = document.getElementById('day-dots-container');
-            dotsContainer.innerHTML = '';
-            DATA.days.forEach((d, i) => {
-                const dot = document.createElement('span');
-                dot.classList.add('dot');
-                if (i === currentDayIndex) {
-                    dot.classList.add('active');
-                }
-                dot.onclick = () => showDay(i);
-                dotsContainer.appendChild(dot);
-            });
-
-            renderDay(day);
-        }
-
-        function showDay(index) {
-            if (index >= 0 && index < DATA.days.length) {
-                currentDayIndex = index;
-                updateNavigation();
-            }
-        }
-
-        function nextDay() {
-            showDay(currentDayIndex + 1);
-        }
-
-        function prevDay() {
-            showDay(currentDayIndex - 1);
-        }
-
-        function toggleMeal(mealId) {
-            const mealBlock = document.getElementById(`meal-${mealId}`);
-            if (mealBlock) {
-                mealBlock.classList.toggle('open');
-                const content = mealBlock.querySelector('.meal-content');
-                if (mealBlock.classList.contains('open')) {
-                    content.style.maxHeight = content.scrollHeight + "px";
-                } else {
-                    content.style.maxHeight = "0";
-                }
-            }
-        }
-
-        function toggleDarkMode() {
-            document.body.classList.toggle('dark-mode');
-            localStorage.setItem('dark-mode', document.body.classList.contains('dark-mode') ? 'enabled' : 'disabled');
-        }
-
-        // Initialize on load
-        document.addEventListener('DOMContentLoaded', () => {
-            // Set initial dark mode state
-            if (localStorage.getItem('dark-mode') === 'enabled' || (localStorage.getItem('dark-mode') === null && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-                document.body.classList.add('dark-mode');
-            }
-
-            // Find today's day
-            const today = new Date();
-            const todayISOString = today.toISOString().split('T')[0];
-            let initialIndex = DATA.days.findIndex(d => d.iso === todayISOString);
-            if (initialIndex === -1) {
-                initialIndex = 0; // Fallback to first day if today is not in the list
-            }
-            currentDayIndex = initialIndex;
-            updateNavigation();
-
-            // Keyboard navigation
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'ArrowLeft') {
-                    prevDay();
-                } else if (e.key === 'ArrowRight') {
-                    nextDay();
-                }
-            });
-        });
-    </script>
 </body>
 </html>

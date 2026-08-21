@@ -129,10 +129,15 @@ Il backend Cloudflare Workers (log pasti Nutritionix + chat) si configura seguen
 
 ## Pubblicazione
 
-### Pipeline cloud autonoma (nuova, in verifica dal 2026-08-18)
-La dashboard può essere generata e pubblicata interamente da GitHub Actions, senza Mac acceso né sessione Cowork. Vedi il documento di progetto `claude/cloud-pipeline-setup.md` per l'architettura completa (intervals.icu + tp2intervals + Strava + `.github/workflows/dashboard.yml` + `scripts/generate_dashboard.py`). Finché non è verificata end-to-end, resta **fallback** la pipeline locale descritta sotto — non disattivarla.
+### Due pipeline, due URL separati (dal 2026-08-18)
+Le due pipeline pubblicano su **repo GitHub Pages diversi**, apposta per non sovrascriversi a vicenda:
 
-### Pipeline locale (fallback, launchd sul Mac — invariata)
+- **Pipeline cloud autonoma** (GitHub Actions, cron 9:00/14:00/21:00, nessun intervento umano) → pubblica su **https://mirkodesoricellis.github.io/training-dashboard-cloud/**. Vedi `claude/cloud-pipeline-setup.md` per l'architettura completa (intervals.icu + TrainingPeaks via cookie + `.github/workflows/dashboard.yml` nel repo `training-dashboard` + push verso il repo separato `training-dashboard-cloud`).
+- **Pipeline locale/interattiva** (questa sessione Cowork, sotto) → pubblica su **https://mirkodesoricellis.github.io/training-dashboard/** (repo `training-dashboard`, invariato).
+
+Finché non deciso diversamente dall'utente, restano **entrambe attive in parallelo** come confronto/fallback — non disattivare né l'una né l'altra di tua iniziativa.
+
+### Pipeline locale (launchd sul Mac — invariata)
 La dashboard è pubblicata live su **https://mirkodesoricellis.github.io/training-dashboard/**, che si aggiorna da sé sul telefono dell'utente (nessun salvataggio manuale). La pipeline:
 
 1. Scrivi il file HTML nella working directory di questa sessione (self-contained come sopra).
