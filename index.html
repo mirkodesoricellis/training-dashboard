@@ -3,186 +3,233 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Training Hub — Allenamento &amp; Nutrizione</title>
+<title>Training Hub</title>
+
+<!-- App su home screen. NOTA: iOS ignora i data: URI per apple-touch-icon,
+     servono file veri serviti dallo stesso host (GitHub Pages). -->
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Training Hub">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<link rel="apple-touch-icon" sizes="180x180" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAIAAACyr5FlAAACaElEQVR4nO3cMUtVcRyA4bz5CRqSaGwMgmhKaG1qKMIxoU3QpF1QhKDRSZCaWluawi9QNLpE9A0UGvoESnv00r1XOucSzzMezuH/G15+w384Syur61fgTyZjD8DiEgdJHCRxkMRBEgdJHCRxkMRBEgdJHCRxkMRBEgdJHCRxkMRBEgdJHCRxkMRBEgdJHCRxkMRBEgdJHCRxkMRBEgdJHCRxkMRBEgdJHCRxkMRBEgdJHCRxkMRBEgdJHCRxkMRBEgdJHCRxkMRBEgdJHCRxkMRBEgdpeYAzDvc2nj68P8BBM/ly8v3J1uvfHt64fu3kw8E0n59fXNx88Hzu0+/dvvXxze40b57++Hn38cu5D7oMm4MkDpI4SOIgiYMkDpI4SOIgiYMkDtIQ1+eb+0eb+0ezfvXi2aOdjbVp3nx//Gn71dvZ5+IvbA6SOEjiIImDJA6SOEjiIImDNMQl2H/p6mRy9vnd2FP8WzYHSRwkcZDEQRIHSRwkcZDEQRIHSRwk1+dzGuwXDCOyOUjiIImDJA6SOEjiIImDJA6SOEjiIImDJA6SOEjiIImDJA6SOEjiIImDJA6SOEjiIImDtLSyuj72DCwom4MkDpI4SOIgiYMkDpI4SOIgiYMkDpI4SOIgiYMkDpI4SOIgiYMkDpI4SOIgiYMkDpI4SOIgiYMkDpI4SOIgiYMkDpI4SOIgiYMkDpI4SOIgiYMkDpI4SOIgiYMkDpI4SOIgiYMkDpI4SOIgiYMkDpI4SMtf73wbewYWlM1BEgdJHCRxkMRBEgdJHCRxkMRBEgdJHCRxkMRBEgdJHCRxkMRB+gXpxygEWLUUZwAAAABJRU5ErkJggg==">
-<link rel="icon" type="image/png" sizes="512x512" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAgAAAAIACAIAAAB7GkOtAAAH1klEQVR4nO3XsUrWYRyG4Yw/JM2CDU05ftAiLSItDZ2Dg0vgIYiTNDQ4GDQIwQc1RYMQtXxjW2NLEOEghZOn0REEJuYr3de1v7zPdvNbWt3YvgVAz+3RAwAYQwAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACipu8Pf4zeAMAALgCAKAEAiBIAgCgBAIgSAIAoAQCIEgCAKAEAiBIAgCgBAIgSAIAoAQCIEgCAKAEAiBIAgCgBAIgSAIAoAQCIEgCAKAEAiBIAgCgBAIgSAIAoAQCIEgCAKAEAiBIAgCgBAIgSAIAoAQCIEgCAKAEAiBIAgCgBAIgSAIAoAQCIEgCAKAEAiBIAgCgBAIgSAIAoAQCIEgCAKAEAiBIAgCgBAIgSAIAoAQCIEgCAKAEAiBIAgCgBAIgSAIAoAQCIEgCAKAEAiBIAgCgBAIgSAIAoAQCIEgCAKAEAiBIAgCgBAIgSAIAoAQCIEgCAKAEAiBIAgCgBAIgSAIAoAQCIEgCAKAEAiBIAgCgBAIgSAIAoAQCIEgCAKAEAiBIAgCgBAIgSAIAoAQCIEgCAKAEAiBIAgCgBAIgSAIAoAQCIEgCAKAEAiBIAgCgBAIgSAIAoAQCIEgCAKAEAiBIAgCgBAIgSAIAoAQCIEgCAKAEAiBIAgCgBAIgSAIAoAQCIEgCAKAEAiBIAgCgBAIgSAIAoAQCIEgCAKAEAiBIAgCgBAIgSAIAoAQCIEgCAKAEAiBIAgCgBAIgSAIAoAQCIEgCAKAEAiBIAgCgBAIgSAIAoAQCIEgCAKAEAiBIAgCgBAIgSAIAoAQCIEgCAKAEAiBIAgCgBAIgSAIAoAQCIEgCAKAEAiBIAgCgBAIgSAIAoAQCIEgCAKAEAiBIAgKjp+8Mfow4AwAxcAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQNX1/+GP0BgAGcAEARAkAQJQAAEQJAECUAABECQBAlAAARAkAQJQAAEQJAECUAABECQBAlAAARAkAQJQAAEQJAECUAABECQBAlAAARAkAQJQAAEQJAECUAABECQBAlAAARAkAQJQAAEQJAECUAABECQBAlAAARAkAQJQAAEQJAECUAABECQBAlAAARAkAQJQAAEQJAECUAABECQBAlAAARAkAQJQAAEQJAECUAABECQBAlAAARAkAQNRvf/sn/M9CSL0AAAAASUVORK5CYII=">
-<link rel="icon" type="image/png" sizes="32x32" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAIAAAD8GO2jAAAAmklEQVR4nGMUt4pjoCVgoqnpoxaMWjBqAQMDAwMDC6bQrZ0z+Hg4McUv3XzgllS/d2Gztorc2l3HsxtnQMTXT6m0NNTYcfhcQsVEoixQc8+AMLbNrjPSUt6492R63TSyfTAs44AYEOxmGexmSYxKMn2wdtdxCet4CDp+/gb1LSAeDH0LGEerzFELRi0YBhawXNG7RlMLhn4QAQCTUiSohY/mdwAAAABJRU5ErkJggg==">
+<meta name="application-name" content="Training Hub">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="512x512" href="icon-512.png">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="manifest" href="site.webmanifest">
 <meta name="theme-color" content="#173a5e">
 <style>
 :root{
   --page:#ffffff; --surface-1:#ffffff; --surface-2:#ffffff; --surface-3:#f6f6f5;
-  --text:#181817; --text-dim:#6b6b66; --text-faint:#96968f; --line:#e6e6e2;
+  --text:#181817; --text-dim:#63635e; --text-faint:#93938c; --line:#e8e8e4;
   --carb:#2a78d6; --prot:#eb6834; --fat:#1baf7a;
   --good:#0ca30c; --warn:#fab219; --serious:#ec835a; --crit:#d03b3b;
-  --accent:#173a5e;
-  --shadow:0 1px 2px rgba(20,20,18,.05), 0 4px 14px rgba(20,20,18,.06);
-  --shadow-sm:0 1px 2px rgba(20,20,18,.05);
+  --accent:#173a5e; --on-accent:#ffffff;
+  --shadow:0 1px 2px rgba(20,20,18,.04), 0 6px 20px rgba(20,20,18,.07);
+  --ring:rgba(23,58,94,.12);
 }
 :root[data-theme="dark"]{
-  --page:#101010; --surface-1:#1a1a19; --surface-2:#1a1a19; --surface-3:#232322;
-  --text:#f0f0ec; --text-dim:#a3a39c; --text-faint:#77776f; --line:#2e2e2c;
-  --carb:#3987e5; --prot:#d95926; --fat:#199e70; --accent:#8fb6dd;
-  --shadow:0 1px 2px rgba(0,0,0,.4), 0 4px 16px rgba(0,0,0,.35);
-  --shadow-sm:0 1px 2px rgba(0,0,0,.4);
+  --page:#101010; --surface-1:#1a1a19; --surface-2:#1a1a19; --surface-3:#242423;
+  --text:#f1f1ed; --text-dim:#a8a8a1; --text-faint:#7a7a72; --line:#302f2d;
+  --carb:#3987e5; --prot:#d95926; --fat:#199e70;
+  --accent:#8fb6dd; --on-accent:#101010;
+  --shadow:0 1px 2px rgba(0,0,0,.45), 0 8px 24px rgba(0,0,0,.4);
+  --ring:rgba(143,182,221,.18);
 }
 @media (prefers-color-scheme:dark){
   :root:not([data-theme="light"]){
-    --page:#101010; --surface-1:#1a1a19; --surface-2:#1a1a19; --surface-3:#232322;
-    --text:#f0f0ec; --text-dim:#a3a39c; --text-faint:#77776f; --line:#2e2e2c;
-    --carb:#3987e5; --prot:#d95926; --fat:#199e70; --accent:#8fb6dd;
-    --shadow:0 1px 2px rgba(0,0,0,.4), 0 4px 16px rgba(0,0,0,.35);
-    --shadow-sm:0 1px 2px rgba(0,0,0,.4);
+    --page:#101010; --surface-1:#1a1a19; --surface-2:#1a1a19; --surface-3:#242423;
+    --text:#f1f1ed; --text-dim:#a8a8a1; --text-faint:#7a7a72; --line:#302f2d;
+    --carb:#3987e5; --prot:#d95926; --fat:#199e70;
+    --accent:#8fb6dd; --on-accent:#101010;
+    --shadow:0 1px 2px rgba(0,0,0,.45), 0 8px 24px rgba(0,0,0,.4);
+    --ring:rgba(143,182,221,.18);
   }
 }
-*{box-sizing:border-box}
-html,body{margin:0;padding:0}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{-webkit-text-size-adjust:100%}
 body{
-  background:var(--page); color:var(--text);
+  margin:0; background:var(--page); color:var(--text);
   font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;
   -webkit-font-smoothing:antialiased;
-  padding:0 0 max(28px,env(safe-area-inset-bottom));
+  padding-bottom:max(30px,env(safe-area-inset-bottom));
+  overscroll-behavior-y:contain;
 }
-.wrap{max-width:640px;margin:0 auto;padding:0 16px}
+.wrap{max-width:620px;margin:0 auto;padding:0 15px}
+
+/* ---------- header ---------- */
 header{
-  position:sticky;top:0;z-index:20;background:var(--page);
+  position:sticky;top:0;z-index:30;
+  background:color-mix(in srgb, var(--page) 88%, transparent);
+  backdrop-filter:saturate(180%) blur(14px);
+  -webkit-backdrop-filter:saturate(180%) blur(14px);
   border-bottom:1px solid var(--line);
-  padding-top:max(10px,env(safe-area-inset-top));
+  padding-top:max(8px,env(safe-area-inset-top));
 }
-.hrow{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:8px 0 10px}
-.brand{display:flex;align-items:center;gap:9px;min-width:0}
-.mark{width:28px;height:28px;border-radius:8px;background:var(--accent);color:#fff;
-  display:grid;place-items:center;font-size:11px;font-weight:700;letter-spacing:.4px;flex:none}
-:root[data-theme="dark"] .mark{color:#101010}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .mark{color:#101010}}
-.brand b{font-size:15px;font-weight:650;letter-spacing:-.01em}
-.brand span{display:block;font-size:11.5px;color:var(--text-faint);line-height:1.2}
+.hrow{display:flex;align-items:center;gap:10px;padding:7px 0 9px}
+.mark{width:30px;height:30px;border-radius:9px;flex:none;
+  background:linear-gradient(160deg,#1d4a75,#102944);
+  display:grid;place-items:center;box-shadow:0 1px 3px rgba(0,0,0,.22)}
+.mark svg{width:20px;height:20px;display:block}
+.htxt{flex:1;min-width:0}
+.htxt b{display:block;font-size:14.5px;font-weight:640;letter-spacing:-.01em;line-height:1.25}
+.htxt span{display:block;font-size:11.5px;color:var(--text-faint);line-height:1.25}
 .iconbtn{border:1px solid var(--line);background:var(--surface-1);color:var(--text-dim);
-  width:34px;height:34px;border-radius:10px;font-size:15px;cursor:pointer;flex:none;
-  display:grid;place-items:center}
-.iconbtn:active{transform:scale(.94)}
+  width:36px;height:36px;border-radius:11px;font-size:15px;cursor:pointer;flex:none;
+  display:grid;place-items:center;transition:transform .12s}
+.iconbtn:active{transform:scale(.9)}
 
-/* navigazione giorni */
-.nav{display:flex;align-items:center;gap:10px;padding:0 0 10px}
+/* striscia giorni scorrevole */
+.strip{display:flex;gap:7px;overflow-x:auto;scroll-snap-type:x proximity;
+  padding:0 0 10px;margin:0 -15px;padding-left:15px;padding-right:15px;
+  scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.strip::-webkit-scrollbar{display:none}
+.pill{flex:none;scroll-snap-align:center;min-width:52px;padding:7px 9px 8px;
+  border:1px solid var(--line);border-radius:13px;background:var(--surface-1);
+  cursor:pointer;text-align:center;transition:all .16s;color:inherit;font:inherit}
+.pill em{display:block;font-style:normal;font-size:10.5px;font-weight:700;letter-spacing:.6px;
+  text-transform:uppercase;color:var(--text-faint)}
+.pill b{display:block;font-size:16px;font-weight:640;letter-spacing:-.02em;margin-top:1px}
+.pill i{display:block;width:5px;height:5px;border-radius:50%;margin:4px auto 0;background:var(--dot)}
+.pill.on{background:var(--accent);border-color:var(--accent);color:var(--on-accent);
+  box-shadow:0 3px 10px var(--ring)}
+.pill.on em{color:var(--on-accent);opacity:.72}
+.pill.today:not(.on){border-color:var(--accent)}
+
+/* ---------- navigazione ---------- */
+.nav{display:flex;align-items:center;gap:12px;margin:14px 0 2px}
 .navbtn{border:1px solid var(--line);background:var(--surface-1);color:var(--text);
-  width:38px;height:38px;border-radius:11px;font-size:16px;cursor:pointer;flex:none;display:grid;place-items:center}
-.navbtn:disabled{opacity:.32;cursor:default}
-.navbtn:active:not(:disabled){transform:scale(.94)}
+  width:42px;height:42px;border-radius:13px;font-size:17px;cursor:pointer;flex:none;
+  display:grid;place-items:center;box-shadow:var(--shadow);transition:transform .12s}
+.navbtn:disabled{opacity:.3;box-shadow:none}
+.navbtn:active:not(:disabled){transform:scale(.9)}
 .navlbl{flex:1;text-align:center;min-width:0}
-.navlbl b{display:block;font-size:16.5px;font-weight:650;letter-spacing:-.01em}
-.navlbl span{font-size:12px;color:var(--text-faint)}
-.badge-today{display:inline-block;margin-left:6px;font-size:10px;font-weight:700;letter-spacing:.4px;
-  text-transform:uppercase;color:#fff;background:var(--accent);border-radius:5px;padding:1px 5px;vertical-align:1px}
-:root[data-theme="dark"] .badge-today{color:#101010}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .badge-today{color:#101010}}
-.dots{display:flex;justify-content:center;gap:7px;padding:0 0 12px}
-.dot{width:9px;height:9px;border-radius:50%;background:var(--line);border:0;padding:0;cursor:pointer}
-.dot.on{background:var(--accent);transform:scale(1.18)}
+.navlbl b{display:block;font-size:21px;font-weight:660;letter-spacing:-.025em;line-height:1.15}
+.navlbl span{font-size:12.5px;color:var(--text-faint)}
+.tag{display:inline-block;margin-left:7px;font-size:9.5px;font-weight:800;letter-spacing:.7px;
+  text-transform:uppercase;color:var(--on-accent);background:var(--accent);
+  border-radius:5px;padding:2px 6px;vertical-align:3px}
 
-/* card */
-.card{background:var(--surface-1);border:1px solid var(--line);border-radius:15px;
-  box-shadow:var(--shadow);margin:12px 0;overflow:hidden}
-.card.accent{border-left:4px solid var(--acc,var(--line))}
-.i-high{--acc:var(--crit)} .i-medium{--acc:var(--warn)}
-.i-low{--acc:var(--good)}  .i-rest{--acc:var(--text-faint)}
-.cardpad{padding:14px 15px}
-.eyebrow{font-size:11px;font-weight:700;letter-spacing:.7px;text-transform:uppercase;color:var(--text-faint);margin:0 0 8px}
-h2{font-size:16px;font-weight:650;margin:0 0 3px;letter-spacing:-.01em}
+/* ---------- card ---------- */
+#view{animation:fade .26s ease}
+@keyframes fade{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+.card{background:var(--surface-1);border:1px solid var(--line);border-radius:18px;
+  box-shadow:var(--shadow);margin:13px 0;overflow:hidden}
+.pad{padding:15px 16px}
+.eyebrow{display:flex;align-items:center;gap:7px;font-size:10.5px;font-weight:750;
+  letter-spacing:.8px;text-transform:uppercase;color:var(--text-faint);margin:0 0 11px}
+.eyebrow .chip{margin-left:auto;text-transform:none;letter-spacing:0;font-size:11px;
+  font-weight:650;padding:3px 9px;border-radius:99px;background:var(--surface-3);color:var(--ic)}
 
-.sess{display:flex;gap:11px;align-items:flex-start;padding:9px 0;border-top:1px solid var(--line)}
-.sess:first-of-type{border-top:0;padding-top:2px}
-.sess .ic{font-size:20px;line-height:1.2;flex:none}
-.sess b{display:block;font-size:14.5px;font-weight:600}
-.sess p{margin:2px 0 0;font-size:13px;color:var(--text-dim)}
-.note{margin:9px 0 0;font-size:12.5px;color:var(--text-dim);background:var(--surface-3);
-  border-radius:9px;padding:9px 11px}
-.metaline{margin:10px 0 0;font-size:12.5px;color:var(--text-faint);border-top:1px solid var(--line);padding-top:9px}
+/* allenamento */
+.sess{display:flex;gap:12px;align-items:flex-start;padding:11px 0;border-top:1px solid var(--line)}
+.sess:first-of-type{border-top:0;padding-top:0}
+.sess .ic{width:38px;height:38px;border-radius:11px;flex:none;display:grid;place-items:center;
+  font-size:19px;background:var(--surface-3)}
+.sess b{display:block;font-size:15px;font-weight:620;letter-spacing:-.01em}
+.sess p{margin:3px 0 0;font-size:13px;color:var(--text-dim);line-height:1.5}
+.note{margin:11px 0 0;font-size:12.5px;color:var(--text-dim);background:var(--surface-3);
+  border-radius:12px;padding:10px 12px;line-height:1.55}
+.meta{margin:12px 0 0;padding-top:11px;border-top:1px solid var(--line);
+  font-size:12px;color:var(--text-faint)}
 
-/* kcal + macro */
-.kcal{display:flex;align-items:baseline;gap:8px;margin:2px 0 12px}
-.kcal b{font-size:32px;font-weight:680;letter-spacing:-.03em;line-height:1}
-.kcal span{font-size:12.5px;color:var(--text-faint)}
-.bar{display:flex;height:8px;border-radius:5px;overflow:hidden;margin:0 0 9px;background:var(--surface-3)}
-.bar i{display:block;height:100%}
-.macros{display:flex;gap:8px}
-.macro{flex:1;background:var(--surface-3);border-radius:10px;padding:8px 9px}
-.macro em{display:block;font-style:normal;font-size:10.5px;font-weight:700;letter-spacing:.5px;text-transform:uppercase}
-.macro b{display:block;font-size:17px;font-weight:650;letter-spacing:-.02em;margin-top:1px}
-.macro span{font-size:11px;color:var(--text-faint)}
-.m-c em{color:var(--carb)} .m-p em{color:var(--prot)} .m-f em{color:var(--fat)}
-.split{display:flex;gap:8px;margin:11px 0 0;font-size:12px;color:var(--text-dim)}
-.split div{flex:1;background:var(--surface-3);border-radius:9px;padding:7px 9px;text-align:center}
-.split b{display:block;font-size:13.5px;color:var(--text);font-weight:600}
+/* fabbisogno: donut + tessere */
+.energy{display:flex;align-items:center;gap:16px}
+.donut{width:118px;height:118px;flex:none;position:relative}
+.donut svg{transform:rotate(-90deg);display:block}
+.donut .mid{position:absolute;inset:0;display:grid;place-content:center;text-align:center}
+.donut .mid b{display:block;font-size:23px;font-weight:680;letter-spacing:-.035em;line-height:1}
+.donut .mid span{font-size:10.5px;color:var(--text-faint);letter-spacing:.3px}
+.legend{flex:1;min-width:0;display:flex;flex-direction:column;gap:7px}
+.leg{display:flex;align-items:center;gap:9px;font-size:13px}
+.leg i{width:9px;height:9px;border-radius:3px;flex:none}
+.leg span{color:var(--text-dim)}
+.leg b{margin-left:auto;font-weight:640;font-variant-numeric:tabular-nums}
+.srcline{margin:13px 0 0;padding-top:11px;border-top:1px solid var(--line);
+  font-size:12px;color:var(--text-faint)}
+.split{display:flex;gap:9px;margin:12px 0 0}
+.split div{flex:1;background:var(--surface-3);border-radius:12px;padding:9px 10px;text-align:center;
+  font-size:11.5px;color:var(--text-faint)}
+.split b{display:block;font-size:15px;color:var(--text);font-weight:650;letter-spacing:-.02em;margin-bottom:1px}
 
 /* insight */
-.insight{background:var(--surface-1)}
-.insight .cardpad{border-left:0}
-.insight p{margin:0;font-size:14px;line-height:1.62}
+.insight p{margin:0;font-size:14px;line-height:1.65;color:var(--text)}
 
 /* pasti */
 .meal{border-top:1px solid var(--line)}
 .meal:first-child{border-top:0}
-.mhead{display:flex;align-items:center;gap:11px;padding:13px 15px;cursor:pointer;user-select:none;
-  -webkit-tap-highlight-color:transparent}
-.mhead .ic{font-size:18px;flex:none}
-.mhead .txt{flex:1;min-width:0}
-.mhead b{display:block;font-size:14.5px;font-weight:620}
-.mhead span{display:block;font-size:12px;color:var(--text-faint);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.chev{font-size:12px;color:var(--text-faint);transition:transform .22s ease;flex:none}
+.mhead{display:flex;align-items:center;gap:12px;padding:14px 16px;cursor:pointer;user-select:none;min-height:56px}
+.mhead .ic{width:34px;height:34px;border-radius:11px;flex:none;display:grid;place-items:center;
+  font-size:17px;background:var(--surface-3)}
+.mhead .t{flex:1;min-width:0}
+.mhead b{display:block;font-size:14.5px;font-weight:630}
+.mhead b i{font-style:normal;font-weight:400;color:var(--text-faint);font-size:12px}
+.mhead .sub{display:block;font-size:12px;color:var(--text-faint);margin-top:1px;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-variant-numeric:tabular-nums}
+.chev{font-size:11px;color:var(--text-faint);transition:transform .25s ease;flex:none;width:16px;text-align:center}
 .meal.open .chev{transform:rotate(90deg)}
-.mbody{max-height:0;overflow:hidden;transition:max-height .3s ease}
-.meal.open .mbody{max-height:2600px}
-.mbody-in{padding:0 15px 14px}
-.opt{background:var(--surface-3);border-radius:12px;padding:11px 12px;margin-top:9px}
-.opt>em{display:block;font-style:normal;font-size:11px;font-weight:700;letter-spacing:.5px;
-  text-transform:uppercase;color:var(--text-faint);margin-bottom:2px}
-.opt>b{display:block;font-size:13.5px;font-weight:600;margin-bottom:8px;line-height:1.4}
-.ing{display:flex;justify-content:space-between;gap:12px;font-size:13px;padding:3.5px 0;border-top:1px dashed var(--line)}
+.mbody{display:grid;grid-template-rows:0fr;transition:grid-template-rows .3s ease}
+.meal.open .mbody{grid-template-rows:1fr}
+.mbody>div{overflow:hidden}
+.mbody-in{padding:0 16px 15px}
+.opt{background:var(--surface-3);border-radius:14px;padding:12px 13px;margin-top:9px}
+.opt>em{display:block;font-style:normal;font-size:10px;font-weight:750;letter-spacing:.7px;
+  text-transform:uppercase;color:var(--text-faint);margin-bottom:3px}
+.opt>b{display:block;font-size:13.5px;font-weight:620;margin-bottom:9px;line-height:1.45}
+.ing{display:flex;justify-content:space-between;gap:12px;font-size:13.5px;padding:5px 0;
+  border-top:1px solid var(--line)}
 .ing:first-of-type{border-top:0}
-.ing span:last-child{color:var(--text-dim);white-space:nowrap;font-variant-numeric:tabular-nums}
-.tot{margin-top:9px;padding-top:8px;border-top:1px solid var(--line);font-size:12.5px;
-  color:var(--text-dim);display:flex;flex-wrap:wrap;gap:4px 12px;font-variant-numeric:tabular-nums}
+.ing s{text-decoration:none;color:var(--text-dim);white-space:nowrap;font-variant-numeric:tabular-nums;font-weight:560}
+.tot{margin-top:10px;padding-top:9px;border-top:1px solid var(--line);
+  display:flex;flex-wrap:wrap;gap:3px 13px;font-size:12.5px;color:var(--text-dim);
+  font-variant-numeric:tabular-nums}
 .tot b{color:var(--text);font-weight:650}
 .tot .c{color:var(--carb)} .tot .p{color:var(--prot)} .tot .f{color:var(--fat)}
 
 /* fueling */
-.phase{background:var(--surface-3);border-radius:12px;padding:11px 12px;margin-top:10px}
-.phase>b{display:block;font-size:13px;font-weight:650;margin-bottom:7px}
-.supp{margin:11px 0 0;font-size:12.5px;color:var(--text-dim);line-height:1.55}
+.phase{background:var(--surface-3);border-radius:14px;padding:12px 13px;margin-top:10px}
+.phase>b{display:block;font-size:13px;font-weight:660;margin-bottom:8px}
+.supp{margin:12px 0 0;font-size:12.5px;color:var(--text-dim);line-height:1.6}
 
-footer{margin:22px 0 0;padding:16px 0 0;border-top:1px solid var(--line);
-  font-size:11.5px;color:var(--text-faint);line-height:1.6}
+footer{margin:24px 0 0;padding:16px 0 0;border-top:1px solid var(--line);
+  font-size:11.5px;color:var(--text-faint);line-height:1.65}
 footer b{color:var(--text-dim);font-weight:650}
-footer p{margin:0 0 7px}
+footer p{margin:0 0 8px}
+@media (max-width:359px){ .energy{flex-direction:column;align-items:stretch;gap:12px}
+  .donut{margin:0 auto} }
 </style>
 </head>
 <body>
 <header>
   <div class="wrap">
     <div class="hrow">
-      <div class="brand">
-        <div class="mark">TH</div>
-        <div><b>Training Hub</b><span id="sub">Allenamento &amp; nutrizione</span></div>
-      </div>
+      <div class="mark"><svg viewBox="0 0 100 100" aria-hidden="true">
+        <g fill="none" stroke-linecap="round" stroke-width="13">
+          <path d="M50 14 A36 36 0 1 1 22.6 75.4" stroke="#eb6834"/>
+          <path d="M50 32 A18 18 0 1 1 37.3 62.7" stroke="#3987e5"/>
+        </g></svg></div>
+      <div class="htxt"><b>Training Hub</b><span id="sub"></span></div>
       <button class="iconbtn" id="theme" aria-label="Cambia tema">◐</button>
     </div>
-    <div class="nav">
-      <button class="navbtn" id="prev" aria-label="Giorno precedente">‹</button>
-      <div class="navlbl"><b id="dayName"></b><span id="dayDate"></span></div>
-      <button class="navbtn" id="next" aria-label="Giorno successivo">›</button>
-    </div>
-    <div class="dots" id="dots"></div>
+    <div class="strip" id="strip"></div>
   </div>
 </header>
+
+<div class="wrap">
+  <div class="nav">
+    <button class="navbtn" id="prev" aria-label="Giorno precedente">‹</button>
+    <div class="navlbl"><b id="dayName"></b><span id="dayDate"></span></div>
+    <button class="navbtn" id="next" aria-label="Giorno successivo">›</button>
+  </div>
+</div>
 <main class="wrap" id="view"></main>
 <div class="wrap"><footer id="foot"></footer></div>
 
 <script>
-const DATA = {"bmr": 1761, "base": 2289, "weight": 75.7, "ftp": 261, "days": [{"iso": "2026-08-22", "dow": "Sabato", "d": "22 ago", "intensity": "high", "sessions": [{"icon": "🏃", "title": "Z4 short reps — completata", "detail": "11,94 km · 54:16 · passo 4:33/km · HR media 173 bpm · 955 kcal · 68 TSS"}], "planned": "Pianificata: 12,55 km · 56:00 · 147 TL (COROS) — 73 TSS (TrainingPeaks)", "alt": null, "load": "Short/long-term load 86/73 · ratio 1.17 · recovery 80%", "spend": 955, "targets": {"kcal": 3244, "c": 492, "p": 136, "f": 81}, "fuelTotals": {"kcal": 441, "c": 78, "p": 26, "f": 4}, "mealBudget": {"kcal": 2803, "c": 414, "p": 110, "f": 77}, "insight": "Sessione eseguita a 11,94 km in 54:16 contro i 12,55 km / 56:00 pianificati: leggermente più corta, ma con HR media 173 bpm e passo 4:33/km è la corsa più veloce delle ultime due settimane (la Z3 short reps del 09/08 chiudeva 10,77 km in 50:00). Il TSS reale è 68 contro i 73 pianificati, uno scostamento del 7% — sostanzialmente a target. Il contesto di recupero era favorevole: sonno 6h10 ma con score 92 e solo 3 minuti di veglia, recovery al 100% prima di partire. Dopo la sessione il recovery è sceso a 80% e il load ratio è salito a 1.17, ben sotto la soglia di attenzione di 1.5 — ma domani c'è un fondo bici da 3h, quindi la notte tra oggi e domani è la variabile da tenere d'occhio.", "meals": [{"name": "Colazione", "icon": "☀️", "pct": 22, "target": {"kcal": 617, "c": 91, "p": 24, "f": 17}, "options": [{"name": "Avena + latte di soia + burro di arachidi", "items": [{"name": "Avena (fiocchi)", "g": 130}, {"name": "Latte di soia non zucch.", "g": 200}, {"name": "Burro di arachidi", "g": 10}], "totals": {"kcal": 630, "c": 89, "p": 27, "f": 18}}, {"name": "Corn flakes + whey + marmellata + latte di soia", "items": [{"name": "Corn flakes senza zuccheri", "g": 90}, {"name": "Whey", "g": 10}, {"name": "Marmellata", "g": 20}, {"name": "Latte di soia non zucch.", "g": 300}], "totals": {"kcal": 529, "c": 91, "p": 25, "f": 7}}]}, {"name": "Pranzo", "icon": "🍽️", "pct": 33, "target": {"kcal": 925, "c": 137, "p": 36, "f": 25}, "options": [{"name": "Riso + tonno + evo + mais + grana — pesi a crudo", "items": [{"name": "Riso (crudo)", "g": 155}, {"name": "Tonno al naturale sgocc.", "g": 75}, {"name": "Olio EVO", "g": 20}, {"name": "Mais in scatola", "g": 80}, {"name": "Grana", "g": 10}], "totals": {"kcal": 927, "c": 136, "p": 36, "f": 26}}, {"name": "Pasta + tonno + evo + grana — pesi a crudo", "items": [{"name": "Pasta (cruda)", "g": 175}, {"name": "Tonno al naturale sgocc.", "g": 70}, {"name": "Olio EVO", "g": 20}, {"name": "Grana", "g": 10}], "totals": {"kcal": 946, "c": 131, "p": 44, "f": 26}}]}, {"name": "Spuntino", "icon": "🍎", "pct": 12, "target": {"kcal": 336, "c": 50, "p": 13, "f": 9}, "options": [{"name": "Yogurt greco + banana + mandorle", "items": [{"name": "Yogurt greco 0%", "g": 80}, {"name": "Banana", "g": 190}, {"name": "Mandorle", "g": 18}], "totals": {"kcal": 319, "c": 51, "p": 14, "f": 10}}, {"name": "Gallette + fiocchi di latte + mandorle + mela", "items": [{"name": "Gallette di riso", "g": 30}, {"name": "Fiocchi di latte magri", "g": 80}, {"name": "Mandorle", "g": 10}, {"name": "Mela", "g": 150}], "totals": {"kcal": 330, "c": 50, "p": 14, "f": 10}}]}, {"name": "Cena", "icon": "🌙", "pct": 33, "target": {"kcal": 925, "c": 137, "p": 36, "f": 25}, "options": [{"name": "Pancarrè + pollo + evo + verdure + ketchup", "items": [{"name": "Pancarrè", "g": 180}, {"name": "Petto di pollo", "g": 90}, {"name": "Olio EVO", "g": 15}, {"name": "Verdure miste", "g": 250}, {"name": "Ketchup", "g": 15}], "totals": {"kcal": 836, "c": 102, "p": 46, "f": 25}}, {"name": "Gallette + seitan + evo + verdure", "items": [{"name": "Gallette di riso", "g": 110}, {"name": "Seitan", "g": 90}, {"name": "Olio EVO", "g": 20}, {"name": "Verdure miste", "g": 250}], "totals": {"kcal": 792, "c": 103, "p": 35, "f": 25}}]}], "fuel": {"note": "Sessione già completata: qui sotto il recupero post-gara della Z4 di oggi.", "supp": null, "pre": null, "intra": null, "post": {"label": "Post (entro 30-45 min dalla fine)", "items": [{"name": "Whey", "g": 25, "disp": null}, {"name": "Banana", "g": 120, "disp": null}, {"name": "Pancarrè", "g": 60, "disp": null}, {"name": "Marmellata", "g": 30, "disp": null}], "totals": {"kcal": 441, "c": 78, "p": 26, "f": 4}}}}, {"iso": "2026-08-23", "dow": "Domenica", "d": "23 ago", "intensity": "high", "sessions": [{"icon": "🚴", "title": "Fondo bici — 3h00", "detail": "Salite fino a 1 km da fare in Z4, 270-300 W (TrainingPeaks)"}], "planned": null, "alt": null, "load": "Giornata più dispendiosa della settimana · stima ~169 TSS", "spend": 1590, "targets": {"kcal": 3879, "c": 606, "p": 136, "f": 101}, "fuelTotals": {"kcal": 1669, "c": 364, "p": 42, "f": 9}, "mealBudget": {"kcal": 2210, "c": 242, "p": 94, "f": 92}, "insight": null, "meals": [{"name": "Colazione", "icon": "☀️", "pct": 22, "target": {"kcal": 486, "c": 53, "p": 21, "f": 20}, "options": [{"name": "Avena + latte di soia + burro di arachidi + marmellata", "items": [{"name": "Avena (fiocchi)", "g": 60}, {"name": "Latte di soia non zucch.", "g": 215}, {"name": "Burro di arachidi", "g": 25}, {"name": "Marmellata", "g": 30}], "totals": {"kcal": 526, "c": 65, "p": 22, "f": 21}}, {"name": "Corn flakes + whey + marmellata + latte di soia", "items": [{"name": "Corn flakes senza zuccheri", "g": 55}, {"name": "Whey", "g": 10}, {"name": "Marmellata", "g": 10}, {"name": "Latte di soia non zucch.", "g": 300}], "totals": {"kcal": 372, "c": 55, "p": 22, "f": 7}}]}, {"name": "Pranzo", "icon": "🍽️", "pct": 33, "target": {"kcal": 729, "c": 80, "p": 31, "f": 30}, "options": [{"name": "Pasta + ceci + evo + grana — pesi a crudo", "items": [{"name": "Pasta (cruda)", "g": 80}, {"name": "Ceci lessati", "g": 145}, {"name": "Olio EVO", "g": 20}, {"name": "Grana", "g": 10}], "totals": {"kcal": 714, "c": 90, "p": 25, "f": 28}}, {"name": "Riso + tonno + evo + mais — pesi a crudo", "items": [{"name": "Riso (crudo)", "g": 85}, {"name": "Tonno al naturale sgocc.", "g": 85}, {"name": "Olio EVO", "g": 30}, {"name": "Mais in scatola", "g": 80}], "totals": {"kcal": 737, "c": 81, "p": 31, "f": 32}}]}, {"name": "Spuntino", "icon": "🍎", "pct": 12, "target": {"kcal": 265, "c": 29, "p": 11, "f": 11}, "options": [{"name": "Gallette + yogurt greco + mandorle + marmellata", "items": [{"name": "Gallette di riso", "g": 20}, {"name": "Yogurt greco 0%", "g": 80}, {"name": "Mandorle", "g": 15}, {"name": "Marmellata", "g": 20}], "totals": {"kcal": 260, "c": 36, "p": 13, "f": 8}}, {"name": "Banana + fiocchi di latte + mandorle", "items": [{"name": "Banana", "g": 100}, {"name": "Fiocchi di latte magri", "g": 80}, {"name": "Mandorle", "g": 13}], "totals": {"kcal": 243, "c": 29, "p": 13, "f": 10}}]}, {"name": "Cena", "icon": "🌙", "pct": 33, "target": {"kcal": 729, "c": 80, "p": 31, "f": 30}, "options": [{"name": "Gallette + burger vegetale + evo + verdure + ketchup", "items": [{"name": "Gallette di riso", "g": 75}, {"name": "Burger vegetale Lidl", "g": 125}, {"name": "Olio EVO", "g": 10}, {"name": "Verdure miste", "g": 250}, {"name": "Ketchup", "g": 15}], "totals": {"kcal": 706, "c": 82, "p": 31, "f": 28}}, {"name": "Pancarrè + pollo + evo + verdure", "items": [{"name": "Pancarrè", "g": 130}, {"name": "Petto di pollo", "g": 90}, {"name": "Olio EVO", "g": 20}, {"name": "Verdure miste", "g": 250}], "totals": {"kcal": 732, "c": 74, "p": 42, "f": 28}}]}], "fuel": {"note": "Sessione singola da 3 ore in Z4: il fueling non è opzionale, è parte dell'allenamento.", "supp": "Caffeina 2-3 mg/kg (≈150-230 mg) 45 min prima se parti al mattino · creatina 5 g/die continuativa in questo periodo di volume alto.", "pre": {"label": "Pre (2-3 h prima della partenza)", "items": [{"name": "Pancarrè", "g": 110, "disp": null}, {"name": "Marmellata", "g": 55, "disp": null}, {"name": "Banana", "g": 120, "disp": null}], "totals": {"kcal": 536, "c": 117, "p": 10, "f": 4}}, "intra": {"label": "Intra (durante, ~80 g carbo/ora → ~240 g totali)", "items": [{"name": "Gel energetico (25 g carbo)", "g": 160, "disp": "5 gel (≈160 g, 125 g carbo)"}, {"name": "Bevanda isotonica (polvere)", "g": 80, "disp": "80 g di polvere in 1,5 L d'acqua"}, {"name": "Datteri", "g": 60, "disp": null}], "totals": {"kcal": 633, "c": 160, "p": 2, "f": 0}}, "post": {"label": "Post (entro 30-45 min dalla fine)", "items": [{"name": "Whey", "g": 30, "disp": null}, {"name": "Banana", "g": 120, "disp": null}, {"name": "Pancarrè", "g": 70, "disp": null}, {"name": "Marmellata", "g": 35, "disp": null}], "totals": {"kcal": 500, "c": 87, "p": 30, "f": 5}}}}, {"iso": "2026-08-24", "dow": "Lunedì", "d": "24 ago", "intensity": "medium", "sessions": [{"icon": "🏊", "title": "Nuoto A2 — 42:00 · 3,3 km", "detail": "200 risc · 6x50 tecnica · 6x50 R8 · 6x200 pale+pull+boccaglio · 6x100 pull · 12x50 agile · 100 sciolti — 66 TSS"}], "planned": null, "alt": null, "load": "Recupero attivo aerobico dopo il weekend", "spend": 500, "targets": {"kcal": 2789, "c": 416, "p": 136, "f": 65}, "fuelTotals": null, "mealBudget": {"kcal": 2789, "c": 416, "p": 136, "f": 65}, "insight": null, "meals": [{"name": "Colazione", "icon": "☀️", "pct": 22, "target": {"kcal": 614, "c": 92, "p": 30, "f": 14}, "options": [{"name": "Avena + latte di soia + burro di arachidi", "items": [{"name": "Avena (fiocchi)", "g": 135}, {"name": "Latte di soia non zucch.", "g": 240}, {"name": "Burro di arachidi", "g": 10}], "totals": {"kcal": 663, "c": 93, "p": 29, "f": 19}}, {"name": "Corn flakes + whey + latte di soia", "items": [{"name": "Corn flakes senza zuccheri", "g": 105}, {"name": "Whey", "g": 15}, {"name": "Latte di soia non zucch.", "g": 300}], "totals": {"kcal": 556, "c": 91, "p": 29, "f": 7}}]}, {"name": "Pranzo", "icon": "🍽️", "pct": 33, "target": {"kcal": 920, "c": 137, "p": 45, "f": 21}, "options": [{"name": "Riso + lenticchie + evo + mais — pesi a crudo", "items": [{"name": "Riso (crudo)", "g": 80}, {"name": "Lenticchie lessate", "g": 300}, {"name": "Olio EVO", "g": 20}, {"name": "Mais in scatola", "g": 70}], "totals": {"kcal": 871, "c": 135, "p": 35, "f": 23}}, {"name": "Pasta + lenticchie + evo + grana — pesi a crudo", "items": [{"name": "Pasta (cruda)", "g": 95}, {"name": "Lenticchie lessate", "g": 300}, {"name": "Olio EVO", "g": 15}, {"name": "Grana", "g": 10}], "totals": {"kcal": 872, "c": 131, "p": 43, "f": 21}}]}, {"name": "Spuntino", "icon": "🍎", "pct": 12, "target": {"kcal": 335, "c": 50, "p": 16, "f": 8}, "options": [{"name": "Yogurt greco + banana + mandorle", "items": [{"name": "Yogurt greco 0%", "g": 110}, {"name": "Banana", "g": 185}, {"name": "Mandorle", "g": 13}], "totals": {"kcal": 303, "c": 50, "p": 16, "f": 7}}, {"name": "Gallette + fiocchi di latte + mandorle + mela", "items": [{"name": "Gallette di riso", "g": 30}, {"name": "Fiocchi di latte magri", "g": 110}, {"name": "Mandorle", "g": 5}, {"name": "Mela", "g": 150}], "totals": {"kcal": 331, "c": 50, "p": 16, "f": 8}}]}, {"name": "Cena", "icon": "🌙", "pct": 33, "target": {"kcal": 920, "c": 137, "p": 45, "f": 21}, "options": [{"name": "Pancarrè + seitan + evo + verdure + ketchup", "items": [{"name": "Pancarrè", "g": 180}, {"name": "Seitan", "g": 90}, {"name": "Olio EVO", "g": 10}, {"name": "Verdure miste", "g": 250}, {"name": "Ketchup", "g": 15}], "totals": {"kcal": 770, "c": 105, "p": 41, "f": 18}}, {"name": "Gallette + tofu + evo + verdure", "items": [{"name": "Gallette di riso", "g": 110}, {"name": "Tofu", "g": 175}, {"name": "Olio EVO", "g": 5}, {"name": "Verdure miste", "g": 250}], "totals": {"kcal": 784, "c": 104, "p": 40, "f": 24}}]}], "fuel": null}, {"iso": "2026-08-25", "dow": "Martedì", "d": "25 ago", "intensity": "medium", "sessions": [{"icon": "🏃", "title": "Corsa recupero attivo — 50:00", "detail": "~10,14 km · 98 TL (COROS) · 33 TSS (TrainingPeaks)"}], "planned": null, "alt": null, "load": "Sessione di scarico, intensità bassa", "spend": 768, "targets": {"kcal": 3057, "c": 454, "p": 136, "f": 78}, "fuelTotals": null, "mealBudget": {"kcal": 3057, "c": 454, "p": 136, "f": 78}, "insight": null, "meals": [{"name": "Colazione", "icon": "☀️", "pct": 22, "target": {"kcal": 673, "c": 100, "p": 30, "f": 17}, "options": [{"name": "Avena + latte di soia + burro di arachidi + marmellata", "items": [{"name": "Avena (fiocchi)", "g": 115}, {"name": "Latte di soia non zucch.", "g": 335}, {"name": "Burro di arachidi", "g": 10}, {"name": "Marmellata", "g": 30}], "totals": {"kcal": 692, "c": 99, "p": 29, "f": 19}}, {"name": "Corn flakes + whey + latte di soia", "items": [{"name": "Corn flakes senza zuccheri", "g": 115}, {"name": "Whey", "g": 15}, {"name": "Latte di soia non zucch.", "g": 300}], "totals": {"kcal": 594, "c": 100, "p": 30, "f": 7}}]}, {"name": "Pranzo", "icon": "🍽️", "pct": 33, "target": {"kcal": 1009, "c": 150, "p": 45, "f": 26}, "options": [{"name": "Pasta + tonno + evo + grana — pesi a crudo", "items": [{"name": "Pasta (cruda)", "g": 200}, {"name": "Tonno al naturale sgocc.", "g": 70}, {"name": "Olio EVO", "g": 20}, {"name": "Grana", "g": 10}], "totals": {"kcal": 1039, "c": 150, "p": 48, "f": 27}}, {"name": "Riso + tonno + evo + grana — pesi a crudo", "items": [{"name": "Riso (crudo)", "g": 190}, {"name": "Tonno al naturale sgocc.", "g": 110}, {"name": "Olio EVO", "g": 20}, {"name": "Grana", "g": 10}], "totals": {"kcal": 1024, "c": 150, "p": 45, "f": 25}}]}, {"name": "Spuntino", "icon": "🍎", "pct": 12, "target": {"kcal": 367, "c": 54, "p": 16, "f": 9}, "options": [{"name": "Gallette + yogurt greco + mandorle + marmellata", "items": [{"name": "Gallette di riso", "g": 40}, {"name": "Yogurt greco 0%", "g": 95}, {"name": "Mandorle", "g": 15}, {"name": "Marmellata", "g": 20}], "totals": {"kcal": 346, "c": 52, "p": 16, "f": 9}}, {"name": "Banana + fiocchi di latte + mandorle", "items": [{"name": "Banana", "g": 200}, {"name": "Fiocchi di latte magri", "g": 110}, {"name": "Mandorle", "g": 8}], "totals": {"kcal": 332, "c": 52, "p": 16, "f": 9}}]}, {"name": "Cena", "icon": "🌙", "pct": 33, "target": {"kcal": 1009, "c": 150, "p": 45, "f": 26}, "options": [{"name": "Fette biscottate + albume + evo + verdure + ketchup", "items": [{"name": "Fette biscottate", "g": 110}, {"name": "Albume", "g": 195}, {"name": "Olio EVO", "g": 15}, {"name": "Verdure miste", "g": 250}, {"name": "Ketchup", "g": 15}], "totals": {"kcal": 752, "c": 99, "p": 37, "f": 22}}, {"name": "Pancarrè + pollo + evo + verdure", "items": [{"name": "Pancarrè", "g": 180}, {"name": "Petto di pollo", "g": 90}, {"name": "Olio EVO", "g": 15}, {"name": "Verdure miste", "g": 250}], "totals": {"kcal": 821, "c": 98, "p": 46, "f": 25}}]}], "fuel": null}, {"iso": "2026-08-26", "dow": "Mercoledì", "d": "26 ago", "intensity": "low", "sessions": [{"icon": "🏋️", "title": "Gambe Mantenimento — forza", "detail": "20 TSS · sessione di mantenimento in palestra"}], "planned": null, "alt": null, "load": "Giorno forza: proteine a 2,0 g/kg", "spend": 250, "targets": {"kcal": 2539, "c": 341, "p": 151, "f": 64}, "fuelTotals": null, "mealBudget": {"kcal": 2539, "c": 341, "p": 151, "f": 64}, "insight": null, "meals": [{"name": "Colazione", "icon": "☀️", "pct": 22, "target": {"kcal": 559, "c": 75, "p": 33, "f": 14}, "options": [{"name": "Avena + latte di soia + burro di arachidi", "items": [{"name": "Avena (fiocchi)", "g": 105}, {"name": "Latte di soia non zucch.", "g": 400}, {"name": "Burro di arachidi", "g": 10}], "totals": {"kcal": 599, "c": 74, "p": 30, "f": 20}}, {"name": "Corn flakes + whey + latte di soia", "items": [{"name": "Corn flakes senza zuccheri", "g": 85}, {"name": "Whey", "g": 20}, {"name": "Latte di soia non zucch.", "g": 300}], "totals": {"kcal": 500, "c": 75, "p": 32, "f": 7}}]}, {"name": "Pranzo", "icon": "🍽️", "pct": 33, "target": {"kcal": 838, "c": 113, "p": 50, "f": 21}, "options": [{"name": "Riso + tonno + evo + mais — pesi a crudo", "items": [{"name": "Riso (crudo)", "g": 125}, {"name": "Tonno al naturale sgocc.", "g": 150}, {"name": "Olio EVO", "g": 20}, {"name": "Mais in scatola", "g": 80}], "totals": {"kcal": 867, "c": 112, "p": 50, "f": 23}}, {"name": "Riso + tonno + evo + mais + grana — pesi a crudo", "items": [{"name": "Riso (crudo)", "g": 125}, {"name": "Tonno al naturale sgocc.", "g": 135}, {"name": "Olio EVO", "g": 15}, {"name": "Mais in scatola", "g": 80}, {"name": "Grana", "g": 10}], "totals": {"kcal": 845, "c": 112, "p": 50, "f": 21}}]}, {"name": "Spuntino", "icon": "🍎", "pct": 12, "target": {"kcal": 305, "c": 41, "p": 18, "f": 8}, "options": [{"name": "Yogurt greco + banana + mandorle", "items": [{"name": "Yogurt greco 0%", "g": 135}, {"name": "Banana", "g": 140}, {"name": "Mandorle", "g": 13}], "totals": {"kcal": 277, "c": 40, "p": 18, "f": 7}}, {"name": "Gallette + fiocchi di latte + mela", "items": [{"name": "Gallette di riso", "g": 20}, {"name": "Fiocchi di latte magri", "g": 140}, {"name": "Mela", "g": 150}], "totals": {"kcal": 293, "c": 42, "p": 17, "f": 7}}]}, {"name": "Cena", "icon": "🌙", "pct": 33, "target": {"kcal": 838, "c": 113, "p": 50, "f": 21}, "options": [{"name": "Pancarrè + pollo + evo + verdure + ketchup", "items": [{"name": "Pancarrè", "g": 180}, {"name": "Petto di pollo", "g": 95}, {"name": "Olio EVO", "g": 10}, {"name": "Verdure miste", "g": 250}, {"name": "Ketchup", "g": 15}], "totals": {"kcal": 800, "c": 102, "p": 48, "f": 20}}, {"name": "Gallette + burger vegetale + evo + verdure", "items": [{"name": "Gallette di riso", "g": 110}, {"name": "Burger vegetale Lidl", "g": 195}, {"name": "Olio EVO", "g": 5}, {"name": "Verdure miste", "g": 250}], "totals": {"kcal": 922, "c": 111, "p": 46, "f": 32}}]}], "fuel": null}, {"iso": "2026-08-27", "dow": "Giovedì", "d": "27 ago", "intensity": "medium", "sessions": [{"icon": "🚴", "title": "Bici recupero attivo — 1h15", "detail": ">90 rpm · 50 TSS"}], "planned": null, "alt": "Sul calendario TrainingPeaks il 27/08 compaiono due sessioni Bike: questa da 1h15 (50 TSS) e una \"agilità/recupero attivo\" da 50:00 (29 TSS). Sono alternative, non da sommare — il fabbisogno qui è calcolato sulla sessione principale (1h15).", "load": "Scarico prima del weekend", "spend": 470, "targets": {"kcal": 2759, "c": 416, "p": 136, "f": 61}, "fuelTotals": {"kcal": 284, "c": 49, "p": 21, "f": 2}, "mealBudget": {"kcal": 2475, "c": 367, "p": 115, "f": 59}, "insight": null, "meals": [{"name": "Colazione", "icon": "☀️", "pct": 22, "target": {"kcal": 544, "c": 81, "p": 25, "f": 13}, "options": [{"name": "Avena + latte di soia + burro di arachidi + marmellata", "items": [{"name": "Avena (fiocchi)", "g": 90}, {"name": "Latte di soia non zucch.", "g": 290}, {"name": "Burro di arachidi", "g": 10}, {"name": "Marmellata", "g": 30}], "totals": {"kcal": 580, "c": 83, "p": 24, "f": 17}}, {"name": "Corn flakes + whey + latte di soia", "items": [{"name": "Corn flakes senza zuccheri", "g": 95}, {"name": "Whey", "g": 10}, {"name": "Latte di soia non zucch.", "g": 300}], "totals": {"kcal": 498, "c": 82, "p": 25, "f": 7}}]}, {"name": "Pranzo", "icon": "🍽️", "pct": 33, "target": {"kcal": 817, "c": 121, "p": 38, "f": 19}, "options": [{"name": "Pasta + lenticchie + evo + grana — pesi a crudo", "items": [{"name": "Pasta (cruda)", "g": 95}, {"name": "Lenticchie lessate", "g": 250}, {"name": "Olio EVO", "g": 15}, {"name": "Grana", "g": 10}], "totals": {"kcal": 814, "c": 121, "p": 38, "f": 20}}, {"name": "Pasta + ceci + evo + grana — pesi a crudo", "items": [{"name": "Pasta (cruda)", "g": 80}, {"name": "Ceci lessati", "g": 300}, {"name": "Olio EVO", "g": 10}, {"name": "Grana", "g": 10}], "totals": {"kcal": 841, "c": 123, "p": 36, "f": 21}}]}, {"name": "Spuntino", "icon": "🍎", "pct": 12, "target": {"kcal": 297, "c": 44, "p": 14, "f": 7}, "options": [{"name": "Gallette + yogurt greco + mandorle + marmellata", "items": [{"name": "Gallette di riso", "g": 30}, {"name": "Yogurt greco 0%", "g": 90}, {"name": "Mandorle", "g": 10}, {"name": "Marmellata", "g": 20}], "totals": {"kcal": 275, "c": 43, "p": 14, "f": 6}}, {"name": "Banana + fiocchi di latte + mandorle", "items": [{"name": "Banana", "g": 170}, {"name": "Fiocchi di latte magri", "g": 95}, {"name": "Mandorle", "g": 8}], "totals": {"kcal": 291, "c": 44, "p": 14, "f": 9}}]}, {"name": "Cena", "icon": "🌙", "pct": 33, "target": {"kcal": 817, "c": 121, "p": 38, "f": 19}, "options": [{"name": "Gallette + uova + evo + verdure + ketchup", "items": [{"name": "Gallette di riso", "g": 110}, {"name": "Uova intere", "g": 165}, {"name": "Olio EVO", "g": 5}, {"name": "Verdure miste", "g": 250}, {"name": "Ketchup", "g": 15}], "totals": {"kcal": 783, "c": 104, "p": 34, "f": 25}}, {"name": "Pancarrè + albume + evo + verdure", "items": [{"name": "Pancarrè", "g": 180}, {"name": "Albume", "g": 150}, {"name": "Olio EVO", "g": 10}, {"name": "Verdure miste", "g": 250}], "totals": {"kcal": 706, "c": 99, "p": 35, "f": 17}}]}], "fuel": {"note": "Sessione di 1h15 a bassa intensità: basta l'idratazione con sali, nessun carico di carbo in bici.", "supp": null, "pre": null, "intra": {"label": "Intra (durante)", "items": [{"name": "Bevanda isotonica (polvere)", "g": 25, "disp": "25 g di polvere in 750 ml d'acqua"}], "totals": {"kcal": 95, "c": 24, "p": 0, "f": 0}}, "post": {"label": "Post (entro 30-45 min dalla fine)", "items": [{"name": "Whey", "g": 25, "disp": null}, {"name": "Banana", "g": 100, "disp": null}], "totals": {"kcal": 189, "c": 25, "p": 21, "f": 2}}}}, {"iso": "2026-08-28", "dow": "Venerdì", "d": "28 ago", "intensity": "rest", "sessions": [], "planned": null, "alt": null, "load": "Nessuna sessione a piano su TrainingPeaks", "spend": 0, "targets": {"kcal": 2289, "c": 303, "p": 136, "f": 59}, "fuelTotals": null, "mealBudget": {"kcal": 2289, "c": 303, "p": 136, "f": 59}, "insight": null, "meals": [{"name": "Colazione", "icon": "☀️", "pct": 22, "target": {"kcal": 504, "c": 67, "p": 30, "f": 13}, "options": [{"name": "Avena + latte di soia + burro di arachidi", "items": [{"name": "Avena (fiocchi)", "g": 95}, {"name": "Latte di soia non zucch.", "g": 395}, {"name": "Burro di arachidi", "g": 10}], "totals": {"kcal": 559, "c": 67, "p": 28, "f": 19}}, {"name": "Corn flakes + whey + latte di soia", "items": [{"name": "Corn flakes senza zuccheri", "g": 75}, {"name": "Whey", "g": 20}, {"name": "Latte di soia non zucch.", "g": 300}], "totals": {"kcal": 462, "c": 66, "p": 31, "f": 7}}]}, {"name": "Pranzo", "icon": "🍽️", "pct": 33, "target": {"kcal": 755, "c": 100, "p": 45, "f": 19}, "options": [{"name": "Riso + tonno + evo + grana — pesi a crudo", "items": [{"name": "Riso (crudo)", "g": 125}, {"name": "Tonno al naturale sgocc.", "g": 125}, {"name": "Olio EVO", "g": 15}, {"name": "Grana", "g": 10}], "totals": {"kcal": 764, "c": 99, "p": 45, "f": 20}}, {"name": "Riso + lenticchie + evo + mais — pesi a crudo", "items": [{"name": "Riso (crudo)", "g": 80}, {"name": "Lenticchie lessate", "g": 265}, {"name": "Olio EVO", "g": 15}, {"name": "Mais in scatola", "g": 70}], "totals": {"kcal": 787, "c": 128, "p": 32, "f": 17}}]}, {"name": "Spuntino", "icon": "🍎", "pct": 12, "target": {"kcal": 275, "c": 36, "p": 16, "f": 7}, "options": [{"name": "Yogurt greco + banana + mandorle", "items": [{"name": "Yogurt greco 0%", "g": 120}, {"name": "Banana", "g": 125}, {"name": "Mandorle", "g": 13}], "totals": {"kcal": 255, "c": 36, "p": 16, "f": 7}}, {"name": "Gallette + fiocchi di latte + mela", "items": [{"name": "Gallette di riso", "g": 15}, {"name": "Fiocchi di latte magri", "g": 130}, {"name": "Mela", "g": 150}], "totals": {"kcal": 263, "c": 38, "p": 16, "f": 6}}]}, {"name": "Cena", "icon": "🌙", "pct": 33, "target": {"kcal": 755, "c": 100, "p": 45, "f": 19}, "options": [{"name": "Pancarrè + fiocchi di latte + evo + verdure + ketchup", "items": [{"name": "Pancarrè", "g": 160}, {"name": "Fiocchi di latte magri", "g": 255}, {"name": "Olio EVO", "g": 5}, {"name": "Verdure miste", "g": 250}, {"name": "Ketchup", "g": 15}], "totals": {"kcal": 796, "c": 101, "p": 45, "f": 22}}, {"name": "Gallette + pollo + evo + verdure", "items": [{"name": "Gallette di riso", "g": 110}, {"name": "Petto di pollo", "g": 105}, {"name": "Olio EVO", "g": 10}, {"name": "Verdure miste", "g": 250}], "totals": {"kcal": 750, "c": 99, "p": 45, "f": 18}}]}], "fuel": null}], "generated": "2026-08-22"};
+const DATA = {"bmr": 1761, "base": 2289, "weight": 75.7, "ftp": 261, "days": [{"iso": "2026-08-22", "dow": "Sabato", "d": "22 ago", "intensity": "high", "sessions": [{"icon": "🏃", "title": "Z4 short reps — completata", "detail": "11,94 km · 54:16 · passo 4:33/km · HR media 173 bpm · 955 kcal · 68 TSS"}], "planned": "Pianificata: 12,55 km · 56:00 · 147 TL (COROS) — 73 TSS (TrainingPeaks)", "alt": null, "load": "Short/long-term load 86/73 · ratio 1.17 · recovery 80%", "spend": 955, "targets": {"kcal": 3244, "c": 492, "p": 136, "f": 81}, "fuelTotals": {"kcal": 441, "c": 78, "p": 26, "f": 4}, "mealBudget": {"kcal": 2803, "c": 414, "p": 110, "f": 77}, "insight": "Sessione eseguita a 11,94 km in 54:16 contro i 12,55 km / 56:00 pianificati: leggermente più corta, ma con HR media 173 bpm e passo 4:33/km è la corsa più veloce delle ultime due settimane (la Z3 short reps del 09/08 chiudeva 10,77 km in 50:00). Il TSS reale è 68 contro i 73 pianificati, uno scostamento del 7% — sostanzialmente a target. Il contesto di recupero era favorevole: sonno 6h10 ma con score 92 e solo 3 minuti di veglia, recovery al 100% prima di partire. Dopo la sessione il recovery è sceso a 80% e il load ratio è salito a 1.17, ben sotto la soglia di attenzione di 1.5 — ma domani c'è un fondo bici da 3h, quindi la notte tra oggi e domani è la variabile da tenere d'occhio.", "meals": [{"name": "Colazione", "icon": "☀️", "pct": 22, "target": {"kcal": 617, "c": 91, "p": 24, "f": 17}, "options": [{"name": "Avena + latte di soia + burro di arachidi", "items": [{"name": "Avena (fiocchi)", "g": 130}, {"name": "Latte di soia non zucch.", "g": 200}, {"name": "Burro di arachidi", "g": 10}], "totals": {"kcal": 630, "c": 89, "p": 27, "f": 18}}, {"name": "Corn flakes + whey + marmellata + latte di soia", "items": [{"name": "Corn flakes senza zuccheri", "g": 90}, {"name": "Whey", "g": 10}, {"name": "Marmellata", "g": 20}, {"name": "Latte di soia non zucch.", "g": 300}], "totals": {"kcal": 529, "c": 91, "p": 25, "f": 7}}]}, {"name": "Pranzo", "icon": "🍽️", "pct": 33, "target": {"kcal": 925, "c": 137, "p": 36, "f": 25}, "options": [{"name": "Riso + tonno + evo + mais + grana — pesi a crudo", "items": [{"name": "Riso (crudo)", "g": 155}, {"name": "Tonno al naturale sgocc.", "g": 75}, {"name": "Olio EVO", "g": 20}, {"name": "Mais in scatola", "g": 80}, {"name": "Grana", "g": 10}], "totals": {"kcal": 927, "c": 136, "p": 36, "f": 26}}, {"name": "Pasta + tonno + evo + grana — pesi a crudo", "items": [{"name": "Pasta (cruda)", "g": 175}, {"name": "Tonno al naturale sgocc.", "g": 70}, {"name": "Olio EVO", "g": 20}, {"name": "Grana", "g": 10}], "totals": {"kcal": 946, "c": 131, "p": 44, "f": 26}}]}, {"name": "Spuntino", "icon": "🍎", "pct": 12, "target": {"kcal": 336, "c": 50, "p": 13, "f": 9}, "options": [{"name": "Yogurt greco + banana + mandorle", "items": [{"name": "Yogurt greco 0%", "g": 80}, {"name": "Banana", "g": 190}, {"name": "Mandorle", "g": 18}], "totals": {"kcal": 319, "c": 51, "p": 14, "f": 10}}, {"name": "Gallette + fiocchi di latte + mandorle + mela", "items": [{"name": "Gallette di riso", "g": 30}, {"name": "Fiocchi di latte magri", "g": 80}, {"name": "Mandorle", "g": 10}, {"name": "Mela", "g": 150}], "totals": {"kcal": 330, "c": 50, "p": 14, "f": 10}}]}, {"name": "Cena", "icon": "🌙", "pct": 33, "target": {"kcal": 925, "c": 137, "p": 36, "f": 25}, "options": [{"name": "Pancarrè + pollo + evo + verdure + ketchup", "items": [{"name": "Pancarrè", "g": 180}, {"name": "Petto di pollo", "g": 90}, {"name": "Olio EVO", "g": 15}, {"name": "Verdure miste", "g": 250}, {"name": "Ketchup", "g": 15}], "totals": {"kcal": 836, "c": 102, "p": 46, "f": 25}}, {"name": "Gallette + seitan + evo + verdure", "items": [{"name": "Gallette di riso", "g": 110}, {"name": "Seitan", "g": 90}, {"name": "Olio EVO", "g": 20}, {"name": "Verdure miste", "g": 250}], "totals": {"kcal": 792, "c": 103, "p": 35, "f": 25}}]}], "fuel": {"note": "Sessione già completata: qui sotto il recupero post-sessione della Z4 di oggi.", "supp": null, "pre": null, "intra": null, "post": {"label": "Post (entro 30-45 min dalla fine)", "items": [{"name": "Whey", "g": 25, "disp": null}, {"name": "Banana", "g": 120, "disp": null}, {"name": "Pancarrè", "g": 60, "disp": null}, {"name": "Marmellata", "g": 30, "disp": null}], "totals": {"kcal": 441, "c": 78, "p": 26, "f": 4}}}}, {"iso": "2026-08-23", "dow": "Domenica", "d": "23 ago", "intensity": "high", "sessions": [{"icon": "🚴", "title": "Fondo bici — 3h00", "detail": "Salite fino a 1 km da fare in Z4, 270-300 W (TrainingPeaks)"}], "planned": null, "alt": null, "load": "Giornata più dispendiosa della settimana · stima ~169 TSS", "spend": 1590, "targets": {"kcal": 3879, "c": 606, "p": 136, "f": 101}, "fuelTotals": {"kcal": 1669, "c": 364, "p": 42, "f": 9}, "mealBudget": {"kcal": 2210, "c": 242, "p": 94, "f": 92}, "insight": null, "meals": [{"name": "Colazione", "icon": "☀️", "pct": 22, "target": {"kcal": 486, "c": 53, "p": 21, "f": 20}, "options": [{"name": "Avena + latte di soia + burro di arachidi + marmellata", "items": [{"name": "Avena (fiocchi)", "g": 60}, {"name": "Latte di soia non zucch.", "g": 215}, {"name": "Burro di arachidi", "g": 25}, {"name": "Marmellata", "g": 30}], "totals": {"kcal": 526, "c": 65, "p": 22, "f": 21}}, {"name": "Corn flakes + whey + marmellata + latte di soia", "items": [{"name": "Corn flakes senza zuccheri", "g": 55}, {"name": "Whey", "g": 10}, {"name": "Marmellata", "g": 10}, {"name": "Latte di soia non zucch.", "g": 300}], "totals": {"kcal": 372, "c": 55, "p": 22, "f": 7}}]}, {"name": "Pranzo", "icon": "🍽️", "pct": 33, "target": {"kcal": 729, "c": 80, "p": 31, "f": 30}, "options": [{"name": "Pasta + ceci + evo + grana — pesi a crudo", "items": [{"name": "Pasta (cruda)", "g": 80}, {"name": "Ceci lessati", "g": 145}, {"name": "Olio EVO", "g": 20}, {"name": "Grana", "g": 10}], "totals": {"kcal": 714, "c": 90, "p": 25, "f": 28}}, {"name": "Riso + tonno + evo + mais — pesi a crudo", "items": [{"name": "Riso (crudo)", "g": 85}, {"name": "Tonno al naturale sgocc.", "g": 85}, {"name": "Olio EVO", "g": 30}, {"name": "Mais in scatola", "g": 80}], "totals": {"kcal": 737, "c": 81, "p": 31, "f": 32}}]}, {"name": "Spuntino", "icon": "🍎", "pct": 12, "target": {"kcal": 265, "c": 29, "p": 11, "f": 11}, "options": [{"name": "Gallette + yogurt greco + mandorle + marmellata", "items": [{"name": "Gallette di riso", "g": 20}, {"name": "Yogurt greco 0%", "g": 80}, {"name": "Mandorle", "g": 15}, {"name": "Marmellata", "g": 20}], "totals": {"kcal": 260, "c": 36, "p": 13, "f": 8}}, {"name": "Banana + fiocchi di latte + mandorle", "items": [{"name": "Banana", "g": 100}, {"name": "Fiocchi di latte magri", "g": 80}, {"name": "Mandorle", "g": 13}], "totals": {"kcal": 243, "c": 29, "p": 13, "f": 10}}]}, {"name": "Cena", "icon": "🌙", "pct": 33, "target": {"kcal": 729, "c": 80, "p": 31, "f": 30}, "options": [{"name": "Gallette + burger vegetale + evo + verdure + ketchup", "items": [{"name": "Gallette di riso", "g": 75}, {"name": "Burger vegetale Lidl", "g": 125}, {"name": "Olio EVO", "g": 10}, {"name": "Verdure miste", "g": 250}, {"name": "Ketchup", "g": 15}], "totals": {"kcal": 706, "c": 82, "p": 31, "f": 28}}, {"name": "Pancarrè + pollo + evo + verdure", "items": [{"name": "Pancarrè", "g": 130}, {"name": "Petto di pollo", "g": 90}, {"name": "Olio EVO", "g": 20}, {"name": "Verdure miste", "g": 250}], "totals": {"kcal": 732, "c": 74, "p": 42, "f": 28}}]}], "fuel": {"note": "Sessione singola da 3 ore in Z4: il fueling non è opzionale, è parte dell'allenamento.", "supp": "Caffeina 2-3 mg/kg (≈150-230 mg) 45 min prima se parti al mattino · creatina 5 g/die continuativa in questo periodo di volume alto.", "pre": {"label": "Pre (2-3 h prima della partenza)", "items": [{"name": "Pancarrè", "g": 110, "disp": null}, {"name": "Marmellata", "g": 55, "disp": null}, {"name": "Banana", "g": 120, "disp": null}], "totals": {"kcal": 536, "c": 117, "p": 10, "f": 4}}, "intra": {"label": "Intra (durante, ~80 g carbo/ora → ~240 g totali)", "items": [{"name": "Gel energetico (25 g carbo)", "g": 160, "disp": "5 gel (≈160 g, 125 g carbo)"}, {"name": "Bevanda isotonica (polvere)", "g": 80, "disp": "80 g di polvere in 1,5 L d'acqua"}, {"name": "Datteri", "g": 60, "disp": null}], "totals": {"kcal": 633, "c": 160, "p": 2, "f": 0}}, "post": {"label": "Post (entro 30-45 min dalla fine)", "items": [{"name": "Whey", "g": 30, "disp": null}, {"name": "Banana", "g": 120, "disp": null}, {"name": "Pancarrè", "g": 70, "disp": null}, {"name": "Marmellata", "g": 35, "disp": null}], "totals": {"kcal": 500, "c": 87, "p": 30, "f": 5}}}}, {"iso": "2026-08-24", "dow": "Lunedì", "d": "24 ago", "intensity": "medium", "sessions": [{"icon": "🏊", "title": "Nuoto A2 — 42:00 · 3,3 km", "detail": "200 risc · 6x50 tecnica · 6x50 R8 · 6x200 pale+pull+boccaglio · 6x100 pull · 12x50 agile · 100 sciolti — 66 TSS"}], "planned": null, "alt": null, "load": "Recupero attivo aerobico dopo il weekend", "spend": 500, "targets": {"kcal": 2789, "c": 416, "p": 136, "f": 65}, "fuelTotals": null, "mealBudget": {"kcal": 2789, "c": 416, "p": 136, "f": 65}, "insight": null, "meals": [{"name": "Colazione", "icon": "☀️", "pct": 22, "target": {"kcal": 614, "c": 92, "p": 30, "f": 14}, "options": [{"name": "Avena + latte di soia + burro di arachidi", "items": [{"name": "Avena (fiocchi)", "g": 135}, {"name": "Latte di soia non zucch.", "g": 240}, {"name": "Burro di arachidi", "g": 10}], "totals": {"kcal": 663, "c": 93, "p": 29, "f": 19}}, {"name": "Corn flakes + whey + latte di soia", "items": [{"name": "Corn flakes senza zuccheri", "g": 105}, {"name": "Whey", "g": 15}, {"name": "Latte di soia non zucch.", "g": 300}], "totals": {"kcal": 556, "c": 91, "p": 29, "f": 7}}]}, {"name": "Pranzo", "icon": "🍽️", "pct": 33, "target": {"kcal": 920, "c": 137, "p": 45, "f": 21}, "options": [{"name": "Riso + lenticchie + evo + mais — pesi a crudo", "items": [{"name": "Riso (crudo)", "g": 80}, {"name": "Lenticchie lessate", "g": 300}, {"name": "Olio EVO", "g": 20}, {"name": "Mais in scatola", "g": 70}], "totals": {"kcal": 871, "c": 135, "p": 35, "f": 23}}, {"name": "Pasta + lenticchie + evo + grana — pesi a crudo", "items": [{"name": "Pasta (cruda)", "g": 95}, {"name": "Lenticchie lessate", "g": 300}, {"name": "Olio EVO", "g": 15}, {"name": "Grana", "g": 10}], "totals": {"kcal": 872, "c": 131, "p": 43, "f": 21}}]}, {"name": "Spuntino", "icon": "🍎", "pct": 12, "target": {"kcal": 335, "c": 50, "p": 16, "f": 8}, "options": [{"name": "Yogurt greco + banana + mandorle", "items": [{"name": "Yogurt greco 0%", "g": 110}, {"name": "Banana", "g": 185}, {"name": "Mandorle", "g": 13}], "totals": {"kcal": 303, "c": 50, "p": 16, "f": 7}}, {"name": "Gallette + fiocchi di latte + mandorle + mela", "items": [{"name": "Gallette di riso", "g": 30}, {"name": "Fiocchi di latte magri", "g": 110}, {"name": "Mandorle", "g": 5}, {"name": "Mela", "g": 150}], "totals": {"kcal": 331, "c": 50, "p": 16, "f": 8}}]}, {"name": "Cena", "icon": "🌙", "pct": 33, "target": {"kcal": 920, "c": 137, "p": 45, "f": 21}, "options": [{"name": "Pancarrè + seitan + evo + verdure + ketchup", "items": [{"name": "Pancarrè", "g": 180}, {"name": "Seitan", "g": 90}, {"name": "Olio EVO", "g": 10}, {"name": "Verdure miste", "g": 250}, {"name": "Ketchup", "g": 15}], "totals": {"kcal": 770, "c": 105, "p": 41, "f": 18}}, {"name": "Gallette + tofu + evo + verdure", "items": [{"name": "Gallette di riso", "g": 110}, {"name": "Tofu", "g": 175}, {"name": "Olio EVO", "g": 5}, {"name": "Verdure miste", "g": 250}], "totals": {"kcal": 784, "c": 104, "p": 40, "f": 24}}]}], "fuel": null}, {"iso": "2026-08-25", "dow": "Martedì", "d": "25 ago", "intensity": "medium", "sessions": [{"icon": "🏃", "title": "Corsa recupero attivo — 50:00", "detail": "~10,14 km · 98 TL (COROS) · 33 TSS (TrainingPeaks)"}], "planned": null, "alt": null, "load": "Sessione di scarico, intensità bassa", "spend": 768, "targets": {"kcal": 3057, "c": 454, "p": 136, "f": 78}, "fuelTotals": null, "mealBudget": {"kcal": 3057, "c": 454, "p": 136, "f": 78}, "insight": null, "meals": [{"name": "Colazione", "icon": "☀️", "pct": 22, "target": {"kcal": 673, "c": 100, "p": 30, "f": 17}, "options": [{"name": "Avena + latte di soia + burro di arachidi + marmellata", "items": [{"name": "Avena (fiocchi)", "g": 115}, {"name": "Latte di soia non zucch.", "g": 335}, {"name": "Burro di arachidi", "g": 10}, {"name": "Marmellata", "g": 30}], "totals": {"kcal": 692, "c": 99, "p": 29, "f": 19}}, {"name": "Corn flakes + whey + latte di soia", "items": [{"name": "Corn flakes senza zuccheri", "g": 115}, {"name": "Whey", "g": 15}, {"name": "Latte di soia non zucch.", "g": 300}], "totals": {"kcal": 594, "c": 100, "p": 30, "f": 7}}]}, {"name": "Pranzo", "icon": "🍽️", "pct": 33, "target": {"kcal": 1009, "c": 150, "p": 45, "f": 26}, "options": [{"name": "Pasta + tonno + evo + grana — pesi a crudo", "items": [{"name": "Pasta (cruda)", "g": 200}, {"name": "Tonno al naturale sgocc.", "g": 70}, {"name": "Olio EVO", "g": 20}, {"name": "Grana", "g": 10}], "totals": {"kcal": 1039, "c": 150, "p": 48, "f": 27}}, {"name": "Riso + tonno + evo + grana — pesi a crudo", "items": [{"name": "Riso (crudo)", "g": 190}, {"name": "Tonno al naturale sgocc.", "g": 110}, {"name": "Olio EVO", "g": 20}, {"name": "Grana", "g": 10}], "totals": {"kcal": 1024, "c": 150, "p": 45, "f": 25}}]}, {"name": "Spuntino", "icon": "🍎", "pct": 12, "target": {"kcal": 367, "c": 54, "p": 16, "f": 9}, "options": [{"name": "Gallette + yogurt greco + mandorle + marmellata", "items": [{"name": "Gallette di riso", "g": 40}, {"name": "Yogurt greco 0%", "g": 95}, {"name": "Mandorle", "g": 15}, {"name": "Marmellata", "g": 20}], "totals": {"kcal": 346, "c": 52, "p": 16, "f": 9}}, {"name": "Banana + fiocchi di latte + mandorle", "items": [{"name": "Banana", "g": 200}, {"name": "Fiocchi di latte magri", "g": 110}, {"name": "Mandorle", "g": 8}], "totals": {"kcal": 332, "c": 52, "p": 16, "f": 9}}]}, {"name": "Cena", "icon": "🌙", "pct": 33, "target": {"kcal": 1009, "c": 150, "p": 45, "f": 26}, "options": [{"name": "Fette biscottate + albume + evo + verdure + ketchup", "items": [{"name": "Fette biscottate", "g": 110}, {"name": "Albume", "g": 195}, {"name": "Olio EVO", "g": 15}, {"name": "Verdure miste", "g": 250}, {"name": "Ketchup", "g": 15}], "totals": {"kcal": 752, "c": 99, "p": 37, "f": 22}}, {"name": "Pancarrè + pollo + evo + verdure", "items": [{"name": "Pancarrè", "g": 180}, {"name": "Petto di pollo", "g": 90}, {"name": "Olio EVO", "g": 15}, {"name": "Verdure miste", "g": 250}], "totals": {"kcal": 821, "c": 98, "p": 46, "f": 25}}]}], "fuel": null}, {"iso": "2026-08-26", "dow": "Mercoledì", "d": "26 ago", "intensity": "low", "sessions": [{"icon": "🏋️", "title": "Gambe Mantenimento — forza", "detail": "20 TSS · sessione di mantenimento in palestra"}], "planned": null, "alt": null, "load": "Giorno forza: proteine a 2,0 g/kg", "spend": 250, "targets": {"kcal": 2539, "c": 341, "p": 151, "f": 64}, "fuelTotals": null, "mealBudget": {"kcal": 2539, "c": 341, "p": 151, "f": 64}, "insight": null, "meals": [{"name": "Colazione", "icon": "☀️", "pct": 22, "target": {"kcal": 559, "c": 75, "p": 33, "f": 14}, "options": [{"name": "Avena + latte di soia + burro di arachidi", "items": [{"name": "Avena (fiocchi)", "g": 105}, {"name": "Latte di soia non zucch.", "g": 400}, {"name": "Burro di arachidi", "g": 10}], "totals": {"kcal": 599, "c": 74, "p": 30, "f": 20}}, {"name": "Corn flakes + whey + latte di soia", "items": [{"name": "Corn flakes senza zuccheri", "g": 85}, {"name": "Whey", "g": 20}, {"name": "Latte di soia non zucch.", "g": 300}], "totals": {"kcal": 500, "c": 75, "p": 32, "f": 7}}]}, {"name": "Pranzo", "icon": "🍽️", "pct": 33, "target": {"kcal": 838, "c": 113, "p": 50, "f": 21}, "options": [{"name": "Riso + tonno + evo + mais — pesi a crudo", "items": [{"name": "Riso (crudo)", "g": 125}, {"name": "Tonno al naturale sgocc.", "g": 150}, {"name": "Olio EVO", "g": 20}, {"name": "Mais in scatola", "g": 80}], "totals": {"kcal": 867, "c": 112, "p": 50, "f": 23}}, {"name": "Riso + tonno + evo + mais + grana — pesi a crudo", "items": [{"name": "Riso (crudo)", "g": 125}, {"name": "Tonno al naturale sgocc.", "g": 135}, {"name": "Olio EVO", "g": 15}, {"name": "Mais in scatola", "g": 80}, {"name": "Grana", "g": 10}], "totals": {"kcal": 845, "c": 112, "p": 50, "f": 21}}]}, {"name": "Spuntino", "icon": "🍎", "pct": 12, "target": {"kcal": 305, "c": 41, "p": 18, "f": 8}, "options": [{"name": "Yogurt greco + banana + mandorle", "items": [{"name": "Yogurt greco 0%", "g": 135}, {"name": "Banana", "g": 140}, {"name": "Mandorle", "g": 13}], "totals": {"kcal": 277, "c": 40, "p": 18, "f": 7}}, {"name": "Gallette + fiocchi di latte + mela", "items": [{"name": "Gallette di riso", "g": 20}, {"name": "Fiocchi di latte magri", "g": 140}, {"name": "Mela", "g": 150}], "totals": {"kcal": 293, "c": 42, "p": 17, "f": 7}}]}, {"name": "Cena", "icon": "🌙", "pct": 33, "target": {"kcal": 838, "c": 113, "p": 50, "f": 21}, "options": [{"name": "Pancarrè + pollo + evo + verdure + ketchup", "items": [{"name": "Pancarrè", "g": 180}, {"name": "Petto di pollo", "g": 95}, {"name": "Olio EVO", "g": 10}, {"name": "Verdure miste", "g": 250}, {"name": "Ketchup", "g": 15}], "totals": {"kcal": 800, "c": 102, "p": 48, "f": 20}}, {"name": "Gallette + burger vegetale + evo + verdure", "items": [{"name": "Gallette di riso", "g": 110}, {"name": "Burger vegetale Lidl", "g": 195}, {"name": "Olio EVO", "g": 5}, {"name": "Verdure miste", "g": 250}], "totals": {"kcal": 922, "c": 111, "p": 46, "f": 32}}]}], "fuel": null}, {"iso": "2026-08-27", "dow": "Giovedì", "d": "27 ago", "intensity": "medium", "sessions": [{"icon": "🚴", "title": "Bici recupero attivo — 1h15", "detail": ">90 rpm · 50 TSS"}], "planned": null, "alt": "Sul calendario TrainingPeaks il 27/08 compaiono due sessioni Bike: questa da 1h15 (50 TSS) e una \"agilità/recupero attivo\" da 50:00 (29 TSS). Sono alternative, non da sommare — il fabbisogno qui è calcolato sulla sessione principale (1h15).", "load": "Scarico prima del weekend", "spend": 470, "targets": {"kcal": 2759, "c": 416, "p": 136, "f": 61}, "fuelTotals": {"kcal": 284, "c": 49, "p": 21, "f": 2}, "mealBudget": {"kcal": 2475, "c": 367, "p": 115, "f": 59}, "insight": null, "meals": [{"name": "Colazione", "icon": "☀️", "pct": 22, "target": {"kcal": 544, "c": 81, "p": 25, "f": 13}, "options": [{"name": "Avena + latte di soia + burro di arachidi + marmellata", "items": [{"name": "Avena (fiocchi)", "g": 90}, {"name": "Latte di soia non zucch.", "g": 290}, {"name": "Burro di arachidi", "g": 10}, {"name": "Marmellata", "g": 30}], "totals": {"kcal": 580, "c": 83, "p": 24, "f": 17}}, {"name": "Corn flakes + whey + latte di soia", "items": [{"name": "Corn flakes senza zuccheri", "g": 95}, {"name": "Whey", "g": 10}, {"name": "Latte di soia non zucch.", "g": 300}], "totals": {"kcal": 498, "c": 82, "p": 25, "f": 7}}]}, {"name": "Pranzo", "icon": "🍽️", "pct": 33, "target": {"kcal": 817, "c": 121, "p": 38, "f": 19}, "options": [{"name": "Pasta + lenticchie + evo + grana — pesi a crudo", "items": [{"name": "Pasta (cruda)", "g": 95}, {"name": "Lenticchie lessate", "g": 250}, {"name": "Olio EVO", "g": 15}, {"name": "Grana", "g": 10}], "totals": {"kcal": 814, "c": 121, "p": 38, "f": 20}}, {"name": "Pasta + ceci + evo + grana — pesi a crudo", "items": [{"name": "Pasta (cruda)", "g": 80}, {"name": "Ceci lessati", "g": 300}, {"name": "Olio EVO", "g": 10}, {"name": "Grana", "g": 10}], "totals": {"kcal": 841, "c": 123, "p": 36, "f": 21}}]}, {"name": "Spuntino", "icon": "🍎", "pct": 12, "target": {"kcal": 297, "c": 44, "p": 14, "f": 7}, "options": [{"name": "Gallette + yogurt greco + mandorle + marmellata", "items": [{"name": "Gallette di riso", "g": 30}, {"name": "Yogurt greco 0%", "g": 90}, {"name": "Mandorle", "g": 10}, {"name": "Marmellata", "g": 20}], "totals": {"kcal": 275, "c": 43, "p": 14, "f": 6}}, {"name": "Banana + fiocchi di latte + mandorle", "items": [{"name": "Banana", "g": 170}, {"name": "Fiocchi di latte magri", "g": 95}, {"name": "Mandorle", "g": 8}], "totals": {"kcal": 291, "c": 44, "p": 14, "f": 9}}]}, {"name": "Cena", "icon": "🌙", "pct": 33, "target": {"kcal": 817, "c": 121, "p": 38, "f": 19}, "options": [{"name": "Gallette + uova + evo + verdure + ketchup", "items": [{"name": "Gallette di riso", "g": 110}, {"name": "Uova intere", "g": 165}, {"name": "Olio EVO", "g": 5}, {"name": "Verdure miste", "g": 250}, {"name": "Ketchup", "g": 15}], "totals": {"kcal": 783, "c": 104, "p": 34, "f": 25}}, {"name": "Pancarrè + albume + evo + verdure", "items": [{"name": "Pancarrè", "g": 180}, {"name": "Albume", "g": 150}, {"name": "Olio EVO", "g": 10}, {"name": "Verdure miste", "g": 250}], "totals": {"kcal": 706, "c": 99, "p": 35, "f": 17}}]}], "fuel": {"note": "Sessione di 1h15 a bassa intensità: basta l'idratazione con sali, nessun carico di carbo in bici.", "supp": null, "pre": null, "intra": {"label": "Intra (durante)", "items": [{"name": "Bevanda isotonica (polvere)", "g": 25, "disp": "25 g di polvere in 750 ml d'acqua"}], "totals": {"kcal": 95, "c": 24, "p": 0, "f": 0}}, "post": {"label": "Post (entro 30-45 min dalla fine)", "items": [{"name": "Whey", "g": 25, "disp": null}, {"name": "Banana", "g": 100, "disp": null}], "totals": {"kcal": 189, "c": 25, "p": 21, "f": 2}}}}, {"iso": "2026-08-28", "dow": "Venerdì", "d": "28 ago", "intensity": "rest", "sessions": [], "planned": null, "alt": null, "load": "Nessuna sessione a piano su TrainingPeaks", "spend": 0, "targets": {"kcal": 2289, "c": 303, "p": 136, "f": 59}, "fuelTotals": null, "mealBudget": {"kcal": 2289, "c": 303, "p": 136, "f": 59}, "insight": null, "meals": [{"name": "Colazione", "icon": "☀️", "pct": 22, "target": {"kcal": 504, "c": 67, "p": 30, "f": 13}, "options": [{"name": "Avena + latte di soia + burro di arachidi", "items": [{"name": "Avena (fiocchi)", "g": 95}, {"name": "Latte di soia non zucch.", "g": 395}, {"name": "Burro di arachidi", "g": 10}], "totals": {"kcal": 559, "c": 67, "p": 28, "f": 19}}, {"name": "Corn flakes + whey + latte di soia", "items": [{"name": "Corn flakes senza zuccheri", "g": 75}, {"name": "Whey", "g": 20}, {"name": "Latte di soia non zucch.", "g": 300}], "totals": {"kcal": 462, "c": 66, "p": 31, "f": 7}}]}, {"name": "Pranzo", "icon": "🍽️", "pct": 33, "target": {"kcal": 755, "c": 100, "p": 45, "f": 19}, "options": [{"name": "Riso + tonno + evo + grana — pesi a crudo", "items": [{"name": "Riso (crudo)", "g": 125}, {"name": "Tonno al naturale sgocc.", "g": 125}, {"name": "Olio EVO", "g": 15}, {"name": "Grana", "g": 10}], "totals": {"kcal": 764, "c": 99, "p": 45, "f": 20}}, {"name": "Riso + lenticchie + evo + mais — pesi a crudo", "items": [{"name": "Riso (crudo)", "g": 80}, {"name": "Lenticchie lessate", "g": 265}, {"name": "Olio EVO", "g": 15}, {"name": "Mais in scatola", "g": 70}], "totals": {"kcal": 787, "c": 128, "p": 32, "f": 17}}]}, {"name": "Spuntino", "icon": "🍎", "pct": 12, "target": {"kcal": 275, "c": 36, "p": 16, "f": 7}, "options": [{"name": "Yogurt greco + banana + mandorle", "items": [{"name": "Yogurt greco 0%", "g": 120}, {"name": "Banana", "g": 125}, {"name": "Mandorle", "g": 13}], "totals": {"kcal": 255, "c": 36, "p": 16, "f": 7}}, {"name": "Gallette + fiocchi di latte + mela", "items": [{"name": "Gallette di riso", "g": 15}, {"name": "Fiocchi di latte magri", "g": 130}, {"name": "Mela", "g": 150}], "totals": {"kcal": 263, "c": 38, "p": 16, "f": 6}}]}, {"name": "Cena", "icon": "🌙", "pct": 33, "target": {"kcal": 755, "c": 100, "p": 45, "f": 19}, "options": [{"name": "Pancarrè + fiocchi di latte + evo + verdure + ketchup", "items": [{"name": "Pancarrè", "g": 160}, {"name": "Fiocchi di latte magri", "g": 255}, {"name": "Olio EVO", "g": 5}, {"name": "Verdure miste", "g": 250}, {"name": "Ketchup", "g": 15}], "totals": {"kcal": 796, "c": 101, "p": 45, "f": 22}}, {"name": "Gallette + pollo + evo + verdure", "items": [{"name": "Gallette di riso", "g": 110}, {"name": "Petto di pollo", "g": 105}, {"name": "Olio EVO", "g": 10}, {"name": "Verdure miste", "g": 250}], "totals": {"kcal": 750, "c": 99, "p": 45, "f": 18}}]}], "fuel": null}], "generated": "2026-08-22"};
 const D = DATA.days;
+const INT = { high:{l:'Intensa',c:'var(--crit)'}, medium:{l:'Media',c:'var(--warn)'},
+              low:{l:'Leggera',c:'var(--good)'}, rest:{l:'Riposo',c:'var(--text-faint)'} };
 
 const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const n = v => Math.round(v).toLocaleString('it-IT');
@@ -193,124 +240,158 @@ let TODAY = D.findIndex(d => d.iso === todayISO());
 if (TODAY < 0) TODAY = 0;
 let idx = TODAY;
 
-function macroBar(t){
+/* anello macro */
+function donut(t){
   const kc = t.c*4, kp = t.p*4, kf = t.f*9, tot = kc+kp+kf || 1;
-  return `<div class="bar">
-    <i style="width:${kc/tot*100}%;background:var(--carb)"></i>
-    <i style="width:${kp/tot*100}%;background:var(--prot)"></i>
-    <i style="width:${kf/tot*100}%;background:var(--fat)"></i></div>`;
+  const R = 46, C = 2*Math.PI*R, GAP = 5;
+  let off = 0, seg = '';
+  [[kc,'var(--carb)'],[kp,'var(--prot)'],[kf,'var(--fat)']].forEach(([v,col]) => {
+    const len = Math.max(v/tot*C - GAP, 0);
+    seg += `<circle cx="59" cy="59" r="${R}" fill="none" stroke="${col}" stroke-width="13"
+      stroke-linecap="round" stroke-dasharray="${len} ${C-len}" stroke-dashoffset="${-off}"/>`;
+    off += v/tot*C;
+  });
+  return `<div class="donut"><svg viewBox="0 0 118 118" width="118" height="118">
+      <circle cx="59" cy="59" r="${R}" fill="none" stroke="var(--surface-3)" stroke-width="13"/>${seg}</svg>
+    <div class="mid"><b>${n(t.kcal)}</b><span>kcal</span></div></div>`;
 }
-function macroTiles(t){
+function legend(t){
   const kc = t.c*4, kp = t.p*4, kf = t.f*9, tot = kc+kp+kf || 1;
-  const pc = v => Math.round(v/tot*100)+'%';
-  return `<div class="macros">
-    <div class="macro m-c"><em>Carbo</em><b>${n(t.c)} g</b><span>${pc(kc)}</span></div>
-    <div class="macro m-p"><em>Proteine</em><b>${n(t.p)} g</b><span>${pc(kp)}</span></div>
-    <div class="macro m-f"><em>Grassi</em><b>${n(t.f)} g</b><span>${pc(kf)}</span></div></div>`;
+  const row = (col,name,g,k) => `<div class="leg"><i style="background:${col}"></i>
+    <span>${name} · ${Math.round(k/tot*100)}%</span><b>${n(g)} g</b></div>`;
+  return `<div class="legend">
+    ${row('var(--carb)','Carboidrati',t.c,kc)}
+    ${row('var(--prot)','Proteine',t.p,kp)}
+    ${row('var(--fat)','Grassi',t.f,kf)}</div>`;
 }
-function totalsRow(t, label){
-  return `<div class="tot"><b>${label||'Totale'}: ${n(t.kcal)} kcal</b>
+function totals(t, label){
+  return `<div class="tot"><b>${label||'Totale'} ${n(t.kcal)} kcal</b>
     <span class="c">C ${n(t.c)} g</span><span class="p">P ${n(t.p)} g</span><span class="f">G ${n(t.f)} g</span></div>`;
 }
-function items(list){
-  return list.map(i => `<div class="ing"><span>${esc(i.name)}</span><span>${esc(i.disp || (n(i.g)+' g'))}</span></div>`).join('');
+const items = l => l.map(i =>
+  `<div class="ing"><span>${esc(i.name)}</span><s>${esc(i.disp || (n(i.g)+' g'))}</s></div>`).join('');
+
+function strip(){
+  document.getElementById('strip').innerHTML = D.map((x,i) =>
+    `<button class="pill${i===idx?' on':''}${i===TODAY?' today':''}" data-i="${i}"
+      style="--dot:${INT[x.intensity].c}">
+      <em>${esc(x.dow.slice(0,3))}</em><b>${esc(x.d.split(' ')[0])}</b><i></i></button>`).join('');
+  const on = document.querySelector('.pill.on');
+  if (on) on.scrollIntoView({block:'nearest', inline:'center', behavior:'smooth'});
 }
 
 function render(){
-  const d = D[idx];
-  document.getElementById('dayName').innerHTML = esc(d.dow) + (idx===TODAY ? '<span class="badge-today">oggi</span>' : '');
+  const d = D[idx], I = INT[d.intensity];
+  document.getElementById('dayName').innerHTML = esc(d.dow) + (idx===TODAY ? '<span class="tag">oggi</span>' : '');
   document.getElementById('dayDate').textContent = d.d + ' 2026';
   document.getElementById('prev').disabled = idx === 0;
   document.getElementById('next').disabled = idx === D.length-1;
-  document.getElementById('dots').innerHTML = D.map((x,i) =>
-    `<button class="dot${i===idx?' on':''}" data-i="${i}" aria-label="${esc(x.dow)}"></button>`).join('');
+  document.getElementById('sub').textContent = D[0].d + ' – ' + D[D.length-1].d + ' 2026';
+  strip();
 
   let h = '';
 
-  /* --- allenamento --- */
-  h += `<section class="card accent i-${d.intensity}"><div class="cardpad">
-    <p class="eyebrow">Allenamento</p>`;
+  /* allenamento */
+  h += `<section class="card"><div class="pad">
+    <p class="eyebrow" style="--ic:${I.c}">Allenamento<span class="chip">${I.l}</span></p>`;
   h += d.sessions.length
     ? d.sessions.map(s => `<div class="sess"><div class="ic">${s.icon}</div>
         <div><b>${esc(s.title)}</b><p>${esc(s.detail)}</p></div></div>`).join('')
-    : `<div class="sess"><div class="ic">😴</div><div><b>Riposo</b>
-        <p>Nessuna sessione a piano: giornata di recupero completo.</p></div></div>`;
+    : `<div class="sess"><div class="ic">😴</div><div><b>Riposo completo</b>
+        <p>Nessuna sessione a piano. Giornata di recupero.</p></div></div>`;
   if (d.planned) h += `<p class="note">${esc(d.planned)}</p>`;
   if (d.alt) h += `<p class="note">⚠️ ${esc(d.alt)}</p>`;
-  h += `<p class="metaline">${esc(d.load)}</p></div></section>`;
+  h += `<p class="meta">${esc(d.load)}</p></div></section>`;
 
-  /* --- insight (solo giorni con attività completata) --- */
-  if (d.insight) h += `<section class="card insight"><div class="cardpad">
+  /* insight — solo giorni con attività completata */
+  if (d.insight) h += `<section class="card insight"><div class="pad">
     <p class="eyebrow">Insight</p><p>${esc(d.insight)}</p></div></section>`;
 
-  /* --- fabbisogno --- */
-  h += `<section class="card"><div class="cardpad">
+  /* fabbisogno */
+  h += `<section class="card"><div class="pad">
     <p class="eyebrow">Fabbisogno stimato</p>
-    <div class="kcal"><b>${n(d.targets.kcal)}</b><span>kcal &middot; ${n(DATA.base)} base${d.spend ? ' + ' + n(d.spend) + ' sessione' : ''}</span></div>
-    ${macroBar(d.targets)}${macroTiles(d.targets)}`;
+    <div class="energy">${donut(d.targets)}${legend(d.targets)}</div>
+    <p class="srcline">${n(DATA.base)} kcal di base${d.spend ? ' + ' + n(d.spend) + ' kcal di sessione' : ' · nessuna sessione'}</p>`;
   if (d.fuelTotals) h += `<div class="split">
-      <div><b>${n(d.fuelTotals.kcal)}</b>dal fueling</div>
-      <div><b>${n(d.mealBudget.kcal)}</b>dai pasti</div></div>
-    <p class="note">I pasti qui sotto coprono ${n(d.mealBudget.kcal)} kcal: il resto arriva dal fueling pre/intra/post, calcolato a parte per non contarlo due volte.</p>`;
+      <div><b>${n(d.mealBudget.kcal)}</b>dai pasti</div>
+      <div><b>${n(d.fuelTotals.kcal)}</b>dal fueling</div></div>
+    <p class="note">I pasti qui sotto coprono ${n(d.mealBudget.kcal)} kcal: il resto arriva dal fueling pre/intra/post, tenuto separato per non contarlo due volte.</p>`;
   h += `</div></section>`;
 
-  /* --- fueling --- */
+  /* fueling */
   if (d.fuel){
-    h += `<section class="card"><div class="cardpad">
-      <p class="eyebrow">Fueling sessione</p><p class="note" style="margin-top:0">${esc(d.fuel.note)}</p>`;
+    h += `<section class="card"><div class="pad">
+      <p class="eyebrow">Fueling sessione</p>
+      <p class="note" style="margin-top:0">${esc(d.fuel.note)}</p>`;
     ['pre','intra','post'].forEach(k => {
       const p = d.fuel[k]; if (!p) return;
-      h += `<div class="phase"><b>${esc(p.label)}</b>${items(p.items)}${totalsRow(p.totals, 'Totale fase')}</div>`;
+      h += `<div class="phase"><b>${esc(p.label)}</b>${items(p.items)}${totals(p.totals,'Totale fase')}</div>`;
     });
     if (d.fuel.supp) h += `<p class="supp"><b>Supplementi.</b> ${esc(d.fuel.supp)}</p>`;
     h += `</div></section>`;
   }
 
-  /* --- pasti --- */
+  /* pasti */
   h += `<section class="card">`;
-  d.meals.forEach((m, i) => {
+  d.meals.forEach((m,i) => {
     h += `<div class="meal" id="meal${i}">
-      <div class="mhead" data-m="${i}">
-        <div class="ic">${m.icon}</div>
-        <div class="txt"><b>${esc(m.name)} <span style="font-weight:400;color:var(--text-faint)">${m.pct}%</span></b>
-          <span>${n(m.target.kcal)} kcal &middot; C ${n(m.target.c)} &middot; P ${n(m.target.p)} &middot; G ${n(m.target.f)} g</span></div>
-        <div class="chev">▸</div></div>
-      <div class="mbody"><div class="mbody-in">`;
-    m.options.forEach((o, j) => {
-      h += `<div class="opt"><em>Opzione ${j+1}</em><b>${esc(o.name)}</b>${items(o.items)}${totalsRow(o.totals)}</div>`;
+      <div class="mhead" data-m="${i}"><div class="ic">${m.icon}</div>
+        <div class="t"><b>${esc(m.name)} <i>${m.pct}%</i></b>
+          <span class="sub">${n(m.target.kcal)} kcal · C ${n(m.target.c)} · P ${n(m.target.p)} · G ${n(m.target.f)} g</span></div>
+        <div class="chev">▶</div></div>
+      <div class="mbody"><div><div class="mbody-in">`;
+    m.options.forEach((o,j) => {
+      h += `<div class="opt"><em>Opzione ${j+1}</em><b>${esc(o.name)}</b>${items(o.items)}${totals(o.totals)}</div>`;
     });
-    h += `</div></div></div>`;
+    h += `</div></div></div></div>`;
   });
   h += `</section>`;
 
-  document.getElementById('view').innerHTML = h;
-  document.getElementById('sub').textContent = 'Settimana ' + D[0].d + ' – ' + D[D.length-1].d;
+  const v = document.getElementById('view');
+  v.style.animation = 'none'; v.offsetHeight; v.style.animation = '';
+  v.innerHTML = h;
 }
 
+function go(i){ if (i>=0 && i<D.length && i!==idx){ idx = i; render(); } }
+
 document.addEventListener('click', e => {
-  const dot = e.target.closest('.dot');
-  if (dot){ idx = +dot.dataset.i; render(); window.scrollTo({top:0,behavior:'smooth'}); return; }
+  const p = e.target.closest('.pill');
+  if (p){ go(+p.dataset.i); window.scrollTo({top:0,behavior:'smooth'}); return; }
   const mh = e.target.closest('.mhead');
-  if (mh){ document.getElementById('meal'+mh.dataset.m).classList.toggle('open'); return; }
+  if (mh){ document.getElementById('meal'+mh.dataset.m).classList.toggle('open'); }
 });
-document.getElementById('prev').onclick = () => { if (idx>0){ idx--; render(); } };
-document.getElementById('next').onclick = () => { if (idx<D.length-1){ idx++; render(); } };
+document.getElementById('prev').onclick = () => go(idx-1);
+document.getElementById('next').onclick = () => go(idx+1);
 document.addEventListener('keydown', e => {
-  if (e.key === 'ArrowLeft'  && idx>0){ idx--; render(); }
-  if (e.key === 'ArrowRight' && idx<D.length-1){ idx++; render(); }
+  if (e.key === 'ArrowLeft')  go(idx-1);
+  if (e.key === 'ArrowRight') go(idx+1);
 });
+
+/* swipe orizzontale per cambiare giorno */
+let sx = 0, sy = 0, tracking = false;
+document.getElementById('view').addEventListener('touchstart', e => {
+  if (e.touches.length !== 1) return;
+  sx = e.touches[0].clientX; sy = e.touches[0].clientY; tracking = true;
+}, {passive:true});
+document.getElementById('view').addEventListener('touchend', e => {
+  if (!tracking) return; tracking = false;
+  const dx = e.changedTouches[0].clientX - sx, dy = e.changedTouches[0].clientY - sy;
+  if (Math.abs(dx) > 55 && Math.abs(dx) > Math.abs(dy)*1.8){
+    go(dx < 0 ? idx+1 : idx-1);
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+}, {passive:true});
+
 document.getElementById('theme').onclick = () => {
   const cur = document.documentElement.getAttribute('data-theme');
-  const dark = cur ? cur === 'dark'
-    : window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const dark = cur ? cur === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
   document.documentElement.setAttribute('data-theme', dark ? 'light' : 'dark');
 };
 
 document.getElementById('foot').innerHTML = `
 <p><b>Metodo.</b> Fabbisogno = BMR (Mifflin-St Jeor, ${DATA.weight} kg / 183 cm / 29 anni → ${n(DATA.bmr)} kcal) × 1,3 per l'attività di base, più la spesa stimata della sessione.
 Bici: kcal ≈ (TSS/100) × FTP ${DATA.ftp} W × 3,6. Corsa: ≈ 1 kcal/kg/km. Nuoto e forza: stima da durata e intensità.
-Proteine 1,8 g/kg (2,0 nei giorni forza), carboidrati da 3,5 a 8 g/kg secondo il carico, grassi a completare.
-Split pasti 22 / 33 / 12 / 33%.</p>
+Proteine 1,8 g/kg (2,0 nei giorni forza), carboidrati da 3,5 a 8 g/kg secondo il carico, grassi a completare. Split pasti 22 / 33 / 12 / 33%.</p>
 <p><b>Precisione.</b> Il fabbisogno giornaliero è un calcolo standard verificabile. I valori nutrizionali dei singoli alimenti sono <b>stime generiche</b> (tipo USDA/CREA), non verificate su database di prodotto: per i confezionati di marca lo scostamento può essere del 10-20%. Tolleranza dichiarata sulle ricette: ±10-15%.</p>
 <p><b>Fonti.</b> COROS (corsa, nuoto, sonno, HRV, stress, recovery, carico) · Garmin Connect (bici) · TrainingPeaks (piano, TSS). Generata il ${DATA.generated}.</p>`;
 
