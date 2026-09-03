@@ -709,3 +709,23 @@ an editor opened by 'git commit'. Please make sure all processes
 are terminated then try again. If it still fails, a git process
 may have crashed in this repository earlier:
 remove the file manually to continue.
+fatal: Unable to create '/Users/mirkodesoricellis/training-dashboard/.git/index.lock': File exists.
+
+Another git process seems to be running in this repository, e.g.
+an editor opened by 'git commit'. Please make sure all processes
+are terminated then try again. If it still fails, a git process
+may have crashed in this repository earlier:
+remove the file manually to continue.
+fatal: Unable to create '/Users/mirkodesoricellis/training-dashboard/.git/index.lock': File exists.
+
+Another git process seems to be running in this repository, e.g.
+an editor opened by 'git commit'. Please make sure all processes
+are terminated then try again. If it still fails, a git process
+may have crashed in this repository earlier:
+remove the file manually to continue.
+To https://github.com/mirkodesoricellis/training-dashboard.git
+ ! [remote rejected] main -> main (cannot lock ref 'refs/heads/main': is at f36ea9ac5dad9b1791495f6dab390619b4d6f71f but expected 018416d4a0155b76befe865148d6ad522254a7b9)
+error: failed to push some refs to 'https://github.com/mirkodesoricellis/training-dashboard.git'
+To https://github.com/mirkodesoricellis/training-dashboard.git
+ ! [remote rejected] main -> main (cannot lock ref 'refs/heads/main': is at f36ea9ac5dad9b1791495f6dab390619b4d6f71f but expected 018416d4a0155b76befe865148d6ad522254a7b9)
+error: failed to push some refs to 'https://github.com/mirkodesoricellis/training-dashboard.git'
