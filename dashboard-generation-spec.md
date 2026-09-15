@@ -1,5 +1,7 @@
 # Spec — Dashboard settimanale Allenamento & Nutrizione
 
+> Copia nel repo **riallineata alla fonte di verità del progetto Training Hub il 2026-09-09** (metodo NP inverso, deroga sui record completati duplicati, correzione +10% sul dislivello, regola del trail).
+
 Istruzioni per rigenerare la dashboard HTML da zero ogni volta che i dati di allenamento vengono aggiornati (ingestion giornaliera). Chi esegue questo task parte da una sessione nuova senza memoria della chat originale: questo file deve bastare da solo.
 
 ## Dati di partenza
@@ -17,12 +19,17 @@ Se servono dati più freschi o mancanti, usa i tool MCP diretti (COROS, Training
 Mirko De Soricellis — 75.7 kg, 183 cm, 29 anni, uomo. FTP bici ~261W (verifica se aggiornato). BMR Mifflin-St Jeor ≈ 1761 kcal. Se il peso cambia nei dati, ricalcola BMR.
 
 ## Regola chiave: attività duplicate stesso giorno
-Se in un giorno risultano **due sessioni della stessa disciplina** (es. due voci "Bike"), sono **alternative** (tipicamente outdoor vs rulli/indoor), NON da sommare. Usa solo la sessione più lunga/principale per il target calorico, e segnala l'alternativa in una nota nel giorno (campo `altNote` nel codice).
+⚠️ **La regola vale solo per le sessioni PIANIFICATE.** Due **record completati** della stessa disciplina con **finestre orarie disgiunte** sono **entrambi reali e vanno sommati** (caso 05/09: traversata trail spezzata in salita + discesa, 3h41 di distacco).
+Se in un giorno risultano **due sessioni pianificate della stessa disciplina** (es. due voci "Bike"), sono **alternative** (tipicamente outdoor vs rulli/indoor), NON da sommare. Usa solo la sessione più lunga/principale per il target calorico, e segnala l'alternativa in una nota nel giorno (campo `altNote` nel codice).
 
 ## Metodo di stima fabbisogno giornaliero
 kcal giorno = BMR × 1.3 (attività base) + spesa energetica sessione.
-- Bici: kcal ≈ (TSS/100) × FTP(W) × 3600/1000 (kJ meccanici ≈ kcal metabolici)
-- Corsa: kcal ≈ 1 kcal/kg/km × peso × distanza
+- Bici — **metodo NP inverso** (sostituisce la vecchia formula (TSS/100)×FTP×3.6, che sottostimava del ~38%):
+  `NP = FTP × √( (TSS/100) / ore )` poi `kcal ≈ NP × secondi / 1000`. FTP 261 W.
+  Validazioni: 23/08 scarto **0,6%** (1.780 stimate vs 1.791 misurate); 06/09 scarto **−11%** (2.377 vs 2.670); 09/09 sui rulli **−19%** (550 vs 680).
+  ⚠️ **Su uscite lunghe con molto dislivello aggiungi ~10%**, e **sui rulli/indoor preferisci sempre la misura del ciclocomputer alla stima**: il metodo sottostima in entrambi i casi.
+- Corsa: kcal ≈ 1 kcal/kg/km × peso × distanza **a preventivo**; a consuntivo usa sempre la misura dell'orologio.
+  ⚠️ **Sul trail 1 kcal/kg/km non vale** (05/09: darebbe 1.180 kcal contro 2.050 misurate, **−42%**). Con dislivello, misura dell'orologio obbligatoria.
 - Nuoto/Forza: stima da RPE/durata, moderata
 
 Macro giorno:
