@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="it">
 <head>
 <meta charset="utf-8">
@@ -10,298 +10,348 @@
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
 <link rel="manifest" href="site.webmanifest">
 <meta name="theme-color" content="#173a5e">
-<meta name="apple-mobile-web-app-title" content="Training Hub">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Training Hub">
 <style>
 :root{
   --page:#ffffff; --surface-1:#ffffff; --surface-2:#ffffff; --surface-3:#f6f6f5;
-  --ink:#16181d; --ink-2:#4a5058; --ink-3:#7c838c; --line:#e5e7ea;
+  --ink:#16181d; --ink-2:#4a5058; --ink-3:#7c838d; --line:#e4e6e9;
   --carb:#2a78d6; --prot:#eb6834; --fat:#1baf7a;
-  --good:#0ca30c; --warn:#fab219; --serious:#ec835a; --crit:#d03b3b;
-  --accent:#173a5e; --rest:#9aa1a9;
-  --shadow:0 1px 2px rgba(16,20,28,.05),0 4px 14px rgba(16,20,28,.06);
-  --radius:16px;
+  --good:#0ca30c; --warn:#fab219; --serious:#ec835a; --crit:#d03b3b; --muted:#9aa1ab;
+  --accent:#173a5e;
+  --shadow:0 1px 2px rgba(16,20,26,.06), 0 4px 14px rgba(16,20,26,.05);
 }
-@media (prefers-color-scheme:dark){ :root:not([data-theme="light"]){
-  --page:#101010; --surface-1:#1a1a19; --surface-2:#1a1a19; --surface-3:#232322;
-  --ink:#eceef0; --ink-2:#b3b8be; --ink-3:#868d95; --line:#2f2f2e;
-  --carb:#3987e5; --prot:#d95926; --fat:#199e70; --accent:#8fb6dd;
-  --shadow:0 1px 2px rgba(0,0,0,.4),0 4px 14px rgba(0,0,0,.35);
-}}
 :root[data-theme="dark"]{
   --page:#101010; --surface-1:#1a1a19; --surface-2:#1a1a19; --surface-3:#232322;
-  --ink:#eceef0; --ink-2:#b3b8be; --ink-3:#868d95; --line:#2f2f2e;
-  --carb:#3987e5; --prot:#d95926; --fat:#199e70; --accent:#8fb6dd;
-  --shadow:0 1px 2px rgba(0,0,0,.4),0 4px 14px rgba(0,0,0,.35);
+  --ink:#f1f1ef; --ink-2:#b9bab7; --ink-3:#8a8b88; --line:#2e2e2c;
+  --carb:#3987e5; --prot:#d95926; --fat:#199e70; --accent:#5b8ec4;
+  --shadow:0 1px 2px rgba(0,0,0,.5), 0 4px 14px rgba(0,0,0,.35);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --page:#101010; --surface-1:#1a1a19; --surface-2:#1a1a19; --surface-3:#232322;
+    --ink:#f1f1ef; --ink-2:#b9bab7; --ink-3:#8a8b88; --line:#2e2e2c;
+    --carb:#3987e5; --prot:#d95926; --fat:#199e70; --accent:#5b8ec4;
+    --shadow:0 1px 2px rgba(0,0,0,.5), 0 4px 14px rgba(0,0,0,.35);
+  }
 }
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{margin:0;padding:0}
-body{background:var(--page);color:var(--ink);
-  font:15px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-  padding-bottom:calc(28px + env(safe-area-inset-bottom));overflow-x:hidden}
+body{
+  background:var(--page); color:var(--ink);
+  font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  padding-bottom:calc(28px + env(safe-area-inset-bottom));
+  overflow-x:hidden;
+}
 .wrap{max-width:720px;margin:0 auto;padding:0 16px}
-header{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--page) 82%,transparent);
+header{
+  position:sticky;top:0;z-index:20;
+  background:color-mix(in srgb, var(--page) 86%, transparent);
   backdrop-filter:saturate(180%) blur(14px);-webkit-backdrop-filter:saturate(180%) blur(14px);
-  border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top)}
+  border-bottom:1px solid var(--line);
+  padding-top:env(safe-area-inset-top);
+}
 .hrow{display:flex;align-items:center;gap:10px;padding:10px 0 8px}
-.brand{font-weight:700;font-size:16px;letter-spacing:-.2px;flex:1;min-width:0}
+.brand{font-weight:700;font-size:15px;letter-spacing:-.01em;flex:1;min-width:0}
 .brand small{display:block;font-weight:500;font-size:11.5px;color:var(--ink-3);letter-spacing:0}
-.iconbtn{width:44px;height:44px;flex:0 0 44px;border:1px solid var(--line);background:var(--surface-1);
-  color:var(--ink);border-radius:12px;font-size:17px;display:grid;place-items:center;cursor:pointer}
-.pills{display:flex;gap:7px;overflow-x:auto;padding:0 0 10px;scrollbar-width:none;scroll-behavior:smooth}
+.iconbtn{
+  width:42px;height:42px;flex:0 0 42px;border:1px solid var(--line);background:var(--surface-1);
+  color:var(--ink);border-radius:12px;font-size:17px;cursor:pointer;display:flex;align-items:center;justify-content:center;
+}
+.iconbtn:active{transform:scale(.94)}
+.pills{display:flex;gap:7px;overflow-x:auto;padding:0 0 10px;scrollbar-width:none;-ms-overflow-style:none}
 .pills::-webkit-scrollbar{display:none}
-.pill{flex:0 0 auto;min-width:52px;min-height:52px;border:1px solid var(--line);background:var(--surface-1);
-  border-radius:13px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;
-  cursor:pointer;padding:6px 9px;transition:background .18s,color .18s,border-color .18s}
-.pill .dw{font-size:10.5px;text-transform:uppercase;letter-spacing:.5px;color:var(--ink-3);font-weight:600}
-.pill .dn{font-size:16px;font-weight:700;line-height:1.05}
-.pill .dt{width:6px;height:6px;border-radius:50%;margin-top:1px}
-.pill.on{background:var(--accent);border-color:var(--accent);color:#fff}
-.pill.on .dw{color:rgba(255,255,255,.85)}
-:root[data-theme="dark"] .pill.on,@media(prefers-color-scheme:dark){:root:not([data-theme="light"]) .pill.on{color:#0e1218}}
-.dot-crit{background:var(--crit)} .dot-warn{background:var(--warn)} .dot-good{background:var(--good)} .dot-rest{background:var(--rest)}
-main{padding-top:14px;transition:opacity .16s ease}
-main.fade{opacity:0}
-.card{background:var(--surface-1);border:1px solid var(--line);border-radius:var(--radius);
-  box-shadow:var(--shadow);padding:14px;margin:0 0 12px}
-.card.accent{border-left:4px solid var(--edge,var(--rest))}
-.dayhead{display:flex;align-items:baseline;gap:9px;flex-wrap:wrap;margin-bottom:2px}
-.dayhead h1{font-size:19px;margin:0;letter-spacing:-.3px}
-.badge{font-size:10.5px;font-weight:700;letter-spacing:.4px;text-transform:uppercase;
-  padding:3px 8px;border-radius:999px;background:var(--surface-3);color:var(--ink-2);border:1px solid var(--line)}
-.badge.today{background:var(--accent);color:#fff;border-color:var(--accent)}
-.sub{color:var(--ink-3);font-size:12.5px;margin:2px 0 0}
-h2{font-size:13px;text-transform:uppercase;letter-spacing:.6px;color:var(--ink-3);margin:0 0 10px;font-weight:700}
-.act{display:flex;gap:11px;padding:10px 0;border-top:1px solid var(--line)}
-.act:first-of-type{border-top:0;padding-top:2px}
-.act .ic{font-size:22px;line-height:1.2}
-.act .nm{font-weight:650;font-size:14.5px}
-.act .de{color:var(--ink-2);font-size:12.5px;margin-top:2px}
-.act .ts{margin-top:5px;font-size:12px;color:var(--ink-3)}
-.act .ts b{color:var(--ink)}
-.up{color:var(--serious);font-weight:700}
-.note{margin-top:10px;padding:9px 11px;background:var(--surface-3);border-radius:11px;
-  font-size:12.5px;color:var(--ink-2);line-height:1.55}
-.ring{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.pill{
+  flex:0 0 auto;min-width:54px;padding:7px 10px 6px;border-radius:13px;border:1px solid var(--line);
+  background:var(--surface-1);color:var(--ink-2);cursor:pointer;text-align:center;line-height:1.15;
+  display:flex;flex-direction:column;align-items:center;gap:3px;font-family:inherit;
+}
+.pill b{font-size:16px;font-weight:700;color:var(--ink)}
+.pill span{font-size:10.5px;text-transform:uppercase;letter-spacing:.04em}
+.pill i{width:6px;height:6px;border-radius:50%;display:block}
+.pill.active{background:var(--accent);border-color:var(--accent);color:#fff}
+.pill.active b,.pill.active span{color:#fff}
+.day{animation:fade .22s ease}
+@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+.card{
+  background:var(--surface-2);border:1px solid var(--line);border-radius:16px;
+  padding:14px;margin:12px 0;box-shadow:var(--shadow);
+}
+.card.accent{border-left:4px solid var(--acc,var(--muted))}
+h2{margin:14px 0 2px;font-size:19px;letter-spacing:-.02em}
+.sub{color:var(--ink-3);font-size:12.5px;margin-bottom:2px}
+.badge{display:inline-block;padding:2px 8px;border-radius:999px;font-size:11px;font-weight:700;
+  background:var(--accent);color:#fff;vertical-align:middle;margin-left:6px}
+.ctitle{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-3);margin-bottom:8px}
+.act{display:flex;gap:10px;align-items:flex-start;padding:8px 0;border-top:1px solid var(--line)}
+.act:first-of-type{border-top:0}
+.act .ai{font-size:22px;line-height:1.2}
+.act .an{font-weight:650}
+.act .ad{color:var(--ink-2);font-size:13px}
+.act .am{margin-top:3px;font-size:12px;color:var(--ink-3)}
+.chip{display:inline-block;padding:1px 7px;border-radius:999px;background:var(--surface-3);
+  border:1px solid var(--line);font-size:11.5px;margin-right:5px;color:var(--ink-2)}
+.chip.up{color:var(--crit);border-color:color-mix(in srgb,var(--crit) 35%,var(--line))}
+.chip.wait{color:var(--warn);border-color:color-mix(in srgb,var(--warn) 45%,var(--line))}
+.ring{display:flex;gap:16px;align-items:center;flex-wrap:wrap}
 .ring svg{flex:0 0 132px}
-.leg{flex:1;min-width:150px;display:flex;flex-direction:column;gap:7px}
-.leg .r{display:flex;align-items:center;gap:8px;font-size:13px}
-.leg .sw{width:11px;height:11px;border-radius:3px;flex:0 0 11px}
-.leg .nm{flex:1;color:var(--ink-2)}
-.leg .g{font-weight:700;font-variant-numeric:tabular-nums}
-.leg .pc{color:var(--ink-3);font-size:11.5px;width:38px;text-align:right;font-variant-numeric:tabular-nums}
-@media(max-width:359px){.ring{flex-direction:column;align-items:flex-start}}
-.wellgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(76px,1fr));gap:8px}
-.w{background:var(--surface-3);border-radius:11px;padding:8px 9px}
-.w .k{font-size:10.5px;text-transform:uppercase;letter-spacing:.4px;color:var(--ink-3);font-weight:600}
-.w .v{font-size:16px;font-weight:700;font-variant-numeric:tabular-nums;margin-top:1px}
-.w .s{font-size:11px;color:var(--ink-3)}
-.meal{background:var(--surface-3);border:1px solid var(--line);border-radius:13px;margin-bottom:9px;overflow:hidden}
-.mh{display:flex;align-items:center;gap:10px;padding:11px 12px;cursor:pointer;min-height:44px}
-.mh .mi{font-size:18px}
-.mh .mn{font-weight:700;font-size:14.5px;flex:0 0 auto}
-.mh .mt{flex:1;text-align:right;font-size:11.5px;color:var(--ink-3);font-variant-numeric:tabular-nums}
-.mh .ch{transition:transform .2s;color:var(--ink-3);font-size:12px}
-.meal.open .ch{transform:rotate(90deg)}
-.mb{max-height:0;overflow:hidden;transition:max-height .28s ease}
-.meal.open .mb{max-height:2400px}
-.mbi{padding:0 12px 12px}
-.opt{background:var(--surface-1);border:1px solid var(--line);border-radius:11px;padding:10px 11px;margin-top:9px}
-.opt .ol{font-weight:650;font-size:13px;margin-bottom:6px}
-.opt ul{margin:0;padding-left:17px}
-.opt li{font-size:13px;margin:2px 0}
-.opt li b{font-variant-numeric:tabular-nums}
-.tot{margin-top:8px;padding-top:7px;border-top:1px dashed var(--line);font-size:11.5px;color:var(--ink-2);
-  display:flex;gap:9px;flex-wrap:wrap;font-variant-numeric:tabular-nums}
-.tot span b{color:var(--ink)}
-.warnrec{margin-top:6px;font-size:11.5px;color:var(--serious)}
-.fuel .ph{margin-top:11px}
-.fuel .ph:first-child{margin-top:4px}
-.ph h3{font-size:12px;margin:0 0 5px;text-transform:uppercase;letter-spacing:.5px;color:var(--accent)}
-.ph ul{margin:0;padding-left:17px}
-.ph li{font-size:13px;margin:2px 0}
-.nav{display:flex;gap:10px;margin:14px 0 6px}
-.nav button{flex:1;min-height:46px;border:1px solid var(--line);background:var(--surface-1);color:var(--ink);
-  border-radius:13px;font-size:14px;font-weight:600;cursor:pointer}
-.nav button:disabled{opacity:.35;cursor:default}
-footer{color:var(--ink-3);font-size:11.5px;line-height:1.6;margin:18px 0 0;padding-top:14px;border-top:1px solid var(--line)}
+.leg{flex:1;min-width:150px}
+.leg div{display:flex;align-items:center;gap:8px;padding:3px 0;font-size:13.5px}
+.leg i{width:10px;height:10px;border-radius:3px;flex:0 0 10px}
+.leg b{margin-left:auto;font-variant-numeric:tabular-nums}
+.leg s{text-decoration:none;color:var(--ink-3);font-size:12px;width:38px;text-align:right;font-variant-numeric:tabular-nums}
+.meal{border:1px solid var(--line);border-radius:14px;margin:9px 0;overflow:hidden;background:var(--surface-1)}
+.mhead{display:flex;align-items:center;gap:9px;padding:11px 12px;cursor:pointer;min-height:44px;background:var(--surface-1);width:100%;border:0;font:inherit;color:inherit;text-align:left}
+.mhead .mi{font-size:17px}
+.mhead .mn{font-weight:650;flex:0 0 auto}
+.mhead .mt{margin-left:auto;font-size:12px;color:var(--ink-3);font-variant-numeric:tabular-nums;text-align:right}
+.chev{flex:0 0 14px;transition:transform .2s;color:var(--ink-3);font-size:12px}
+.meal.open .chev{transform:rotate(90deg)}
+.mbody{max-height:0;overflow:hidden;transition:max-height .28s ease}
+.meal.open .mbody{max-height:2600px}
+.mbin{padding:2px 12px 12px}
+.opt{background:var(--surface-3);border-radius:12px;padding:10px 11px;margin-top:8px}
+.opt h4{margin:0 0 6px;font-size:13.5px;font-weight:650}
+.opt ul{list-style:none;margin:0;padding:0}
+.opt li{display:flex;justify-content:space-between;gap:10px;padding:3px 0;font-size:13.5px;border-bottom:1px dashed var(--line)}
+.opt li:last-child{border-bottom:0}
+.opt li b{font-variant-numeric:tabular-nums;white-space:nowrap}
+.tot{display:flex;flex-wrap:wrap;gap:4px 10px;align-items:baseline;margin-top:8px;padding-top:7px;border-top:1px solid var(--line);font-size:12px;color:var(--ink-2)}
+.tot .tl{font-weight:700;color:var(--ink-3);text-transform:uppercase;letter-spacing:.05em;font-size:10.5px;width:100%}
+.tot .tv{font-variant-numeric:tabular-nums}
+.tot .c b{color:var(--carb)} .tot .p b{color:var(--prot)} .tot .f b{color:var(--fat)}
+.flag{margin-top:7px;font-size:12px;color:var(--serious);background:color-mix(in srgb,var(--serious) 12%,transparent);
+  border:1px solid color-mix(in srgb,var(--serious) 30%,transparent);border-radius:9px;padding:6px 8px}
+.note{font-size:13px;color:var(--ink-2);background:var(--surface-3);border-radius:12px;padding:10px 11px;margin-top:10px}
+.note.dev{border-left:3px solid var(--carb)}
+.note.warnote{border-left:3px solid var(--warn)}
+.insight{font-size:13.5px;color:var(--ink);line-height:1.62}
+.rec{display:grid;grid-template-columns:repeat(auto-fit,minmax(88px,1fr));gap:9px}
+.rec div{background:var(--surface-3);border-radius:11px;padding:8px 9px}
+.rec s{text-decoration:none;display:block;font-size:10.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--ink-3)}
+.rec b{font-size:16px;font-variant-numeric:tabular-nums}
+.rec em{font-style:normal;font-size:11.5px;color:var(--ink-3);display:block}
+.fuel .ph{margin-top:10px;padding-top:10px;border-top:1px solid var(--line)}
+.fuel .ph:first-of-type{border-top:0;padding-top:0}
+.fuel .phn{font-weight:700;font-size:13px}
+.fuel .phq{font-size:11.5px;color:var(--ink-3);margin-bottom:5px}
+.fuel ul{list-style:none;margin:0;padding:0}
+.fuel li{font-size:13.5px;padding:2px 0}
+.fuel li::before{content:"•";color:var(--ink-3);margin-right:7px}
+.nav{display:flex;gap:9px;margin:16px 0 4px}
+.nav button{flex:1;min-height:44px;border:1px solid var(--line);background:var(--surface-1);color:var(--ink);
+  border-radius:13px;font:inherit;font-weight:600;cursor:pointer}
+.nav button:active{transform:scale(.985)}
+footer{margin:22px 0 0;padding:14px 0 0;border-top:1px solid var(--line);font-size:11.5px;color:var(--ink-3);line-height:1.6}
 footer b{color:var(--ink-2)}
-.dev{margin-top:10px;padding:9px 11px;border-radius:11px;font-size:12.5px;line-height:1.55;
-  background:color-mix(in srgb,var(--warn) 13%,transparent);border:1px solid color-mix(in srgb,var(--warn) 34%,transparent);color:var(--ink-2)}
+@media (max-width:360px){ .ring{flex-direction:column;align-items:flex-start} }
 </style>
 </head>
 <body>
 <header>
-  <div class="wrap">
-    <div class="hrow">
-      <div class="brand">Training Hub<small id="hsub"></small></div>
-      <button class="iconbtn" id="tg" aria-label="Tema">◐</button>
-    </div>
-    <div class="pills" id="pills"></div>
+ <div class="wrap">
+  <div class="hrow">
+    <div class="brand">Training Hub<small id="hsub"></small></div>
+    <button class="iconbtn" id="theme" aria-label="Tema">◐</button>
   </div>
+  <div class="pills" id="pills"></div>
+ </div>
 </header>
-<main id="main"><div class="wrap" id="view"></div></main>
+<main class="wrap" id="main"></main>
+<div class="wrap">
+ <div class="nav"><button id="prev">← Giorno prec.</button><button id="next">Giorno succ. →</button></div>
+ <footer>
+  <b>Metodo.</b> Fabbisogno = BMR (Mifflin-St&nbsp;Jeor, 75,7 kg · 183 cm · 29 anni → <b>1.761 kcal</b>) × 1,3 + spesa della seduta.
+  Bici: NP inverso, NP = FTP × √(TSS/100 / ore), FTP <b>261 W</b>, kcal = NP × secondi / 1.000, +10% sulle uscite ≥ 3 ore.
+  Corsa: 1 kcal/kg/km <b>+10%</b> su strada (calibrato su 10/09, 12/09 e 15/09); sul trail la stessa regola sovrastima del 42%.
+  Nuoto: <b>146 kcal/km</b>, dentro il range misurato in vasca 128-159 kcal/km.
+  <br><b>Dati.</b> COROS (corsa, nuoto, sonno, HRV, passi, carico) · Garmin (bici) · TrainingPeaks (piano e TSS). Ingestione del <b id="fts"></b>.
+  <br><b>Tolleranza.</b> I valori nutrizionali dei singoli alimenti sono stime standard tipo CREA/USDA, non verificate su database di prodotto: per i confezionati possono scostarsi del 10-20%.
+  Le ricette sono verificate programmaticamente entro ±15% su kcal, carboidrati e proteine; le eccezioni sono segnalate nel singolo pasto.
+  Pesi di riso e pasta <b>a crudo</b>.
+ </footer>
+</div>
 <script>
-const DATA = {"days": [{"iso": "2026-09-15", "dow": "martedì", "dm": 15, "kcal": 3041, "C": 379, "P": 151, "Fg": 102, "intens": "media", "meals": [{"name": "Colazione", "icon": "☀️", "tC": 83.4, "tP": 33.2, "opts": [{"label": "Avena + latte di soia + burro di arachidi", "items": [["Latte di soia", 250], ["Avena (fiocchi)", 110], ["Burro di arachidi", 25]], "tot": {"kcal": 670, "c": 83.1, "p": 29.1, "f": 24.6}, "dev": {"kcal": 6.0, "c": -0.4, "p": -12.3}}, {"label": "Corn flakes + latte di soia + whey", "items": [["Latte di soia", 300], ["Corn flakes s/zuccheri", 95], ["Whey", 25]], "tot": {"kcal": 571, "c": 88.1, "p": 36.7, "f": 7.5}, "dev": {"kcal": -9.7, "c": 5.6, "p": 10.5}}], "tF": 18.4, "tkcal": 632}, {"name": "Pranzo", "icon": "🍽️", "tC": 125.1, "tP": 49.8, "opts": [{"label": "Riso + tonno + mais", "items": [["Mais", 80], ["Riso (crudo)", 140], ["Tonno al naturale", 145], ["Olio EVO", 30]], "tot": {"kcal": 1000, "c": 124.4, "p": 49.9, "f": 33.2}, "dev": {"kcal": -1.2, "c": -0.6, "p": 0.2}}, {"label": "Pasta + ceci", "items": [["Grana", 10], ["Pasta (cruda)", 50], ["Ceci lessati", 495], ["Olio EVO", 15]], "tot": {"kcal": 945, "c": 114.7, "p": 44.2, "f": 30.4}, "dev": {"kcal": -6.6, "c": -8.3, "p": -11.2}}], "tF": 34.7, "tkcal": 1012}, {"name": "Spuntino", "icon": "🍎", "tC": 45.5, "tP": 18.1, "opts": [{"label": "Yogurt greco + banana", "items": [["Yogurt greco 0%", 115], ["Banana", 175], ["Mandorle", 25]], "tot": {"kcal": 373, "c": 46.1, "p": 18.7, "f": 14.0}, "dev": {"kcal": 2.5, "c": 1.3, "p": 3.3}}, {"label": "Gallette + fiocchi di latte + mandorle", "items": [["Gallette di riso", 50], ["Fiocchi di latte magri", 90], ["Mandorle", 20]], "tot": {"kcal": 375, "c": 44.6, "p": 19.0, "f": 12.8}, "dev": {"kcal": 3.0, "c": -2.0, "p": 5.0}}], "tF": 12.2, "tkcal": 364}, {"name": "Cena", "icon": "🌙", "tC": 125.1, "tP": 49.8, "opts": [{"label": "Petto di pollo + pancarrè", "items": [["Verdure miste", 250], ["Ketchup", 15], ["Petto di pollo", 120], ["Pancarrè", 200], ["Olio EVO", 25]], "tot": {"kcal": 964, "c": 111.6, "p": 47.5, "f": 33.9}, "dev": {"kcal": -6.4, "c": -10.8, "p": -4.6}}, {"label": "Seitan + fette biscottate", "items": [["Verdure miste", 250], ["Seitan", 125], ["Fette biscottate", 145], ["Olio EVO", 20]], "tot": {"kcal": 1018, "c": 125.2, "p": 49.7, "f": 31.7}, "dev": {"kcal": -1.2, "c": 0.1, "p": -0.2}}], "tF": 36.7, "tkcal": 1030}], "fuel": null, "highcarb": false, "mealBudget": {"kcal": 3041, "c": 379, "p": 151, "f": 102}, "act": {"state": "done", "tss": 64.2, "tssPlan": 46.7, "items": [{"ico": "🏃", "sport": "Corsa", "name": "recupero attivo", "det": "7,75 km · 41:49 · 5:24/km · HR media 161 · 238 W · 662 kcal", "tss": "36,16", "plan": "26,7", "delta": "+35,4%"}, {"ico": "🏋️", "sport": "Forza", "name": "Gambe Mantenimento", "det": "42:54 · carico di mantenimento arti inferiori", "tss": "28,04", "plan": "20,0", "delta": "+40,2%"}], "insight": ["La corsa etichettata «recupero attivo» è finita a 36,16 TSS contro i 26,7 pianificati: <b>+35,4%</b>. 7,75 km a 5:24/km con HR media 161 bpm e 238 W di potenza media non sono un recupero, sono una seduta aerobica piena.", "Sommata alla forza «Gambe Mantenimento» (28,04 TSS contro 20,0, <b>+40,2%</b>), la giornata chiude a <b>64,2 TSS contro i 46,7 a piano: +37,5%</b>.", "È la nona seduta outdoor breve con un target assegnato: <b>sette su nove sono state sforate</b>. Il pattern non è più un caso — indoor e lunghe outdoor restano invece a piano 5 su 5.", "Contesto di recupero: arrivavi da HRV 87 ms e RHR 53, entrambi non ancora rientrati dopo il crollo dell'11→13/09 (minimo 33 ms). Hai comunque tenuto 161 bpm medi. <b>La notte successiva l'HRV è risalita a 120 ms</b>, il valore più alto del mese: il sistema ha assorbito bene.", "COROS marca la seduta «Performance: Poor» con dislivello netto −69 m: a parità di passo il costo cardiaco è stato più alto del solito, coerente con una base non ancora del tutto ricaricata."]}, "dot": "warn", "d3": "mar"}, {"iso": "2026-09-16", "dow": "mercoledì", "dm": 16, "kcal": 2774, "C": 379, "P": 136, "Fg": 79, "intens": "media", "meals": [{"name": "Colazione", "icon": "☀️", "tC": 83.4, "tP": 29.9, "opts": [{"label": "Avena + latte di soia + burro di arachidi", "items": [["Latte di soia", 250], ["Avena (fiocchi)", 115], ["Burro di arachidi", 15]], "tot": {"kcal": 631, "c": 84.4, "p": 27.3, "f": 19.9}, "dev": {"kcal": 8.6, "c": 1.2, "p": -8.7}}, {"label": "Corn flakes + latte di soia + whey", "items": [["Latte di soia", 300], ["Corn flakes s/zuccheri", 90], ["Whey", 20]], "tot": {"kcal": 532, "c": 83.6, "p": 32.4, "f": 7.2}, "dev": {"kcal": -8.4, "c": 0.2, "p": 8.4}}], "tF": 14.2, "tkcal": 581}, {"name": "Pranzo", "icon": "🍽️", "tC": 125.1, "tP": 44.9, "opts": [{"label": "Pasta + ceci", "items": [["Grana", 10], ["Pasta (cruda)", 70], ["Ceci lessati", 410], ["Olio EVO", 10]], "tot": {"kcal": 868, "c": 115.3, "p": 40.8, "f": 23.7}, "dev": {"kcal": -5.9, "c": -7.8, "p": -9.1}}, {"label": "Riso + lenticchie", "items": [["Grana", 10], ["Riso (crudo)", 70], ["Lenticchie lessate", 375], ["Olio EVO", 20]], "tot": {"kcal": 899, "c": 118.3, "p": 42.0, "f": 24.7}, "dev": {"kcal": -2.5, "c": -5.4, "p": -6.5}}], "tF": 26.9, "tkcal": 922}, {"name": "Spuntino", "icon": "🍎", "tC": 45.5, "tP": 16.3, "opts": [{"label": "Yogurt greco + banana", "items": [["Yogurt greco 0%", 110], ["Banana", 175], ["Mandorle", 20]], "tot": {"kcal": 340, "c": 45.6, "p": 17.1, "f": 11.4}, "dev": {"kcal": 2.1, "c": 0.2, "p": 4.9}}, {"label": "Gallette + fiocchi di latte + mandorle", "items": [["Gallette di riso", 50], ["Fiocchi di latte magri", 85], ["Mandorle", 15]], "tot": {"kcal": 341, "c": 44.2, "p": 17.3, "f": 10.2}, "dev": {"kcal": 2.4, "c": -2.9, "p": 6.1}}], "tF": 9.5, "tkcal": 333}, {"name": "Cena", "icon": "🌙", "tC": 125.1, "tP": 44.9, "opts": [{"label": "Albume + pancarrè", "items": [["Verdure miste", 250], ["Ketchup", 15], ["Albume", 210], ["Pancarrè", 200], ["Olio EVO", 20]], "tot": {"kcal": 888, "c": 113.1, "p": 43.0, "f": 27.6}, "dev": {"kcal": -5.1, "c": -9.6, "p": -4.2}}, {"label": "Tofu + gallette", "items": [["Verdure miste", 250], ["Tofu", 200], ["Gallette di riso", 135], ["Olio EVO", 5]], "tot": {"kcal": 910, "c": 123.3, "p": 44.5, "f": 25.6}, "dev": {"kcal": -2.8, "c": -1.4, "p": -0.9}}], "tF": 28.4, "tkcal": 936}], "fuel": null, "highcarb": false, "mealBudget": {"kcal": 2774, "c": 379, "p": 136, "f": 79}, "act": {"state": "todo", "tss": 66.32, "tssPlan": 66.32, "items": [{"ico": "🏊", "sport": "Nuoto", "name": "A2 — 3,3 km in vasca", "det": "0:42 · 200 risc · 6×50 tecnica · 6×50 R8 · 3× (400 pale+pull+boccaglio + 8×50 agile) · 100 sciolti", "tss": "66,32", "plan": "66,32", "delta": null}], "note": "⏳ <b>Non ancora svolta al momento dell'ingestione (15:16).</b> COROS non ha chiuso la riga del giorno (46 passi registrati): nessuna conclusione possibile, la verifica passa al run serale. 🔴 <b>È il quarto tentativo di seduta in vasca</b>: i tre precedenti (28/08 · 04/09 · 08/09, 238 TSS) sono saltati e dal 01/09 si nuota solo in acqua libera."}, "dot": "warn", "d3": "mer"}, {"iso": "2026-09-17", "dow": "giovedì", "dm": 17, "kcal": 3444, "C": 470, "P": 150, "Fg": 107, "intens": "intensa", "meals": [{"name": "Colazione", "icon": "☀️", "tC": 80.2, "tP": 23.4, "opts": [{"label": "Avena + latte di soia + burro di arachidi", "items": [["Latte di soia", 250], ["Avena (fiocchi)", 80], ["Marmellata", 25], ["Burro di arachidi", 15]], "tot": {"kcal": 557, "c": 77.5, "p": 22.7, "f": 17.5}, "dev": {"kcal": -4.0, "c": -3.4, "p": -3.0}}, {"label": "Corn flakes + latte di soia + whey", "items": [["Latte di soia", 300], ["Corn flakes s/zuccheri", 90], ["Whey", 10]], "tot": {"kcal": 493, "c": 82.9, "p": 24.4, "f": 6.7}, "dev": {"kcal": -15.0, "c": 3.4, "p": 4.3}}], "tF": 18.4, "tkcal": 580}, {"name": "Pranzo", "icon": "🍽️", "tC": 101.7, "tP": 35.0, "opts": [{"label": "Riso + tonno + mais", "items": [["Mais", 80], ["Riso (crudo)", 110], ["Tonno al naturale", 95], ["Olio EVO", 30]], "tot": {"kcal": 837, "c": 101.0, "p": 34.8, "f": 32.6}, "dev": {"kcal": -2.6, "c": -0.7, "p": -0.6}}, {"label": "Riso + lenticchie", "items": [["Grana", 10], ["Riso (crudo)", 65], ["Lenticchie lessate", 300], ["Olio EVO", 25]], "tot": {"kcal": 840, "c": 101.7, "p": 34.9, "f": 29.4}, "dev": {"kcal": -2.2, "c": 0.0, "p": -0.3}}], "tF": 34.7, "tkcal": 859}, {"name": "Spuntino", "icon": "🍎", "tC": 32.1, "tP": 14.0, "opts": [{"label": "Yogurt greco + banana", "items": [["Yogurt greco 0%", 90], ["Banana", 120], ["Mandorle", 25]], "tot": {"kcal": 309, "c": 32.5, "p": 15.6, "f": 13.7}, "dev": {"kcal": 4.7, "c": 1.2, "p": 11.4}}, {"label": "Gallette + fiocchi di latte + mandorle", "items": [["Gallette di riso", 35], ["Fiocchi di latte magri", 70], ["Mandorle", 20]], "tot": {"kcal": 303, "c": 31.8, "p": 15.4, "f": 12.2}, "dev": {"kcal": 2.7, "c": -0.9, "p": 10.0}}], "tF": 12.3, "tkcal": 295}, {"name": "Cena", "icon": "🌙", "tC": 53.5, "tP": 44.4, "opts": [{"label": "Petto di pollo + pancarrè", "items": [["Verdure miste", 250], ["Ketchup", 15], ["Petto di pollo", 150], ["Pancarrè", 80], ["Olio EVO", 30]], "tot": {"kcal": 724, "c": 52.8, "p": 44.8, "f": 35.4}, "dev": {"kcal": 0.1, "c": -1.3, "p": 0.9}}, {"label": "Burger vegetale + gallette", "items": [["Verdure miste", 250], ["Burger vegetale Lidl", 225], ["Gallette di riso", 35], ["Olio EVO", 10]], "tot": {"kcal": 713, "c": 54.1, "p": 44.8, "f": 34.0}, "dev": {"kcal": -1.4, "c": 1.1, "p": 0.9}}], "tF": 36.8, "tkcal": 723}], "fuel": {"note": "Bici «Z3/Z5 pianura» 1:35 · 95,5 TSS · NP stimato 203 W", "caff": "Caffeina 180 mg (2-3 mg/kg) 45' prima se la seduta è mattutina · creatina 5 g/die", "pre": [["Pancarrè", 80], ["Marmellata", 40], ["Banana", 120]], "intra": [["Gel energetico", 80], ["Bevanda isotonica", 500]], "post": [["Whey", 30], ["Banana", 120]], "preTot": {"kcal": 420, "c": 92.8, "p": 7.9, "f": 3.0}, "intraTot": {"kcal": 320, "c": 80.0, "p": 0.0, "f": 0.0}, "postTot": {"kcal": 225, "c": 29.7, "p": 25.3, "f": 1.9}, "tot": {"kcal": 965, "c": 202.5, "p": 33.2, "f": 4.9}, "budget": 2479}, "highcarb": true, "mealBudget": {"kcal": 2479, "c": 267.5, "p": 116.8, "f": 102.1}, "act": {"state": "todo", "tss": 95.5, "tssPlan": 95.5, "items": [{"ico": "🚴", "sport": "Bici", "name": "Z3/Z5 pianura", "det": "1:35 · «dopo 20' di riscaldamento, fare le variazioni in pianura» · NP stimato 203 W", "tss": "95,5", "plan": "95,5", "delta": null}], "alt": "⚠️ <b>Seduta alternativa a piano, non da sommare</b>: «variazioni Z3/Z5», 0:52, 52,57 TSS. Due sedute pianificate della stessa disciplina nello stesso giorno sono opzioni, non un doppio allenamento — il fabbisogno qui sotto è calcolato sulla principale.", "note": "📌 <b>Il criterio di scelta fissato martedì si è sciolto a favore della principale</b>: la regola era «se giovedì l'HRV è sotto 90 o l'RHR sopra 55, prendi la corta». Stamattina HRV <b>120 ms</b> e RHR <b>49</b>. Via libera alla versione da 95,5 TSS."}, "dot": "crit", "d3": "gio"}, {"iso": "2026-09-18", "dow": "venerdì", "dm": 18, "kcal": 3001, "C": 416, "P": 136, "Fg": 88, "intens": "media", "meals": [{"name": "Colazione", "icon": "☀️", "tC": 91.5, "tP": 29.9, "opts": [{"label": "Avena + latte di soia + burro di arachidi", "items": [["Latte di soia", 250], ["Avena (fiocchi)", 125], ["Burro di arachidi", 10]], "tot": {"kcal": 640, "c": 90.0, "p": 27.4, "f": 18.1}, "dev": {"kcal": 1.9, "c": -1.6, "p": -8.4}}, {"label": "Corn flakes + latte di soia + whey", "items": [["Latte di soia", 300], ["Corn flakes s/zuccheri", 105], ["Whey", 15]], "tot": {"kcal": 569, "c": 95.8, "p": 29.5, "f": 7.1}, "dev": {"kcal": -9.4, "c": 4.7, "p": -1.3}}], "tF": 15.8, "tkcal": 628}, {"name": "Pranzo", "icon": "🍽️", "tC": 137.3, "tP": 44.9, "opts": [{"label": "Pasta + ceci", "items": [["Grana", 10], ["Pasta (cruda)", 100], ["Ceci lessati", 375], ["Olio EVO", 10]], "tot": {"kcal": 932, "c": 131.0, "p": 42.0, "f": 23.3}, "dev": {"kcal": -6.6, "c": -4.6, "p": -6.5}}, {"label": "Riso + tonno + mais", "items": [["Mais", 80], ["Riso (crudo)", 155], ["Tonno al naturale", 120], ["Olio EVO", 25]], "tot": {"kcal": 979, "c": 136.1, "p": 44.5, "f": 28.1}, "dev": {"kcal": -1.9, "c": -0.9, "p": -0.9}}], "tF": 29.9, "tkcal": 998}, {"name": "Spuntino", "icon": "🍎", "tC": 49.9, "tP": 16.3, "opts": [{"label": "Gallette + fiocchi di latte + mandorle", "items": [["Gallette di riso", 60], ["Fiocchi di latte magri", 80], ["Mandorle", 15]], "tot": {"kcal": 376, "c": 52.1, "p": 17.5, "f": 10.4}, "dev": {"kcal": 4.4, "c": 4.4, "p": 7.4}}, {"label": "Yogurt greco + banana", "items": [["Yogurt greco 0%", 105], ["Banana", 195], ["Mandorle", 20]], "tot": {"kcal": 355, "c": 50.1, "p": 16.8, "f": 11.4}, "dev": {"kcal": -1.4, "c": 0.4, "p": 3.1}}], "tF": 10.6, "tkcal": 360}, {"name": "Cena", "icon": "🌙", "tC": 137.3, "tP": 44.9, "opts": [{"label": "Uova + pancarrè", "items": [["Verdure miste", 250], ["Uova intere", 165], ["Pancarrè", 220], ["Olio EVO", 5]], "tot": {"kcal": 926, "c": 119.0, "p": 42.1, "f": 28.4}, "dev": {"kcal": -8.7, "c": -13.3, "p": -6.2}}, {"label": "Seitan + fette biscottate", "items": [["Verdure miste", 250], ["Seitan", 95], ["Fette biscottate", 155], ["Olio EVO", 15]], "tot": {"kcal": 971, "c": 131.6, "p": 43.6, "f": 26.7}, "dev": {"kcal": -4.2, "c": -4.2, "p": -2.9}}], "tF": 31.7, "tkcal": 1014}], "fuel": null, "highcarb": false, "mealBudget": {"kcal": 3001, "c": 416, "p": 136, "f": 88}, "act": {"state": "todo", "tss": 53.7, "tssPlan": 53.7, "items": [{"ico": "🏃", "sport": "Corsa", "name": "variazioni Z3/Z5", "det": "9,4 km · 0:42 · variazioni di ritmo", "tss": "53,7", "plan": "53,7", "delta": null}], "note": "📌 Seduta outdoor breve con un target: è esattamente la categoria che sfora 7 volte su 9. Il fabbisogno è calcolato sui 9,4 km a piano — se diventano 11, aggiungi ~120 kcal allo spuntino."}, "dot": "warn", "d3": "ven"}, {"iso": "2026-09-19", "dow": "sabato", "dm": 19, "kcal": 2814, "C": 394, "P": 136, "Fg": 77, "intens": "media", "meals": [{"name": "Colazione", "icon": "☀️", "tC": 86.7, "tP": 29.9, "opts": [{"label": "Avena + latte di soia + burro di arachidi", "items": [["Latte di soia", 250], ["Avena (fiocchi)", 120], ["Burro di arachidi", 10]], "tot": {"kcal": 621, "c": 86.7, "p": 26.7, "f": 17.8}, "dev": {"kcal": 4.9, "c": 0.0, "p": -10.7}}, {"label": "Corn flakes + latte di soia + whey", "items": [["Latte di soia", 300], ["Corn flakes s/zuccheri", 95], ["Whey", 20]], "tot": {"kcal": 551, "c": 87.8, "p": 32.7, "f": 7.3}, "dev": {"kcal": -6.9, "c": 1.3, "p": 9.4}}], "tF": 13.9, "tkcal": 592}, {"name": "Pranzo", "icon": "🍽️", "tC": 130.0, "tP": 44.9, "opts": [{"label": "Riso + lenticchie", "items": [["Grana", 10], ["Riso (crudo)", 80], ["Lenticchie lessate", 370], ["Olio EVO", 15]], "tot": {"kcal": 883, "c": 125.3, "p": 42.2, "f": 19.8}, "dev": {"kcal": -5.6, "c": -3.6, "p": -6.0}}, {"label": "Riso + tonno + mais", "items": [["Mais", 80], ["Riso (crudo)", 145], ["Tonno al naturale", 125], ["Olio EVO", 25]], "tot": {"kcal": 950, "c": 128.3, "p": 45.0, "f": 28.1}, "dev": {"kcal": 1.6, "c": -1.3, "p": 0.2}}], "tF": 26.2, "tkcal": 935}, {"name": "Spuntino", "icon": "🍎", "tC": 47.3, "tP": 16.3, "opts": [{"label": "Yogurt greco + banana", "items": [["Yogurt greco 0%", 110], ["Banana", 185], ["Mandorle", 20]], "tot": {"kcal": 349, "c": 47.9, "p": 17.2, "f": 11.4}, "dev": {"kcal": 3.6, "c": 1.3, "p": 5.5}}, {"label": "Gallette + fiocchi di latte + mandorle", "items": [["Gallette di riso", 55], ["Fiocchi di latte magri", 85], ["Mandorle", 10]], "tot": {"kcal": 330, "c": 48.0, "p": 16.7, "f": 7.7}, "dev": {"kcal": -2.1, "c": 1.5, "p": 2.5}}], "tF": 9.2, "tkcal": 337}, {"name": "Cena", "icon": "🌙", "tC": 130.0, "tP": 44.9, "opts": [{"label": "Burger vegetale + gallette", "items": [["Verdure miste", 250], ["Burger vegetale Lidl", 180], ["Gallette di riso", 135], ["Olio EVO", 5]], "tot": {"kcal": 962, "c": 131.9, "p": 45.2, "f": 27.6}, "dev": {"kcal": 1.4, "c": 1.5, "p": 0.7}}, {"label": "Fiocchi di latte + pancarrè", "items": [["Verdure miste", 250], ["Ketchup", 15], ["Fiocchi di latte magri", 190], ["Pancarrè", 200], ["Olio EVO", 15]], "tot": {"kcal": 879, "c": 118.2, "p": 42.7, "f": 24.0}, "dev": {"kcal": -7.4, "c": -9.1, "p": -4.9}}], "tF": 27.7, "tkcal": 949}], "fuel": null, "highcarb": false, "mealBudget": {"kcal": 2814, "c": 394, "p": 136, "f": 77}, "act": {"state": "todo", "tss": 71.77, "tssPlan": 71.77, "items": [{"ico": "🏊", "sport": "Nuoto", "name": "C1/B2+B1 — 3,6 km in vasca", "det": "0:46 · 200 risc · 6×50 tecnica · 6×50 R8 · 8× (50 C1 + 100 B2 + 50 sciolti) · 6×200 B1", "tss": "71,77", "plan": "71,77", "delta": null}], "note": "🏊 Secondo nuoto in vasca della settimana. Con quello di mercoledì fanno <b>138,09 TSS</b>: è la voce che decide se il modello di carico regge o va riscritto."}, "dot": "warn", "d3": "sab"}, {"iso": "2026-09-20", "dow": "domenica", "dm": 20, "kcal": 4422, "C": 600, "P": 160, "Fg": 154, "intens": "intensa", "meals": [{"name": "Colazione", "icon": "☀️", "tC": 74.4, "tP": 21.6, "opts": [{"label": "Avena + latte di soia + burro di arachidi", "items": [["Latte di soia", 250], ["Avena (fiocchi)", 25], ["Marmellata", 70], ["Burro di arachidi", 45]], "tot": {"kcal": 632, "c": 76.5, "p": 22.9, "f": 28.7}, "dev": {"kcal": 4.5, "c": 2.8, "p": 6.0}}, {"label": "Corn flakes + latte di soia + whey", "items": [["Latte di soia", 300], ["Corn flakes s/zuccheri", 85], ["Whey", 10]], "tot": {"kcal": 474, "c": 78.7, "p": 24.0, "f": 6.7}, "dev": {"kcal": -21.7, "c": 5.8, "p": 11.1}}], "tF": 24.6, "tkcal": 605}, {"name": "Pranzo", "icon": "🍽️", "tC": 94.3, "tP": 32.4, "opts": [{"label": "Riso + tonno + mais", "items": [["Mais", 80], ["Riso (crudo)", 100], ["Tonno al naturale", 90], ["Olio EVO", 45]], "tot": {"kcal": 931, "c": 93.2, "p": 32.8, "f": 47.5}, "dev": {"kcal": 0.8, "c": -1.2, "p": 1.2}}, {"label": "Pasta + ceci", "items": [["Grana", 10], ["Pasta (cruda)", 65], ["Ceci lessati", 295], ["Olio EVO", 35]], "tot": {"kcal": 938, "c": 93.3, "p": 32.1, "f": 45.9}, "dev": {"kcal": 1.5, "c": -1.1, "p": -0.9}}], "tF": 46.4, "tkcal": 924}, {"name": "Spuntino", "icon": "🍎", "tC": 29.8, "tP": 13.0, "opts": [{"label": "Yogurt greco + banana", "items": [["Yogurt greco 0%", 75], ["Banana", 115], ["Mandorle", 30]], "tot": {"kcal": 326, "c": 30.9, "p": 15.1, "f": 16.2}, "dev": {"kcal": 2.2, "c": 3.7, "p": 16.2}}, {"label": "Gallette + fiocchi di latte + mandorle", "items": [["Gallette di riso", 35], ["Fiocchi di latte magri", 55], ["Mandorle", 25]], "tot": {"kcal": 323, "c": 31.5, "p": 14.6, "f": 14.6}, "dev": {"kcal": 1.3, "c": 5.7, "p": 12.3}}], "tF": 16.4, "tkcal": 319}, {"name": "Cena", "icon": "🌙", "tC": 49.6, "tP": 41.0, "opts": [{"label": "Petto di pollo + pancarrè", "items": [["Verdure miste", 250], ["Ketchup", 15], ["Petto di pollo", 135], ["Pancarrè", 75], ["Olio EVO", 45]], "tot": {"kcal": 830, "c": 50.4, "p": 41.0, "f": 50.0}, "dev": {"kcal": 3.1, "c": 1.6, "p": 0.0}}, {"label": "Albume + pancarrè", "items": [["Verdure miste", 250], ["Ketchup", 15], ["Albume", 285], ["Pancarrè", 70], ["Olio EVO", 45]], "tot": {"kcal": 805, "c": 49.9, "p": 40.9, "f": 48.4}, "dev": {"kcal": 0.0, "c": 0.6, "p": -0.2}}], "tF": 49.2, "tkcal": 805}], "fuel": {"note": "Bici «fondo lento» 3:00 · ~142 TSS · NP stimato 180 W · tetto 175 bpm", "caff": "Caffeina 180 mg 45' prima · creatina 5 g/die · sale/elettroliti nella borraccia", "pre": [["Avena (fiocchi)", 80], ["Latte di soia", 250], ["Banana", 120]], "intra": [["Gel energetico", 160], ["Bevanda isotonica", 1500], ["Barretta energetica", 40]], "post": [["Whey", 30], ["Pancarrè", 60], ["Marmellata", 30]], "preTot": {"kcal": 514, "c": 85.9, "p": 20.1, "f": 10.4}, "intraTot": {"kcal": 910, "c": 215.0, "p": 3.0, "f": 3.5}, "postTot": {"kcal": 351, "c": 51.0, "p": 28.9, "f": 3.5}, "tot": {"kcal": 1775, "c": 351.9, "p": 52.0, "f": 17.4}, "budget": 2647}, "highcarb": true, "mealBudget": {"kcal": 2647, "c": 248.1, "p": 108.0, "f": 136.6}, "act": {"state": "todo", "tss": 142, "tssPlan": 142, "items": [{"ico": "🚴", "sport": "Bici", "name": "fondo lento", "det": "3:00 · uscita libera · tetto massimo 175 bpm · NP stimato 180 W", "tss": "~142", "plan": "n.d.", "delta": null}], "note": "📐 TrainingPeaks non fornisce il TSS: <b>stimato 142</b> dall'IF empirico del «Fondo Lento» del 06/09 (98,27 km · 3:40:06 · 173,71 TSS → IF 0,688). Spesa 1.939 kcal col metodo NP inverso, <b>+10% perché l'uscita supera le 3 ore</b> → 2.133 kcal. ✅ Le uscite lunghe sono la specialità della casa: 3 su 3 eseguite a piano."}, "dot": "crit", "d3": "dom"}, {"iso": "2026-09-21", "dow": "lunedì", "dm": 21, "kcal": 2289, "C": 265, "P": 136, "Fg": 76, "intens": "riposo", "meals": [{"name": "Colazione", "icon": "☀️", "tC": 58.3, "tP": 29.9, "opts": [{"label": "Avena + latte di soia + burro di arachidi", "items": [["Latte di soia", 250], ["Avena (fiocchi)", 70], ["Burro di arachidi", 25]], "tot": {"kcal": 514, "c": 56.7, "p": 23.7, "f": 21.8}, "dev": {"kcal": 8.0, "c": -2.7, "p": -20.7}}, {"label": "Corn flakes + latte di soia + whey", "items": [["Latte di soia", 300], ["Corn flakes s/zuccheri", 60], ["Whey", 20]], "tot": {"kcal": 419, "c": 58.4, "p": 30.1, "f": 6.9}, "dev": {"kcal": -12.0, "c": 0.2, "p": 0.7}}], "tF": 13.7, "tkcal": 476}, {"name": "Pranzo", "icon": "🍽️", "tC": 87.5, "tP": 44.9, "opts": [{"label": "Riso + lenticchie", "items": [["Grana", 10], ["Riso (crudo)", 30], ["Lenticchie lessate", 405], ["Olio EVO", 15]], "tot": {"kcal": 749, "c": 92.2, "p": 41.9, "f": 19.6}, "dev": {"kcal": -1.7, "c": 5.4, "p": -6.7}}, {"label": "Pasta + ceci", "items": [["Grana", 10], ["Pasta (cruda)", 10], ["Ceci lessati", 520], ["Olio EVO", 5]], "tot": {"kcal": 744, "c": 90.3, "p": 40.9, "f": 20.4}, "dev": {"kcal": -2.4, "c": 3.2, "p": -8.9}}], "tF": 25.8, "tkcal": 762}, {"name": "Spuntino", "icon": "🍎", "tC": 31.8, "tP": 16.3, "opts": [{"label": "Gallette + fiocchi di latte + mandorle", "items": [["Gallette di riso", 35], ["Fiocchi di latte magri", 95], ["Mandorle", 15]], "tot": {"kcal": 291, "c": 32.4, "p": 17.3, "f": 9.8}, "dev": {"kcal": 6.2, "c": 1.9, "p": 6.1}}, {"label": "Yogurt greco + banana", "items": [["Yogurt greco 0%", 115], ["Banana", 115], ["Mandorle", 20]], "tot": {"kcal": 289, "c": 32.0, "p": 17.0, "f": 11.2}, "dev": {"kcal": 5.5, "c": 0.6, "p": 4.3}}], "tF": 9.1, "tkcal": 274}, {"name": "Cena", "icon": "🌙", "tC": 87.5, "tP": 44.9, "opts": [{"label": "Tofu + gallette", "items": [["Verdure miste", 250], ["Tofu", 225], ["Gallette di riso", 90], ["Olio EVO", 5]], "tot": {"kcal": 776, "c": 87.4, "p": 44.7, "f": 26.2}, "dev": {"kcal": 0.0, "c": -0.1, "p": -0.4}}, {"label": "Uova + pancarrè", "items": [["Verdure miste", 250], ["Uova intere", 230], ["Pancarrè", 150]], "tot": {"kcal": 789, "c": 85.1, "p": 44.7, "f": 27.3}, "dev": {"kcal": 1.7, "c": -2.7, "p": -0.4}}], "tF": 27.4, "tkcal": 776}], "fuel": null, "highcarb": false, "mealBudget": {"kcal": 2289, "c": 265, "p": 136, "f": 76}, "act": {"state": "none", "tss": 0, "tssPlan": 0, "items": [], "note": "⚪ <b>Nessuna seduta pubblicata su TrainingPeaks.</b> Verificato interrogando la finestra 21→30/09: risposta vuota. Non è un riposo dichiarato dal coach, è un piano non ancora caricato — il fabbisogno qui sotto è il metabolismo basale per attività quotidiana (BMR × 1,3). Se arriva una seduta, aggiungi la sua spesa."}, "dot": "rest", "d3": "lun"}], "well": {"hrv": 120, "hrvBase": 102, "hrvLo": 81, "hrvHi": 123, "rhr": 49, "sleep": "7h05", "sleepScore": 67, "deep": 35, "rem": 18, "stress": 19, "rec": 100, "shortL": 50, "longL": 68, "ratio": "0,73"}};
-const D = DATA.days, W = DATA.well;
-const MESI=["gennaio","febbraio","marzo","aprile","maggio","giugno","luglio","agosto","settembre","ottobre","novembre","dicembre"];
-const CARB="var(--carb)",PROT="var(--prot)",FAT="var(--fat)";
-const EDGE={crit:"var(--crit)",warn:"var(--warn)",good:"var(--good)",rest:"var(--rest)"};
-function todayISO(){const d=new Date();return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");}
-const TI = D.findIndex(d=>d.iso===todayISO());
-let idx = TI>=0?TI:0;
+const DATA = [{"iso": "2026-09-15", "dow": "Mar", "label": "Martedì 15 settembre", "kcal": 3041, "C": 379, "P": 151, "F": 102, "intensity": "media", "num": "15", "meals": [{"name": "Colazione", "icon": "☀️", "target": [656, 91, 27, 20], "opts": [{"title": "Opzione 1 — Avena, latte di soia e burro di arachidi", "items": [["Avena (fiocchi)", 145], ["Latte di soia", 175], ["Burro di arachidi", 10]], "tot": [666, 90.0, 27.0, 18.6], "flags": []}, {"title": "Opzione 2 — Corn flakes, latte di soia e whey", "items": [["Corn flakes senza zuccheri", 55], ["Latte di soia", 385], ["Whey", 15], ["Marmellata", 70]], "tot": [591, 95.9, 28.8, 9.0], "flags": []}]}, {"name": "Pranzo", "icon": "🍽️", "target": [1009, 136, 42, 33], "opts": [{"title": "Opzione 1 — Riso e tonno", "items": [["Riso (crudo)", 160], ["Tonno al naturale", 110], ["Mais", 60], ["Olio EVO", 30]], "tot": [1012, 135.6, 41.6, 32.7], "flags": []}, {"title": "Opzione 2 — Pasta e ceci", "items": [["Pasta (cruda)", 145], ["Ceci lessati", 205], ["Grana", 30], ["Olio EVO", 15]], "tot": [1016, 137.2, 42.4, 31.0], "flags": []}]}, {"name": "Spuntino", "icon": "🍎", "target": [395, 45, 21, 14], "opts": [{"title": "Opzione 1 — Yogurt greco, banana e mandorle", "items": [["Yogurt greco 0%", 130], ["Banana", 165], ["Mandorle", 30]], "tot": [395, 46.0, 21.1, 16.0], "flags": []}, {"title": "Opzione 2 — Gallette e fiocchi di latte", "items": [["Gallette di riso", 50], ["Fiocchi di latte magri", 165]], "tot": [355, 46.1, 22.1, 8.6], "flags": []}]}, {"name": "Cena", "icon": "🌙", "target": [978, 106, 60, 35], "opts": [{"title": "Opzione 1 — Petto di pollo, pancarrè e verdure", "items": [["Petto di pollo", 130], ["Pancarrè", 180], ["Verdure miste", 350], ["Olio EVO", 20]], "tot": [959, 102.2, 59.9, 31.3], "flags": []}, {"title": "Opzione 2 — Burger vegetale Lidl, fette biscottate e verdure", "items": [["Burger vegetale Lidl", 250], ["Fette biscottate", 85], ["Verdure miste", 350], ["Olio EVO", 5], ["Ketchup", 40]], "tot": [1021, 103.2, 57.5, 40.8], "flags": []}]}], "fuel": null, "activities": [{"icon": "🏃", "sport": "Corsa", "name": "«recupero attivo»", "detail": "41:49 · 7,75 km · 5:24/km · HR media 161 · 238 W", "kcal": 662, "tss": "36,16", "planned": "26,7", "delta": "+35,4%", "done": true}, {"icon": "🏋️", "sport": "Forza", "name": "«Gambe Mantenimento»", "detail": "42:54 · HR media 104", "kcal": 286, "tss": "28,04", "planned": "20,0", "delta": "+40,2%", "done": true}], "summary": "Giornata chiusa a <b>64,20 TSS</b> contro 46,70 a piano (<b>+37,5%</b>) · 11.001 passi · 1.207 kcal attive · 1h25 di esercizio · HR max 165.", "insight": "Le due sedute sono arrivate entrambe sopra il piano: la corsa a 36,16 TSS contro 26,7 (+35,4%) e la forza a 28,04 contro 20,0 (+40,2%), per un totale di 64,20 TSS su 46,70 previsti. COROS ha marcato la corsa «Performance: Poor» nonostante i 5:24/km, su un percorso in discesa netta (D+ 10 m contro D− 79 m): a quel passo il costo cardiaco è stato più alto del normale, coerente con HRV 87 ms e RHR 53 della mattina, cioè con una base non ancora ricaricata dopo il minimo di 33 ms del 13/09. È la settima sforata su nove nella categoria «outdoor + breve + con un target»: indoor (2/2) e lunghe outdoor (3/3) restano invece perfettamente aderenti. Il recupero però è arrivato: la notte successiva l'HRV è risalita a 120 ms e l'RHR è sceso a 49.", "note": null, "dev": null}, {"iso": "2026-09-16", "dow": "Mer", "label": "Mercoledì 16 settembre", "kcal": 2771, "C": 379, "P": 136, "F": 79, "intensity": "media", "num": "16", "meals": [{"name": "Colazione", "icon": "☀️", "target": [604, 91, 24, 16], "opts": [{"title": "Opzione 1 — Avena, latte di soia e burro di arachidi", "items": [["Avena (fiocchi)", 125], ["Latte di soia", 150], ["Burro di arachidi", 10], ["Marmellata", 15]], "tot": [620, 87.5, 23.6, 16.8], "flags": []}, {"title": "Opzione 2 — Corn flakes, latte di soia e whey", "items": [["Corn flakes senza zuccheri", 55], ["Latte di soia", 285], ["Whey", 15], ["Marmellata", 70]], "tot": [551, 94.9, 25.6, 7.0], "flags": []}]}, {"name": "Pranzo", "icon": "🍽️", "target": [926, 136, 38, 25], "opts": [{"title": "Opzione 1 — Riso e tonno", "items": [["Riso (crudo)", 160], ["Tonno al naturale", 95], ["Mais", 60], ["Olio EVO", 20]], "tot": [904, 135.6, 37.7, 22.5], "flags": []}, {"title": "Opzione 2 — Pasta e ceci", "items": [["Pasta (cruda)", 135], ["Ceci lessati", 245], ["Grana", 10], ["Olio EVO", 10]], "tot": [903, 136.4, 37.3, 21.1], "flags": []}]}, {"name": "Spuntino", "icon": "🍎", "target": [358, 45, 19, 11], "opts": [{"title": "Opzione 1 — Yogurt greco, banana e mandorle", "items": [["Yogurt greco 0%", 120], ["Banana", 165], ["Mandorle", 25]], "tot": [360, 45.1, 19.1, 13.5], "flags": []}, {"title": "Opzione 2 — Gallette e fiocchi di latte", "items": [["Gallette di riso", 50], ["Fiocchi di latte magri", 140]], "tot": [331, 45.3, 19.4, 7.5], "flags": []}]}, {"name": "Cena", "icon": "🌙", "target": [884, 106, 54, 27], "opts": [{"title": "Opzione 1 — Petto di pollo, pancarrè e verdure", "items": [["Petto di pollo", 110], ["Pancarrè", 180], ["Verdure miste", 350], ["Olio EVO", 15]], "tot": [881, 102.2, 53.8, 25.6], "flags": []}, {"title": "Opzione 2 — Burger vegetale Lidl, fette biscottate e verdure", "items": [["Burger vegetale Lidl", 210], ["Fette biscottate", 85], ["Verdure miste", 350], ["Olio EVO", 5], ["Ketchup", 40]], "tot": [941, 100.8, 50.7, 36.0], "flags": []}]}], "fuel": null, "activities": [{"icon": "🏊", "sport": "Nuoto in vasca", "name": "«A2» — 3,3 km", "detail": "0:42 · 200 risc. · 6x50 tecnica · 6x50 R8 · 3x(400 pale+pull+boccaglio + 8x50 agile) · 100 sciolti", "kcal": 482, "tss": "66,32", "planned": "66,32", "delta": null, "done": false}], "summary": "⏳ <b>Esito non determinabile stasera.</b> Alle 22:20 locali COROS non ha ancora un record per oggi, ma la riga giornaliera è sincronizzata solo fino alle <b>18:29</b> (1.038 passi, 115 kcal attive, 0 min di esercizio, HR max 94). La finestra tipica della vasca cade dopo quell'ora: <b>nessuna conclusione, né attività né riposo</b> (Regola 12). Verifica al run di domani.", "insight": null, "note": "🔴 <b>Quarto tentativo di nuoto in vasca.</b> I tre precedenti (28/08 · 04/09 · 08/09, 238 TSS complessivi) sono saltati tutti; non si nuota in vasca dal 01/09. Il 13/09 c'è stato un Open Water da 940 m, che è un bagno lungo, non un allenamento. Se salta anche questo, il nuoto in vasca va tolto dal modello o riprogrammato in acqua libera.", "dev": null}, {"iso": "2026-09-17", "dow": "Gio", "label": "Giovedì 17 settembre", "kcal": 3444, "C": 493, "P": 136, "F": 103, "intensity": "alta", "num": "17", "meals": [{"name": "Colazione", "icon": "☀️", "target": [573, 90, 18, 16], "opts": [{"title": "Opzione 1 — Avena, latte di soia e burro di arachidi", "items": [["Avena (fiocchi)", 65], ["Latte di soia", 195], ["Burro di arachidi", 10], ["Marmellata", 70]], "tot": [554, 87.7, 17.5, 13.5], "flags": []}, {"title": "Opzione 2 — Corn flakes, latte di soia e whey", "items": [["Corn flakes senza zuccheri", 55], ["Latte di soia", 150], ["Whey", 15], ["Marmellata", 70]], "tot": [497, 93.5, 21.3, 4.3], "flags": ["P +17,2%"]}]}, {"name": "Pranzo", "icon": "🍽️", "target": [829, 114, 27, 29], "opts": [{"title": "Opzione 1 — Riso e tonno", "items": [["Riso (crudo)", 140], ["Tonno al naturale", 80], ["Olio EVO", 30]], "tot": [853, 109.2, 30.6, 31.6], "flags": []}, {"title": "Opzione 2 — Pasta e ceci", "items": [["Pasta (cruda)", 120], ["Ceci lessati", 175], ["Olio EVO", 20]], "tot": [816, 114.4, 27.2, 26.2], "flags": []}]}, {"name": "Spuntino", "icon": "🍎", "target": [328, 36, 15, 14], "opts": [{"title": "Opzione 1 — Yogurt greco, banana e mandorle", "items": [["Yogurt greco 0%", 100], ["Banana", 130], ["Mandorle", 25]], "tot": [317, 36.3, 16.7, 13.3], "flags": []}, {"title": "Opzione 2 — Gallette e fiocchi di latte", "items": [["Gallette di riso", 45], ["Fiocchi di latte magri", 115]], "tot": [287, 40.4, 16.2, 6.3], "flags": []}]}, {"name": "Cena", "icon": "🌙", "target": [754, 60, 40, 39], "opts": [{"title": "Opzione 1 — Petto di pollo, pancarrè e verdure", "items": [["Petto di pollo", 100], ["Pancarrè", 105], ["Verdure miste", 200], ["Olio EVO", 30]], "tot": [763, 59.5, 42.4, 37.5], "flags": []}, {"title": "Opzione 2 — Burger vegetale Lidl, fette biscottate e verdure", "items": [["Burger vegetale Lidl", 185], ["Fette biscottate", 45], ["Verdure miste", 235], ["Olio EVO", 15], ["Ketchup", 25]], "tot": [773, 60.7, 40.2, 40.4], "flags": []}]}], "fuel": {"titolo": "🚴 Bici «Z3/Z5 pianura» — 1h35, 95,5 TSS", "phases": [{"name": "Pre", "quando": "2–3 h prima", "lines": ["Pancarrè — 90 g", "Marmellata — 40 g"], "tot": [338, 70, 7, 3]}, {"name": "Intra", "quando": "in sella", "lines": ["2 gel da 25 g di carboidrati (uno a 35′, uno a 70′)", "500 ml di bevanda isotonica (30 g carbo, ~400 mg sodio)"], "tot": [320, 80, 0, 0]}, {"name": "Post", "quando": "entro 30–45′", "lines": ["Whey — 30 g", "Corn flakes senza zuccheri — 50 g"], "tot": [302, 43, 28, 2]}], "extra": "Caffeina 150–200 mg (2–3 mg/kg) 45′ prima se la seduta è al mattino. Creatina 5 g/die continuativa.", "tot": [960, 193, 35, 5], "budget": [2484, 300, 101, 98]}, "activities": [{"icon": "🚴", "sport": "Bici", "name": "«Z3/Z5 pianura»", "detail": "1:35 · dopo 20′ di riscaldamento, variazioni in pianura", "kcal": 1155, "tss": "95,5", "planned": "95,5", "delta": null, "done": false}], "summary": "Spesa stimata <b>1.155 kcal</b> con il metodo NP inverso: NP = 261 × √(0,955 / 1,583) = <b>203 W</b> → 203 × 5.700 s / 1.000. Nessuna correzione del +10%: vale solo sulle uscite ≥ 3 ore.", "insight": null, "note": "⚠️ <b>Due sedute di bici a piano oggi: sono alternative, non si sommano.</b> La principale «Z3/Z5 pianura» (1:35, 95,5 TSS) è quella su cui è calcolato il fabbisogno; l'alternativa corta «variazioni Z3/Z5» (0:52, 52,57 TSS) vale circa 630 kcal in meno. Il criterio fissato martedì (HRV &lt; 90 o RHR &gt; 55 → alternativa corta) si è sciolto a favore della principale: <b>HRV 120 ms, RHR 49</b>. Riverifica comunque i due marcatori giovedì mattina.", "dev": ["carb", "Giornata ad alto carbo (493 g, 6,5 g/kg). Lo split canonico 22/33/12/33 renderebbe la cena irrealizzabile con un solo carboidrato per piatto: <b>i carboidrati sono spostati su colazione (30%) e pranzo (38%), le proteine sulla cena (40%)</b>."]}, {"iso": "2026-09-18", "dow": "Ven", "label": "Venerdì 18 settembre", "kcal": 3072, "C": 416, "P": 136, "F": 96, "intensity": "media", "num": "18", "meals": [{"name": "Colazione", "icon": "☀️", "target": [670, 100, 24, 19], "opts": [{"title": "Opzione 1 — Avena, latte di soia e burro di arachidi", "items": [["Avena (fiocchi)", 130], ["Latte di soia", 150], ["Burro di arachidi", 10], ["Marmellata", 30]], "tot": [676, 100.2, 24.3, 17.1], "flags": []}, {"title": "Opzione 2 — Corn flakes, latte di soia e whey", "items": [["Corn flakes senza zuccheri", 70], ["Latte di soia", 260], ["Whey", 15], ["Marmellata", 70]], "tot": [596, 107.1, 25.9, 6.7], "flags": []}]}, {"name": "Pranzo", "icon": "🍽️", "target": [1028, 150, 38, 31], "opts": [{"title": "Opzione 1 — Riso e tonno", "items": [["Riso (crudo)", 175], ["Tonno al naturale", 90], ["Mais", 65], ["Olio EVO", 25]], "tot": [1000, 148.2, 37.6, 27.6], "flags": []}, {"title": "Opzione 2 — Pasta e ceci", "items": [["Pasta (cruda)", 190], ["Ceci lessati", 90], ["Grana", 25], ["Olio EVO", 15]], "tot": [1018, 151.2, 38.3, 27.4], "flags": []}]}, {"name": "Spuntino", "icon": "🍎", "target": [397, 50, 19, 13], "opts": [{"title": "Opzione 1 — Yogurt greco, banana e mandorle", "items": [["Yogurt greco 0%", 110], ["Banana", 185], ["Mandorle", 30]], "tot": [401, 49.8, 19.3, 16.0], "flags": []}, {"title": "Opzione 2 — Gallette e fiocchi di latte", "items": [["Gallette di riso", 60], ["Fiocchi di latte magri", 135]], "tot": [364, 53.2, 19.6, 7.6], "flags": []}]}, {"name": "Cena", "icon": "🌙", "target": [977, 116, 54, 33], "opts": [{"title": "Opzione 1 — Petto di pollo, pancarrè e verdure", "items": [["Petto di pollo", 110], ["Pancarrè", 180], ["Verdure miste", 350], ["Olio EVO", 25]], "tot": [971, 102.2, 53.8, 35.6], "flags": []}, {"title": "Opzione 2 — Burger vegetale Lidl, fette biscottate e verdure", "items": [["Burger vegetale Lidl", 210], ["Fette biscottate", 100], ["Verdure miste", 350], ["Olio EVO", 5], ["Ketchup", 40]], "tot": [1002, 112.2, 52.4, 36.9], "flags": []}]}], "fuel": null, "activities": [{"icon": "🏃", "sport": "Corsa", "name": "«variazioni Z3/Z5»", "detail": "0:42 · 9,4 km", "kcal": 783, "tss": "53,7", "planned": "53,7", "delta": null, "done": false}], "summary": "Spesa stimata <b>783 kcal</b>: 1 kcal/kg/km × 75,7 × 9,4 = 712 kcal, <b>+10%</b> di correzione su strada.", "insight": null, "note": "📌 <b>Seduta outdoor breve con un target: la categoria che sfora 7 volte su 9.</b> Il fabbisogno è calcolato sui 9,4 km a piano; se diventano 11 km vanno aggiunte circa 120 kcal.", "dev": ["calib", "📐 <b>Metodo aggiornato.</b> Tre verifiche su strada (10/09 +10,4% · 12/09 +7,5% · 15/09 +12,8%) mostrano che 1 kcal/kg/km <b>sottostima del 7-13%</b>: da questo run la stima a preventivo per la corsa su strada porta un +10%. ⚠️ Sul trail la stessa regola <b>sovrastima del 42%</b> (verificato il 05/09): lì la correzione va in direzione opposta."]}, {"iso": "2026-09-19", "dow": "Sab", "label": "Sabato 19 settembre", "kcal": 2815, "C": 379, "P": 136, "F": 84, "intensity": "media", "num": "19", "meals": [{"name": "Colazione", "icon": "☀️", "target": [613, 91, 24, 17], "opts": [{"title": "Opzione 1 — Avena, latte di soia e burro di arachidi", "items": [["Avena (fiocchi)", 130], ["Latte di soia", 150], ["Burro di arachidi", 10], ["Marmellata", 15]], "tot": [638, 90.5, 24.3, 17.1], "flags": []}, {"title": "Opzione 2 — Corn flakes, latte di soia e whey", "items": [["Corn flakes senza zuccheri", 55], ["Latte di soia", 285], ["Whey", 15], ["Marmellata", 70]], "tot": [551, 94.9, 25.6, 7.0], "flags": []}]}, {"name": "Pranzo", "icon": "🍽️", "target": [940, 136, 38, 27], "opts": [{"title": "Opzione 1 — Riso e tonno", "items": [["Riso (crudo)", 160], ["Tonno al naturale", 95], ["Mais", 70], ["Olio EVO", 25]], "tot": [958, 137.4, 38.0, 27.6], "flags": []}, {"title": "Opzione 2 — Pasta e ceci", "items": [["Pasta (cruda)", 145], ["Ceci lessati", 190], ["Grana", 20], ["Olio EVO", 10]], "tot": [913, 134.8, 38.0, 22.7], "flags": []}]}, {"name": "Spuntino", "icon": "🍎", "target": [364, 45, 19, 12], "opts": [{"title": "Opzione 1 — Yogurt greco, banana e mandorle", "items": [["Yogurt greco 0%", 120], ["Banana", 165], ["Mandorle", 25]], "tot": [360, 45.1, 19.1, 13.5], "flags": []}, {"title": "Opzione 2 — Gallette e fiocchi di latte", "items": [["Gallette di riso", 55], ["Fiocchi di latte magri", 140]], "tot": [350, 49.3, 19.8, 7.7], "flags": []}]}, {"name": "Cena", "icon": "🌙", "target": [899, 106, 54, 29], "opts": [{"title": "Opzione 1 — Petto di pollo, pancarrè e verdure", "items": [["Petto di pollo", 110], ["Pancarrè", 180], ["Verdure miste", 350], ["Olio EVO", 15]], "tot": [881, 102.2, 53.8, 25.6], "flags": []}, {"title": "Opzione 2 — Burger vegetale Lidl, fette biscottate e verdure", "items": [["Burger vegetale Lidl", 215], ["Fette biscottate", 85], ["Verdure miste", 350], ["Olio EVO", 5], ["Ketchup", 40]], "tot": [951, 101.1, 51.5, 36.6], "flags": []}]}], "fuel": null, "activities": [{"icon": "🏊", "sport": "Nuoto in vasca", "name": "«C1/B2+B1» — 3,6 km", "detail": "0:46 · 200 risc. · 6x50 tecnica · 6x50 R8 · 8x(50 C1 + 100 B2 + 50 sciolti) · 6x200 B1", "kcal": 526, "tss": "71,77", "planned": "71,77", "delta": null, "done": false}], "summary": "Spesa stimata <b>526 kcal</b> a 146 kcal/km, dentro il range validato in vasca (128-159 kcal/km: 01/09 128 · 24/08 139 · 21/08 159).", "insight": null, "note": "📌 <b>Secondo nuoto in vasca della settimana.</b> Insieme a quello di mercoledì fanno 138,09 TSS: è il blocco che decide se il nuoto resta nel programma.", "dev": null}, {"iso": "2026-09-20", "dow": "Dom", "label": "Domenica 20 settembre", "kcal": 4422, "C": 663, "P": 160, "F": 126, "intensity": "alta", "num": "20", "meals": [{"name": "Colazione", "icon": "☀️", "target": [657, 105, 19, 18], "opts": [{"title": "Opzione 1 — Avena, latte di soia e burro di arachidi", "items": [["Avena (fiocchi)", 85], ["Latte di soia", 150], ["Burro di arachidi", 15], ["Marmellata", 80]], "tot": [664, 106.3, 20.0, 16.5], "flags": []}, {"title": "Opzione 2 — Corn flakes, latte di soia e whey", "items": [["Corn flakes senza zuccheri", 75], ["Latte di soia", 150], ["Whey", 15], ["Marmellata", 70]], "tot": [571, 110.2, 22.8, 4.5], "flags": ["P +17,0%"]}]}, {"name": "Pranzo", "icon": "🍽️", "target": [947, 133, 29, 33], "opts": [{"title": "Opzione 1 — Riso e tonno", "items": [["Riso (crudo)", 165], ["Tonno al naturale", 80], ["Olio EVO", 30]], "tot": [940, 128.7, 32.4, 31.8], "flags": []}, {"title": "Opzione 2 — Pasta e ceci", "items": [["Pasta (cruda)", 160], ["Ceci lessati", 115], ["Grana", 5], ["Olio EVO", 25]], "tot": [951, 133.6, 29.7, 31.7], "flags": []}]}, {"name": "Spuntino", "icon": "🍎", "target": [372, 42, 16, 15], "opts": [{"title": "Opzione 1 — Yogurt greco, banana e mandorle", "items": [["Yogurt greco 0%", 100], ["Banana", 155], ["Mandorle", 25]], "tot": [340, 42.0, 17.0, 13.4], "flags": []}, {"title": "Opzione 2 — Gallette e fiocchi di latte", "items": [["Gallette di riso", 50], ["Fiocchi di latte magri", 120]], "tot": [311, 44.6, 17.2, 6.7], "flags": ["kcal -16,3%"]}]}, {"name": "Cena", "icon": "🌙", "target": [850, 70, 43, 44], "opts": [{"title": "Opzione 1 — Petto di pollo, pancarrè e verdure", "items": [["Petto di pollo", 100], ["Pancarrè", 130], ["Verdure miste", 200], ["Olio EVO", 30]], "tot": [830, 71.7, 44.4, 38.3], "flags": []}, {"title": "Opzione 2 — Burger vegetale Lidl, fette biscottate e verdure", "items": [["Burger vegetale Lidl", 190], ["Fette biscottate", 55], ["Verdure miste", 305], ["Olio EVO", 15], ["Ketchup", 15]], "tot": [832, 69.0, 43.1, 41.7], "flags": []}]}], "fuel": {"titolo": "🚴 Bici «fondo lento» — 3h00, ~142 TSS, tetto 175 bpm", "phases": [{"name": "Pre", "quando": "2–3 h prima", "lines": ["Avena (fiocchi) — 80 g", "Latte di soia — 200 g", "Marmellata — 30 g"], "tot": [451, 70, 17, 10]}, {"name": "Intra", "quando": "in sella (3 ore)", "lines": ["4 gel da 25 g di carboidrati (uno ogni 45′)", "1,5 L di bevanda isotonica (90 g carbo, ~1.200 mg sodio)"], "tot": [760, 190, 0, 0]}, {"name": "Post", "quando": "entro 30–45′", "lines": ["Whey — 30 g", "Corn flakes senza zuccheri — 60 g", "Latte di soia — 200 g"], "tot": [419, 54, 35, 6]}], "extra": "~63 g di carboidrati/ora in sella: sul fondo lento è sufficiente. Creatina 5 g/die. Reidratare 1,5× il peso perso.", "tot": [1630, 313, 52, 16], "budget": [2792, 350, 108, 110]}, "activities": [{"icon": "🚴", "sport": "Bici", "name": "«fondo lento»", "detail": "3:00 · uscita libera · tetto massimo 175 bpm", "kcal": 2133, "tss": "~142", "planned": "~142", "delta": null, "done": false}], "summary": "Spesa stimata <b>2.133 kcal</b>. TSS ricavato dall'IF empirico del «Fondo Lento» del 06/09 (98,27 km · 3:40:06 · 173,71 TSS → IF 0,688): TSS = 3,0 × 0,688² × 100 = 142. NP = 261 × √(1,42 / 3,0) = <b>180 W</b> → 1.939 kcal, <b>+10%</b> perché l'uscita è ≥ 3 ore.", "insight": null, "note": "✅ <b>Le uscite lunghe outdoor sono la specialità della casa</b>: 3 su 3 eseguite a piano (+0,2% · +4,8% · +9%). Il dubbio non è l'aderenza, è il fueling: 190 g di carboidrati nelle sole tre ore di sella.", "dev": ["carb", "Giornata ad alto carbo (663 g, 8,8 g/kg). <b>Carboidrati spostati su colazione (30%) e pranzo (38%), proteine sulla cena (40%)</b>: con un solo carboidrato per piatto lo split canonico sarebbe irrealizzabile. Proteine giornaliere portate a <b>2,1 g/kg</b> per le tre ore di endurance."]}, {"iso": "2026-09-21", "dow": "Lun", "label": "Lunedì 21 settembre", "kcal": 2289, "C": 265, "P": 136, "F": 76, "intensity": "riposo", "num": "21", "meals": [{"name": "Colazione", "icon": "☀️", "target": [489, 64, 24, 15], "opts": [{"title": "Opzione 1 — Avena, latte di soia e burro di arachidi", "items": [["Avena (fiocchi)", 95], ["Latte di soia", 265], ["Burro di arachidi", 10]], "tot": [518, 60.9, 23.3, 16.9], "flags": []}, {"title": "Opzione 2 — Corn flakes, latte di soia e whey", "items": [["Corn flakes senza zuccheri", 40], ["Latte di soia", 335], ["Whey", 15], ["Marmellata", 45]], "tot": [453, 66.7, 25.9, 7.9], "flags": []}]}, {"name": "Pranzo", "icon": "🍽️", "target": [753, 95, 38, 24], "opts": [{"title": "Opzione 1 — Riso e tonno", "items": [["Riso (crudo)", 100], ["Tonno al naturale", 110], ["Mais", 105], ["Olio EVO", 20]], "tot": [752, 96.9, 38.8, 22.8], "flags": []}, {"title": "Opzione 2 — Pasta e ceci", "items": [["Pasta (cruda)", 70], ["Ceci lessati", 275], ["Grana", 30], ["Olio EVO", 5]], "tot": [744, 94.4, 37.9, 21.6], "flags": []}]}, {"name": "Spuntino", "icon": "🍎", "target": [299, 32, 19, 11], "opts": [{"title": "Opzione 1 — Yogurt greco, banana e mandorle", "items": [["Yogurt greco 0%", 130], ["Banana", 105], ["Mandorle", 20]], "tot": [283, 31.2, 18.4, 10.8], "flags": []}, {"title": "Opzione 2 — Gallette e fiocchi di latte", "items": [["Gallette di riso", 35], ["Fiocchi di latte magri", 155]], "tot": [287, 33.6, 19.9, 7.7], "flags": []}]}, {"name": "Cena", "icon": "🌙", "target": [747, 74, 54, 26], "opts": [{"title": "Opzione 1 — Petto di pollo, pancarrè e verdure", "items": [["Petto di pollo", 130], ["Pancarrè", 130], ["Verdure miste", 255], ["Olio EVO", 15]], "tot": [758, 73.9, 54.5, 24.5], "flags": []}, {"title": "Opzione 2 — Burger vegetale Lidl, fette biscottate e verdure", "items": [["Burger vegetale Lidl", 230], ["Fette biscottate", 45], ["Verdure miste", 350], ["Olio EVO", 5], ["Ketchup", 40]], "tot": [817, 71.6, 49.7, 36.0], "flags": []}]}], "fuel": null, "activities": [], "summary": "⚪ <b>Nessuna seduta pubblicata — e non è riposo.</b> TrainingPeaks risponde <code>workouts: []</code> su tutta la finestra 21/09 → 05/10: il piano semplicemente non è ancora stato caricato. Il fabbisogno qui sotto è il solo BMR × 1,3. Se arriva una seduta, va aggiunta la sua spesa.", "insight": null, "note": null, "dev": null}];
+const REC  = {"recovery": "100%", "level": "Heavy training allowed", "full": "0h", "hrv": "120 ms", "hrv_eval": "Normal", "hrv_range": "81 – 123 ms", "hrv_base": "102 ms", "rhr": "49 bpm", "sleep": "7h 05′", "sleep_score": "67", "deep": "35%", "rem": "18%", "eff": "98,9%", "sleephr": "49 bpm", "ratio": "0,73", "short": "50", "long": "68"};
+const COL = {alta:'var(--crit)', media:'var(--warn)', leggera:'var(--good)', riposo:'var(--muted)'};
+const LBL = {alta:'Intensa', media:'Media', leggera:'Leggera', riposo:'Nessuna seduta'};
+let idx = 0;
 
-function n(x,dec){return (dec?x.toFixed(dec):Math.round(x)).toString().replace(".",",");}
-function donut(c,p,f,label){
-  const kc=c*4,kp=p*4,kf=f*9,tot=kc+kp+kf||1;
-  const R=52,CX=66,CY=66,SW=13,GAP=0.035;
-  const segs=[[kc/tot,CARB],[kp/tot,PROT],[kf/tot,FAT]];
-  let a=-Math.PI/2,out="";
-  for(const [frac,col] of segs){
-    const sweep=frac*Math.PI*2-GAP; if(sweep<=0.01){a+=frac*Math.PI*2;continue;}
-    const x1=CX+R*Math.cos(a+GAP/2),y1=CY+R*Math.sin(a+GAP/2);
-    const x2=CX+R*Math.cos(a+GAP/2+sweep),y2=CY+R*Math.sin(a+GAP/2+sweep);
-    out+=`<path d="M${x1.toFixed(2)} ${y1.toFixed(2)} A${R} ${R} 0 ${sweep>Math.PI?1:0} 1 ${x2.toFixed(2)} ${y2.toFixed(2)}" fill="none" stroke="${col}" stroke-width="${SW}" stroke-linecap="round"/>`;
-    a+=frac*Math.PI*2;
-  }
-  return `<svg viewBox="0 0 132 132" width="132" height="132" role="img" aria-label="Ripartizione macro">${out}
-    <text x="66" y="62" text-anchor="middle" font-size="25" font-weight="700" fill="var(--ink)">${n(label||tot)}</text>
-    <text x="66" y="80" text-anchor="middle" font-size="11" fill="var(--ink-3)">kcal</text></svg>`;
+function todayISO(){
+  const d=new Date();
+  return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
 }
-function totsHtml(t){return `<div class="tot"><span><b>${n(t.kcal)}</b> kcal</span><span>C <b>${n(t.c)}</b> g</span><span>P <b>${n(t.p)}</b> g</span><span>G <b>${n(t.f)}</b> g</span></div>`;}
-function items(list){return "<ul>"+list.map(([nm,g])=>{
-  if(nm==="Gel energetico") return `<li>${nm} — <b>${g/40} bustine</b> <span style="color:var(--ink-3)">(${g/40*25} g di carboidrati)</span></li>`;
-  if(nm==="Barretta energetica") return `<li>${nm} — <b>1 barretta da ${g} g</b></li>`;
-  const u = (nm==="Latte di soia"||nm==="Bevanda isotonica")?"ml":"g";
-  return `<li>${nm} — <b>${g} ${u}</b></li>`;}).join("")+"</ul>";}
+const TODAY = todayISO();
+const todayIdx = DATA.findIndex(d=>d.iso===TODAY);
+idx = todayIdx>=0 ? todayIdx : 0;
+
+function nf(n){ return n.toLocaleString('it-IT'); }
+
+function donut(kcal,C,P,F){
+  const kc=C*4, kp=P*4, kf=F*9, tot=kc+kp+kf;
+  const R=52, CX=66, CY=66, circ=2*Math.PI*R;
+  let off=0; let arcs='';
+  [[kc,'var(--carb)'],[kp,'var(--prot)'],[kf,'var(--fat)']].forEach(([v,c])=>{
+    const len=Math.max(circ*v/tot-4,1);
+    arcs+=`<circle cx="${CX}" cy="${CY}" r="${R}" fill="none" stroke="${c}" stroke-width="13"
+      stroke-linecap="round" stroke-dasharray="${len} ${circ-len}"
+      stroke-dashoffset="${-off+1}" transform="rotate(-90 ${CX} ${CY})"/>`;
+    off+=circ*v/tot;
+  });
+  return `<svg viewBox="0 0 132 132" width="132" height="132" role="img" aria-label="Ripartizione macro">
+    ${arcs}
+    <text x="${CX}" y="${CY-2}" text-anchor="middle" font-size="24" font-weight="700" fill="var(--ink)">${nf(kcal)}</text>
+    <text x="${CX}" y="${CY+16}" text-anchor="middle" font-size="11" fill="var(--ink-3)">kcal</text>
+  </svg>`;
+}
+
+function macroLegend(C,P,F){
+  const kc=C*4,kp=P*4,kf=F*9,t=kc+kp+kf;
+  const row=(c,n,g,k)=>`<div><i style="background:${c}"></i>${n}<b>${g} g</b><s>${Math.round(k/t*100)}%</s></div>`;
+  return `<div class="leg">${row('var(--carb)','Carboidrati',nf(C),kc)}${row('var(--prot)','Proteine',nf(P),kp)}${row('var(--fat)','Grassi',nf(F),kf)}</div>`;
+}
+
+function totBox(t,label){
+  return `<div class="tot"><span class="tl">${label||'Totale ricetta'}</span>
+   <span class="tv"><b>${nf(t[0])}</b> kcal</span>
+   <span class="tv c">C <b>${nf(Math.round(t[1]))}</b> g</span>
+   <span class="tv p">P <b>${nf(Math.round(t[2]))}</b> g</span>
+   <span class="tv f">G <b>${nf(Math.round(t[3]))}</b> g</span></div>`;
+}
 
 function render(){
-  const d=D[idx],a=d.act,dt=new Date(d.iso+"T12:00:00");
-  document.getElementById("hsub").textContent = d.dow+" "+d.dm+" "+MESI[dt.getMonth()];
-  let h="";
-  const isToday = d.iso===todayISO();
-  h+=`<div class="card accent" style="--edge:${EDGE[d.dot]}">
-      <div class="dayhead"><h1>${d.dow.charAt(0).toUpperCase()+d.dow.slice(1)} ${d.dm} ${MESI[dt.getMonth()]}</h1>
-      ${isToday?'<span class="badge today">Oggi</span>':''}
-      <span class="badge">${d.intens==="riposo"?"nessun piano":d.intens}</span></div>
-      <p class="sub">${a.items.length?((a.state==="done"?"Carico svolto <b>":"Carico previsto <b>")+n(a.tss,a.tss%1?2:0)+" TSS</b>"):"Nessuna seduta a piano"} · fabbisogno <b>${n(d.kcal)} kcal</b></p>`;
-  if(a.items.length){
-    h+='<div style="margin-top:8px">';
-    for(const it of a.items){
-      h+=`<div class="act"><div class="ic">${it.ico}</div><div style="flex:1;min-width:0">
-        <div class="nm">${it.sport} — «${it.name}»</div><div class="de">${it.det}</div>
-        <div class="ts">TSS <b>${it.tss}</b>${it.plan!=="n.d."&&it.plan!==it.tss?` · a piano ${it.plan}`:""}${it.delta?` · <span class="up">${it.delta}</span>`:""}</div>
-      </div></div>`;
-    }
-    h+='</div>';
-  }
-  if(a.alt) h+=`<div class="note">${a.alt}</div>`;
-  if(a.note) h+=`<div class="note">${a.note}</div>`;
-  h+='</div>';
+  const d = DATA[idx];
+  document.getElementById('hsub').textContent = d.label + (d.iso===TODAY?' · oggi':'');
+  // pills
+  document.getElementById('pills').innerHTML = DATA.map((x,i)=>
+    `<button class="pill${i===idx?' active':''}" data-i="${i}">
+       <span>${x.dow}</span><b>${x.num}</b><i style="background:${COL[x.intensity]}"></i></button>`).join('');
+  document.querySelectorAll('.pill').forEach(p=>p.onclick=()=>{idx=+p.dataset.i;render();});
 
-  if(a.insight){
-    h+='<div class="card"><h2>Insight della seduta</h2>'+a.insight.map(s=>`<p style="margin:0 0 8px;font-size:13.5px;line-height:1.6;color:var(--ink-2)">${s}</p>`).join("")+'</div>';
-  }
+  let h = `<div class="day">`;
+  h += `<h2>${d.label}${d.iso===TODAY?'<span class="badge">Oggi</span>':''}</h2>`;
+  h += `<div class="sub">${LBL[d.intensity]} · fabbisogno stimato ${nf(d.kcal)} kcal</div>`;
 
-  if(isToday){
-    h+=`<div class="card"><h2>Recupero oggi</h2><div class="wellgrid">
-      <div class="w"><div class="k">HRV</div><div class="v">${W.hrv} ms</div><div class="s">base ${W.hrvBase} · ${W.hrvLo}-${W.hrvHi}</div></div>
-      <div class="w"><div class="k">RHR</div><div class="v">${W.rhr} bpm</div><div class="s">norma 46-50</div></div>
-      <div class="w"><div class="k">Sonno</div><div class="v">${W.sleep}</div><div class="s">score ${W.sleepScore} · deep ${W.deep}%</div></div>
-      <div class="w"><div class="k">Stress</div><div class="v">${W.stress}</div><div class="s">media notte</div></div>
-      <div class="w"><div class="k">Recovery</div><div class="v">${W.rec}%</div><div class="s">COROS</div></div>
-      <div class="w"><div class="k">Carico</div><div class="v">${W.ratio}</div><div class="s">${W.shortL}/${W.longL} · limite inf.</div></div>
-      </div>
-      <div class="note">✅ <b>HRV rientrata: 120 ms</b>, il valore più alto del mese, contro il minimo di 33 ms del 13/09. Ma la <b>baseline resta a 102</b> (era 110 prima del crollo): il rientro va letto sul valore assoluto, non sull'etichetta «Normal». RHR 49, quasi dentro la serie normale 46-50.
-      <br>⚠️ Il load ratio 0,73 è un <b>limite inferiore</b>: ~509 TSS reali non sono mai entrati nel modello COROS perché l'orologio non registra le uscite in bici.</div></div>`;
-  }
-
-  const m=d.mealBudget;
-  h+=`<div class="card"><h2>Fabbisogno del giorno</h2><div class="ring">${donut(d.C,d.P,d.Fg,d.kcal)}
-    <div class="leg">
-      <div class="r"><span class="sw" style="background:${CARB}"></span><span class="nm">Carboidrati</span><span class="g">${n(d.C)} g</span><span class="pc">${n(d.C*4/d.kcal*100)}%</span></div>
-      <div class="r"><span class="sw" style="background:${PROT}"></span><span class="nm">Proteine</span><span class="g">${n(d.P)} g</span><span class="pc">${n(d.P*4/d.kcal*100)}%</span></div>
-      <div class="r"><span class="sw" style="background:${FAT}"></span><span class="nm">Grassi</span><span class="g">${n(d.Fg)} g</span><span class="pc">${n(d.Fg*9/d.kcal*100)}%</span></div>
-      <div class="r" style="color:var(--ink-3);font-size:11.5px">BMR 1.761 × 1,3 = 2.289 kcal + spesa seduta</div>
-    </div></div>`;
-  if(d.fuel) h+=`<div class="note">⛽ <b>${n(d.fuel.tot.kcal)} kcal</b> del totale sono fueling della seduta (pre/intra/post, qui sotto). <b>Il budget dei pasti è già scalato a ${n(d.fuel.budget)} kcal.</b></div>`;
-  if(d.highcarb) h+=`<div class="dev">⚠️ <b>Deviazione dichiarata sullo split dei pasti.</b> Con ${n(d.C)} g di carboidrati lo split standard 22/33/12/33 è irrealizzabile a tavola: i carboidrati sono spostati su <b>colazione (30%) e pranzo (38%)</b>, le proteine sulla <b>cena (38%)</b>. La cena resta con <b>una sola fonte proteica e un solo carboidrato</b>, come da regola.</div>`;
-  h+='</div>';
-
-  if(d.fuel){
-    h+=`<div class="card fuel"><h2>Fueling della seduta</h2><p class="sub" style="margin-bottom:6px">${d.fuel.note}</p>`;
-    const ph=[["Pre — 2-3 h prima","pre","preTot"],["Intra — durante","intra","intraTot"],["Post — entro 30-45'","post","postTot"]];
-    for(const [t,k,kt] of ph){ h+=`<div class="ph"><h3>${t}</h3>${items(d.fuel[k])}${totsHtml(d.fuel[kt])}</div>`; }
-    h+=`<div class="note">💊 ${d.fuel.caff}</div>
-        <div class="note">Totale fueling: <b>${n(d.fuel.tot.kcal)} kcal</b> · C ${n(d.fuel.tot.c)} g · P ${n(d.fuel.tot.p)} g · G ${n(d.fuel.tot.f)} g</div></div>`;
-  }
-
-  h+='<div class="card"><h2>Piano pasti</h2>';
-  d.meals.forEach((mm,i)=>{
-    h+=`<div class="meal" id="meal${i}"><div class="mh" onclick="tg(${i})">
-      <span class="mi">${mm.icon}</span><span class="mn">${mm.name}</span>
-      <span class="mt">~${n(mm.tkcal)} kcal · C ${n(mm.tC)} · P ${n(mm.tP)} · G ${n(mm.tF)}</span>
-      <span class="ch">▸</span></div><div class="mb"><div class="mbi">`;
-    mm.opts.forEach((o,j)=>{
-      const bad = Math.max(Math.abs(o.dev.kcal),Math.abs(o.dev.c),Math.abs(o.dev.p))>15;
-      h+=`<div class="opt"><div class="ol">Opzione ${j+1} · ${o.label}</div>${items(o.items)}${totsHtml(o.tot)}`;
-      if(bad) h+=`<div class="warnrec">⚠️ Scostamento oltre il ±15% sul target (kcal ${o.dev.kcal>0?"+":""}${n(o.dev.kcal,1)}% · C ${o.dev.c>0?"+":""}${n(o.dev.c,1)}% · P ${o.dev.p>0?"+":""}${n(o.dev.p,1)}%): con questi alimenti non si arriva più vicino. Compensa sullo spuntino o scegli l'altra opzione.</div>`;
-      h+='</div>';
+  // attività
+  h += `<div class="card accent" style="--acc:${COL[d.intensity]}"><div class="ctitle">Allenamento</div>`;
+  if(d.activities.length){
+    d.activities.forEach(a=>{
+      h += `<div class="act"><div class="ai">${a.icon}</div><div style="flex:1;min-width:0">
+        <div class="an">${a.sport} — ${a.name}</div>
+        <div class="ad">${a.detail}</div>
+        <div class="am">
+          <span class="chip">${a.done?'svolto':'a piano'}</span>
+          <span class="chip">TSS ${a.tss}</span>
+          <span class="chip">${nf(a.kcal)} kcal</span>
+          ${a.delta?`<span class="chip up">${a.delta} sul piano</span>`:''}
+          ${(!a.done && d.iso===TODAY)?`<span class="chip wait">⏳ non confermata</span>`:''}
+        </div></div></div>`;
     });
-    h+='</div></div></div>';
-  });
-  h+='</div>';
+  } else {
+    h += `<div class="ad" style="color:var(--ink-2)">Nessuna seduta pubblicata.</div>`;
+  }
+  if(d.summary) h += `<div class="note">${d.summary}</div>`;
+  if(d.note) h += `<div class="note warnote">${d.note}</div>`;
+  h += `</div>`;
 
-  h+=`<div class="nav"><button id="prev" ${idx===0?"disabled":""}>← Precedente</button><button id="next" ${idx===D.length-1?"disabled":""}>Successivo →</button></div>`;
-  h+=`<footer>
-    <b>Metodo.</b> Fabbisogno = BMR (Mifflin-St Jeor, 75,7 kg · 183 cm · 29 anni → 1.761 kcal) × 1,3 + spesa della seduta.
-    Bici: metodo NP inverso, NP = FTP × √(TSS/100 / ore) con FTP 261 W, kcal = NP × secondi / 1000, +10% sulle uscite ≥ 3 ore.
-    Corsa: 1 kcal/kg/km a preventivo, misura dell'orologio a consuntivo. Nuoto: ~146 kcal/km.
-    Proteine 1,8-2,1 g/kg · carboidrati 3,5-8 g/kg secondo il carico · grassi a residuo.
-    <br><br><b>Fonti.</b> Attività e wellness da COROS · bici da Garmin Connect · piano e TSS da TrainingPeaks. Ingestione del 16/09/2026, 15:16.
-    <br><br><b>Tolleranza.</b> I valori nutrizionali dei singoli alimenti sono stime standard tipo CREA/USDA, non verificate su un database di prodotto reale: per i confezionati di marca possono scostarsi del 10-20%. Le ricette sono costruite entro ±15% del target su kcal, carboidrati e proteine — 53 su 56 rientrano, le 3 fuori sono segnalate in pagina. Pesi di riso e pasta <b>a crudo</b>.
-  </footer>`;
-  document.getElementById("view").innerHTML=h;
-  document.getElementById("prev").onclick=()=>go(idx-1);
-  document.getElementById("next").onclick=()=>go(idx+1);
-  buildPills();
-}
-function tg(i){document.getElementById("meal"+i).classList.toggle("open");}
-function buildPills(){
-  const p=document.getElementById("pills");p.innerHTML="";
-  D.forEach((d,i)=>{
-    const b=document.createElement("button");
-    b.className="pill"+(i===idx?" on":"");
-    b.innerHTML=`<span class="dw">${d.d3}</span><span class="dn">${d.dm}</span><span class="dt dot-${d.dot}"></span>`;
-    b.onclick=()=>go(i); p.appendChild(b);
+  // recupero oggi
+  if(d.iso===TODAY){
+    h += `<div class="card"><div class="ctitle">Recupero oggi</div><div class="rec">
+      <div><s>Recovery</s><b>${REC.recovery}</b><em>${REC.level}</em></div>
+      <div><s>HRV notte</s><b>${REC.hrv}</b><em>${REC.hrv_eval} · range ${REC.hrv_range}</em></div>
+      <div><s>Baseline HRV</s><b>${REC.hrv_base}</b><em>in calo da 110</em></div>
+      <div><s>FC riposo</s><b>${REC.rhr}</b><em>serie normale 46-50</em></div>
+      <div><s>Sonno</s><b>${REC.sleep}</b><em>score ${REC.sleep_score} · deep ${REC.deep} · REM ${REC.rem}</em></div>
+      <div><s>Efficienza</s><b>${REC.eff}</b><em>sleep HR ${REC.sleephr}</em></div>
+      <div><s>Load ratio</s><b>${REC.ratio}</b><em>short ${REC.short} / long ${REC.long}</em></div>
+      </div>
+      <div class="note">Lo score 67 del sonno pesa soprattutto la <b>durata</b> (7h05 contro 7h44): l'architettura è la migliore della finestra, con deep al 35% ed efficienza al 98,9%. ⚠️ La riserva è la <b>baseline HRV</b>, scesa 110 → 106 → 103 → <b>102</b> in cinque giorni: i 120 ms sono ottimi in assoluto, ma il riferimento con cui COROS li giudica si sta abbassando. Verifica il 20-21/09.</div>
+      </div>`;
+  }
+
+  // insight
+  if(d.insight){
+    h += `<div class="card"><div class="ctitle">Insight</div><div class="insight">${d.insight}</div></div>`;
+  }
+
+  // fabbisogno
+  h += `<div class="card"><div class="ctitle">Fabbisogno e macro</div>
+    <div class="ring">${donut(d.kcal,d.C,d.P,d.F)}${macroLegend(d.C,d.P,d.F)}</div>`;
+  if(d.dev) h += `<div class="note dev">${d.dev[1]}</div>`;
+  h += `</div>`;
+
+  // fueling
+  if(d.fuel){
+    const f=d.fuel;
+    h += `<div class="card fuel"><div class="ctitle">Fueling — ${f.titolo}</div>`;
+    f.phases.forEach(p=>{
+      h += `<div class="ph"><div class="phn">${p.name}</div><div class="phq">${p.quando}</div>
+        <ul>${p.lines.map(l=>`<li>${l}</li>`).join('')}</ul>
+        ${p.tot[0]>0?totBox(p.tot,'Totale '+p.name.toLowerCase()):''}</div>`;
+    });
+    h += totBox(f.tot,'Totale fueling');
+    h += `<div class="note">Il fueling vale <b>${nf(f.tot[0])} kcal</b>: il budget dei pasti è scalato di conseguenza a <b>${nf(f.budget[0])} kcal</b> (C ${f.budget[1]} g · P ${f.budget[2]} g · G ${f.budget[3]} g). I target dei pasti qui sotto sono già al netto del fueling.</div>`;
+    h += `<div class="note">${f.extra}</div>`;
+    h += `</div>`;
+  }
+
+  // pasti
+  h += `<div class="card"><div class="ctitle">Pasti</div>`;
+  d.meals.forEach((m,mi)=>{
+    h += `<div class="meal" id="meal${mi}">
+      <button class="mhead" data-m="${mi}">
+        <span class="mi">${m.icon}</span><span class="mn">${m.name}</span>
+        <span class="mt">~${nf(m.target[0])} kcal · C ${m.target[1]} · P ${m.target[2]} · G ${m.target[3]}</span>
+        <span class="chev">▸</span>
+      </button>
+      <div class="mbody"><div class="mbin">`;
+    m.opts.forEach(o=>{
+      h += `<div class="opt"><h4>${o.title}</h4>
+        <ul>${o.items.map(it=>`<li><span>${it[0]}</span><b>${it[1]} g</b></li>`).join('')}</ul>
+        ${totBox(o.tot)}
+        ${o.flags.length?`<div class="flag">⚠️ Fuori tolleranza: ${o.flags.join(' · ')} rispetto al target del pasto. Se scegli questa opzione, compensa nel pasto successivo (per le kcal in meno: +15 g di burro di arachidi o +1 cucchiaio d'olio; per le proteine in più: riduci di 20-30 g la fonte proteica della cena).</div>`:''}
+        </div>`;
+    });
+    h += `</div></div></div>`;
   });
-  const on=p.querySelector(".pill.on"); if(on) on.scrollIntoView({block:"nearest",inline:"center"});
+  h += `</div></div>`;
+
+  document.getElementById('main').innerHTML = h;
+  document.querySelectorAll('.mhead').forEach(b=>b.onclick=()=>{
+    document.getElementById('meal'+b.dataset.m).classList.toggle('open');
+  });
+  const ap=document.querySelector('.pill.active');
+  if(ap) ap.scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'});
 }
-function go(i){
-  if(i<0||i>=D.length||i===idx)return;
-  const m=document.getElementById("main");
-  m.classList.add("fade");
-  setTimeout(()=>{idx=i;render();window.scrollTo({top:0});m.classList.remove("fade");},160);
-}
-document.addEventListener("keydown",e=>{if(e.key==="ArrowLeft")go(idx-1);if(e.key==="ArrowRight")go(idx+1);});
-let sx=0,sy=0,tr=false;
-const mn=document.getElementById("main");
-mn.addEventListener("touchstart",e=>{sx=e.touches[0].clientX;sy=e.touches[0].clientY;tr=true;},{passive:true});
-mn.addEventListener("touchend",e=>{
-  if(!tr)return;tr=false;
-  const dx=e.changedTouches[0].clientX-sx,dy=e.changedTouches[0].clientY-sy;
-  if(Math.abs(dx)>55&&Math.abs(dx)>Math.abs(dy)*1.8){ dx<0?go(idx+1):go(idx-1); }
+
+function go(n){ idx=Math.min(DATA.length-1,Math.max(0,idx+n)); render(); }
+document.getElementById('prev').onclick=()=>go(-1);
+document.getElementById('next').onclick=()=>go(1);
+document.addEventListener('keydown',e=>{
+  if(e.key==='ArrowLeft') go(-1);
+  if(e.key==='ArrowRight') go(1);
+});
+// swipe
+let sx=0,sy=0,tracking=false;
+const main=document.getElementById('main');
+main.addEventListener('touchstart',e=>{sx=e.touches[0].clientX;sy=e.touches[0].clientY;tracking=true;},{passive:true});
+main.addEventListener('touchend',e=>{
+  if(!tracking) return; tracking=false;
+  const dx=e.changedTouches[0].clientX-sx, dy=e.changedTouches[0].clientY-sy;
+  if(Math.abs(dx)>55 && Math.abs(dx)>Math.abs(dy)*1.8) go(dx<0?1:-1);
 },{passive:true});
-const root=document.documentElement,tgb=document.getElementById("tg");
-try{const s=localStorage.getItem("th-theme"); if(s)root.setAttribute("data-theme",s);}catch(e){}
-tgb.onclick=()=>{
-  const cur=root.getAttribute("data-theme");
-  const dark=cur?cur==="dark":matchMedia("(prefers-color-scheme:dark)").matches;
-  const nx=dark?"light":"dark"; root.setAttribute("data-theme",nx);
-  try{localStorage.setItem("th-theme",nx);}catch(e){}
+// tema
+const root=document.documentElement;
+document.getElementById('theme').onclick=()=>{
+  const cur=root.getAttribute('data-theme');
+  const dark=cur ? cur==='dark'
+    : window.matchMedia('(prefers-color-scheme: dark)').matches;
+  root.setAttribute('data-theme', dark?'light':'dark');
 };
+document.getElementById('fts').textContent='16 settembre 2026, 22:25';
 render();
 </script>
 </body>
