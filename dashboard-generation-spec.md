@@ -178,3 +178,45 @@ La dashboard è pubblicata live su **https://mirkodesoricellis.github.io/trainin
 
 ### ⚠️ Manutenzione: due copie di questo file
 Questo spec esiste in **due posti**: qui nel progetto Training Hub (fonte di verità per le sessioni Cowork interattive) e come `dashboard-generation-spec.md` alla radice del repo `training-dashboard` (letto da `scripts/generate_dashboard.py` nella pipeline cloud, che non ha accesso al progetto Claude). Se aggiorni regole nutrizionali/formato qui, copia lo stesso contenuto anche nel repo (via device bridge o commit manuale), altrimenti la pipeline cloud userà regole vecchie.
+
+---
+
+# 🆕 Aggiornamenti alle regole di stima (allineamento 2026-09-18)
+
+Questa sezione allinea la copia nel repo alle regole entrate in vigore dopo il 09/09. **Prevale su quanto scritto sopra dove c'è conflitto.**
+
+## 📐 Bici — FTP 297 W nella NP inversa (Regola 18, calibrata il 17/09)
+Il TSS di TrainingPeaks è calcolato su una **FTP di ~297 W**, non 261. La formula da usare quando il TSS viene da TrainingPeaks è:
+
+```
+NP  = 297 × √( (TSS/100) / ore )
+kcal = NP × secondi / 1000
+```
+
+Verifica sulla seduta del 17/09 (41,05 km, 1:17:30, 80,2 TSS): NP calcolata 234 W contro **234 W misurati dal Garmin**; kcal 1.088 contro **1.063 misurate** → **+2,4%**. Con FTP 261 l'errore era −10,1%, ed è lo stesso −11% sistematico che il metodo accumulava da settimane.
+
+⚠️ **Il +10% generico sulle uscite ≥ 3 ore è SOSPESO**: correggeva la stessa distorsione alla radice sbagliata, applicarlo in aggiunta sovrastimerebbe. Verifica aperta sull'uscita da 3 ore del 20/09.
+⚠️ La FTP di riferimento del profilo atleta (261 W) **non è confermata**: va chiesta a Mirko.
+
+## 📐 Corsa — +10% su strada, formula non valida sul trail
+`1 kcal/kg/km` **sottostima del 7-13% su strada** (tre verifiche). A preventivo si applica **+10%**. A consuntivo vale sempre la misura dell'orologio.
+🔴 **Sul trail la formula sovrastima del 42%**: non applicarla alle uscite con dislivello importante.
+
+## 📐 Nuoto — 146 kcal/km
+Range validato **128-159 kcal/km** in vasca (misura del 16/09: 427 kcal su 3,00 km = 142,3 kcal/km). In dashboard si usa **146 kcal/km**.
+
+## ⏳ Regola 12 e 12-bis — mai dichiarare «riposo» in giornata
+Una giornata **non si chiude mai nel giorno stesso**. Le conclusioni intra-giornata si etichettano ⏳, mai ✅; il riposo si dichiara solo alla riconferma del giorno successivo.
+🔵 **12-bis**: il pannello di controllo scade **all'ora dell'ultimo dato disponibile**, non all'ora in cui gira lo script. Il marcatore è l'ultimo timestamp della serie di stress.
+
+## 🔴 Split dei pasti ad alto carico di carboidrati
+Sopra i **5 g/kg di carboidrati** lo split piatto 22/33/12/33 è irrealizzabile su alimenti reali. Spostare i carboidrati su **colazione 30%** e **pranzo 38%** (cena 20%) e le proteine sulla **cena 35%**, e **dichiarare la deviazione in pagina**.
+La cena ammette **una sola** fonte di carboidrati e **una sola** fonte proteica: non combinarne due per far tornare i numeri.
+Se una sessione ha fueling pre/intra/post, **scalare il budget dei pasti sottraendo le calorie del fueling** e dichiararlo in pagina.
+
+## ⚠️ Attività duplicate e discipline diverse
+Due sessioni **della stessa disciplina** nello stesso giorno sono **alternative**: usare la principale, segnalare l'altra.
+Due sessioni di **discipline diverse** (es. corsa + forza) **si sommano**: non è un duplicato.
+
+## 🔴 Il carico COROS è un limite inferiore
+L'orologio COROS **non viene indossato in bici**: ~589 TSS reali non sono mai entrati nel modello. Load ratio e training load COROS vanno letti come **limite inferiore**, e la recovery COROS al 100% non è un via libera da sola.
