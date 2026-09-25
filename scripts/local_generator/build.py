@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-import sys, html, datetime, math
+import sys, html, datetime, math, re
 sys.path.insert(0, '/home/claude/gen')
 import numpy as np
 from foods import F, UNIT
@@ -34,7 +34,7 @@ def e(s): return html.escape(s, quote=False)
 
 # ---------- split dei pasti ----------
 SPLIT_HIGH = dict(C=[.30,.38,.12,.20], P=[.15,.28,.13,.44], G=[.11,.36,.14,.39])
-SPLIT_LOW  = dict(C=[.25,.35,.13,.27], P=[.15,.24,.13,.48], G=[.11,.36,.14,.39])
+SPLIT_LOW  = dict(C=[.25,.35,.13,.27], P=[.15,.32,.18,.35], G=[.11,.36,.14,.39])
 MEALS = [("☀️","Colazione"), ("🍽️","Pranzo"), ("🍎","Spuntino"), ("🌙","Cena")]
 
 def fuel_tot(items):
@@ -136,10 +136,16 @@ def build_day(di, d):
         f = d['fuel']
         it = fuel_tot(f['intra']); pt = fuel_tot(f['post']); fk = it + pt
         blocks = ['<div class="fb"><h3>Pre</h3><p class="fnote">%s</p></div>' % f['pre']]
-        blocks.append('<div class="fb"><h3>Intra</h3><p class="fnote">%s</p>%s%s</div>'
-                      % (f['intra_note'], food_ul(f['intra']), tot_div(it, 'tot sm')))
-        blocks.append('<div class="fb"><h3>Post</h3><p class="fnote">%s</p>%s%s</div>'
-                      % (f['post_note'], food_ul(f['post']), tot_div(pt, 'tot sm')))
+        if f['intra']:
+            blocks.append('<div class="fb"><h3>Intra</h3><p class="fnote">%s</p>%s%s</div>'
+                          % (f['intra_note'], food_ul(f['intra']), tot_div(it, 'tot sm')))
+        else:
+            blocks.append('<div class="fb"><h3>Intra</h3><p class="fnote">%s</p></div>' % f['intra_note'])
+        if f['post']:
+            blocks.append('<div class="fb"><h3>Post</h3><p class="fnote">%s</p>%s%s</div>'
+                          % (f['post_note'], food_ul(f['post']), tot_div(pt, 'tot sm')))
+        else:
+            blocks.append('<div class="fb"><h3>Post</h3><p class="fnote">%s</p></div>' % f['post_note'])
         parts.append('<section class="card"><h2>%s</h2><p class="fsum">Totale fueling '
                      '<b>%s kcal</b> · C %d g · P %d g · G %d g, sottratti dal budget dei pasti.</p>'
                      '<div class="fgrid">%s</div></section>'
@@ -158,8 +164,9 @@ def build_day(di, d):
                      % nfmt(d['cpk'],1))
     else:
         flags.append('<div class="flag dev">⚠️ <b>Split dichiarato.</b> Carboidrati 25/35/13/27, '
-                     'proteine 15/24/13/48, grassi 11/36/14/39: giornata a basso carboidrato, '
-                     'le proteine si concentrano sulla cena.</div>')
+                     'proteine 15/32/18/35, grassi 11/36/14/39: giornata a basso carboidrato, '
+                     'le proteine si distribuiscono su pranzo e cena senza superare il 35%% a cena: '
+                     'oltre, una <b>sola</b> fonte proteica non ci arriva.</div>')
     if fk[0] > 0:
         flags.append('<div class="flag dev">⚡ I pasti coprono <b>%s kcal</b>: il fueling '
                      '(%s kcal) è già sottratto.</div>' % (nfmt(mk), nfmt(fk[0])))
@@ -190,11 +197,21 @@ for di, d in enumerate(DAYS):
                  '<span class="pn">%d</span><i class="dot %s"></i></button>'
                  % (di, di, wd, dd, d['dot']))
 
+MESI_ABBR = ['gen','feb','mar','apr','mag','giu','lug','ago','set','ott','nov','dic']
+_d0 = datetime.date(*[int(x) for x in DAYS[0]['iso'].split('-')])
+_d1 = datetime.date(*[int(x) for x in DAYS[-1]['iso'].split('-')])
+if _d0.month == _d1.month:
+    RANGE_SHORT = '%d\u2013%d %s' % (_d0.day, _d1.day, MESI_ABBR[_d0.month-1])
+    RANGE_LONG  = '%d-%d %s' % (_d0.day, _d1.day, MESI[_d0.month-1])
+else:
+    RANGE_SHORT = '%d %s \u2013 %d %s' % (_d0.day, MESI_ABBR[_d0.month-1], _d1.day, MESI_ABBR[_d1.month-1])
+    RANGE_LONG  = '%d %s \u2013 %d %s' % (_d0.day, MESI[_d0.month-1], _d1.day, MESI[_d1.month-1])
+
 head = '''<!DOCTYPE html>
 <html lang="it"><head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Training Hub &mdash; 24-30 settembre</title>
+<title>Training Hub &mdash; ''' + RANGE_LONG + '''</title>
 <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="512x512" href="icon-512.png">
 <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
@@ -209,14 +226,14 @@ head = '''<!DOCTYPE html>
 
 footer = '''<footer class="foot"><b>Metodo</b> — Fabbisogno = BMR Mifflin-St Jeor (75,7 kg · 183 cm · 29 anni → 1.761 kcal) × 1,3 + spesa della seduta.
 <b>Bici</b>: NP inversa dal TSS di TrainingPeaks con <b>FTP 297 W</b> (Regola 18), +5% sulle uscite ≥ 3 h. Dove il TSS manca (26/09) si usa l'intensità dell'uscita gemella del 19/09; dove è corrotto (Regola 20) si ricostruisce dall'IF della pianificata. A consuntivo vale la misura Garmin.
-<b>Corsa</b>: a consuntivo la misura COROS; a preventivo 1 kcal/kg/km +10% su strada (sul trail la formula sovrastima del 42%). <b>Nuoto</b>: <b>141 kcal/km</b>, aggiornato con la quinta misura del 23/09 (range 122-159). <b>Forza</b>: 309 kcal/h, misura COROS.
-<b>Fonti</b>: COROS (corsa, nuoto, forza, sonno, passi, HRV, stress), Garmin (bici), TrainingPeaks (piano e TSS). Piano caricato fino al <b>01/10</b>.
+<b>Corsa</b>: a consuntivo la misura COROS; a preventivo 1 kcal/kg/km <b>+8,4%</b> su strada (media di sette verifiche) (sul trail la formula sovrastima del 42%). <b>Nuoto</b>: <b>141 kcal/km</b>, aggiornato con la quinta misura del 23/09 (range 122-159). <b>Forza</b>: 309 kcal/h, misura COROS.
+<b>Fonti</b>: COROS (corsa, nuoto, forza, sonno, passi, HRV, stress), Garmin (bici), TrainingPeaks (piano e TSS). Piano caricato fino al <b>02/10</b>.
 <b>Valori nutrizionali</b>: stime standard tipo CREA/USDA, non verificate su database di prodotto. Tolleranza ±10-15%; tutte le ricette sono verificate programmaticamente entro ±15% sulle kcal del pasto. Pesi di riso e pasta <b>a crudo</b>. Una sola fonte proteica e un solo carboidrato per piatto; pancarrè, mai «pane»; marmellata al posto del miele.
 <b>CTL/ATL/TSB</b> non disponibili (<code>tp_get_fitness</code> → HTTP 402): si usa il load ratio COROS, che resta un <b>limite inferiore</b> (~878 TSS di bici mai entrati nel modello).</footer>'''
 
 doc = (head + STYLE + '<body>\n'
        '<header class="top"><div class="topin">\n'
-       ' <div class="brand">Training Hub <span>· 24–30 set</span></div>\n'
+       ' <div class="brand">Training Hub <span>· ' + RANGE_SHORT + '</span></div>\n'
        ' <div class="nav">\n'
        '  <button class="ib" onclick="step(-1)" aria-label="Giorno precedente">←</button>\n'
        '  <button class="ib" onclick="step(1)" aria-label="Giorno successivo">→</button>\n'
@@ -225,9 +242,9 @@ doc = (head + STYLE + '<body>\n'
        ' <div class="strip" id="strip">' + ''.join(pills) + '</div>\n'
        '</header>\n'
        '<main class="wrap" id="main">' + ''.join(arts) + footer + '</main>\n'
-       + SCRIPT.replace(
-           'var DATA=["2026-09-21", "2026-09-22", "2026-09-23", "2026-09-24", "2026-09-25", "2026-09-26", "2026-09-27"]',
-           'var DATA=[' + ', '.join('"%s"' % d['iso'] for d in DAYS) + ']')
+       + re.sub(r'var DATA=\[[^\]]*\]',
+                'var DATA=[' + ', '.join('"%s"' % d['iso'] for d in DAYS) + ']',
+                SCRIPT, count=1)
        + '</body></html>\n')
 
 import os

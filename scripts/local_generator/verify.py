@@ -43,8 +43,8 @@ for di,(a,d) in enumerate(zip(arts,DAYS)):
         if len(np_)!=1:
             print("  ❌ PRANZO %s opz.%d proteine=%s" % (d['iso'],oi+1,np_)); ok=False
 print()
-print("miele presente:", "miele" in s.lower())
+print("miele come alimento:", bool(re.search(r'<span class="fn">Miele</span>', s)))
 print("'Pane' generico:", bool(re.search(r'<span class="fn">Pane</span>',s)))
 print("sfondo:", re.search(r'--page:\s*([^;]+);',s).group(1))
-print("data odierna in DATA:", '"2026-09-24"' in s)
+print("data odierna in DATA:", '"2026-09-25"' in s)
 print("ESITO:", "✅ tutto entro tolleranza" if ok else "❌ fuori tolleranza")
